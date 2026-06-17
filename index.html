@@ -1521,6 +1521,140 @@
     display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px;
   }
   .broadcast-send-btn:hover { transform: translateY(-1px); }
+
+  /* ─── RESPONSIVE: TABLET (768px and below) ─── */
+  @media (max-width: 768px) {
+    body { font-size: 14px; }
+    .hdr { padding: 12px 16px; }
+    .hdr-logo-jollibee { font-size: 18px; }
+    .main-content { margin-top: 110px; padding: 16px; }
+    .welcome-hero { padding: 32px 24px; }
+    .hero-title { font-size: 28px; }
+    .hero-sub { font-size: 14px; }
+    .hero-stats { gap: 24px; }
+    .grid-2col { grid-template-columns: 1fr; }
+    .experience-layout { grid-template-columns: 1fr; gap: 16px; }
+    .phone-container { position: relative; top: auto; }
+    .phone-body { width: 300px; height: 600px; }
+    .instructions-panel { margin-top: 16px; }
+    .fg-input, .fg-select, .fg-textarea { font-size: 16px; padding: 10px; }
+    .seg-grid { grid-template-columns: 1fr; }
+    .send-method-toggle { grid-template-columns: 1fr; }
+    .zbs-layout, .broadcast-layout { grid-template-columns: 1fr; gap: 16px; }
+    .zbs-form-card, .zbs-preview-panel { position: relative; top: auto; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .db-chart { height: 200px; }
+    button, input, select { min-height: 44px; font-size: 16px; }
+  }
+
+  /* ─── RESPONSIVE: MOBILE (480px and below) ─── */
+  @media (max-width: 480px) {
+    body { font-size: 13px; }
+    .hdr { padding: 10px 12px; }
+    .hdr-logo-jollibee { font-size: 16px; }
+    .hdr-logo-zalo { font-size: 12px; }
+    .tab-btn { padding: 10px 12px; font-size: 12px; }
+    .main-content { margin-top: 100px; padding: 12px; }
+    .welcome-hero { padding: 20px 16px; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 1.5px; }
+    .hero-title { font-size: 22px; }
+    .hero-sub { font-size: 13px; }
+    .hero-stat .num { font-size: 20px; }
+    .hero-stat .lbl { font-size: 10px; }
+    .panel-card-intro { padding: 16px; }
+    .panel-card-intro h3 { font-size: 16px; }
+    .problem-item, .solution-item { padding: 12px; }
+    .problem-item .icon { font-size: 18px; }
+    .problem-item h4 { font-size: 13px; }
+    .problem-item p { font-size: 12px; }
+
+    .phone-body { width: 280px; height: 560px; border-radius: 40px; padding: 10px; }
+    .phone-header { height: 36px; font-size: 11px; }
+    .guide-card { padding: 16px; }
+    .guide-card h3 { font-size: 14px; }
+    .guide-step { padding: 10px; }
+    .gs-num { width: 24px; height: 24px; font-size: 12px; }
+    .gs-title { font-size: 12px; }
+    .gs-desc { font-size: 11px; }
+
+    .crm-sync-widget { padding: 14px; }
+    .crm-sync-hdr { font-size: 11px; }
+    .crm-sync-grid { grid-template-columns: 1fr; }
+    .crm-sync-lbl { font-size: 10px; }
+
+    .ops-banner { padding: 16px 12px; }
+    .ops-banner-title { font-size: 14px; }
+    .ops-arch { gap: 6px; }
+    .ops-lbl { font-size: 11px; }
+
+    .kpi-grid { grid-template-columns: 1fr; }
+    .kpi-val { font-size: 18px; }
+    .db-chart { height: 150px; }
+    .db-table { font-size: 11px; }
+
+    .zbs-form-title { font-size: 14px; }
+    .zbs-badge { font-size: 9px; }
+    .fg-lbl { font-size: 12px; }
+    .fg-input, .fg-select, .fg-textarea { font-size: 16px; padding: 10px; border-radius: 6px; }
+    .fg-textarea { height: 80px; }
+
+    .usecase-tabs { gap: 3px; }
+    .usecase-tab { padding: 5px 8px; font-size: 10px; }
+    .seg-card { padding: 8px; }
+    .seg-title { font-size: 11px; }
+
+    .method-btn { padding: 8px; }
+    .method-icon { width: 28px; height: 28px; font-size: 14px; }
+    .method-title { font-size: 10px; }
+
+    .zbs-reach-val { font-size: 24px; }
+    .zbs-send-btn { padding: 12px; font-size: 12px; }
+
+    .zbs-preview-panel { padding: 14px; }
+    .zbs-preview-title { font-size: 9px; }
+    .preview-phone-card { padding: 10px; }
+    .preview-zalo-hdr { padding: 8px 10px; }
+    .preview-zalo-brand { font-size: 10px; }
+    .preview-zalo-body { padding: 10px; }
+    .preview-zalo-title { font-size: 11px; }
+    .preview-zalo-content { font-size: 10px; }
+    .preview-zalo-btn { padding: 8px; font-size: 11px; }
+
+    .broadcast-target-opt { padding: 8px; }
+    .broadcast-target-opt .opt-title { font-size: 12px; }
+    .broadcast-target-opt .opt-desc { font-size: 9px; }
+
+    .adv-filter-row label { font-size: 10px; }
+    .adv-filter-row select { font-size: 11px; padding: 6px 8px; }
+
+    .broadcast-stat .val { font-size: 16px; }
+    .broadcast-stat .lbl { font-size: 8px; }
+
+    .sent-notification-box { padding: 12px; }
+    .sent-notification-title { font-size: 13px; }
+    .sent-stat-val { font-size: 16px; }
+
+    .oa-home-btn-row { grid-template-columns: 1fr; padding: 4px 14px 10px; }
+    .btn-follow, .btn-chat-oa { font-size: 12px; padding: 10px; }
+    .oa-quick-menu-grid { padding: 8px 12px 10px; gap: 4px; }
+    .oa-quick-tile { padding: 6px; }
+    .oa-quick-tile-icon { font-size: 17px; }
+    .oa-quick-tile-label { font-size: 8px; }
+
+    .chat-quick-menu-bar { padding: 6px 8px; gap: 4px; }
+    .chat-menu-tile { padding: 5px 8px; }
+    .chat-menu-tile-icon { font-size: 15px; }
+    .chat-menu-tile-label { font-size: 7.5px; }
+  }
+
+  /* ─── RESPONSIVE: EXTRA SMALL (360px and below) ─── */
+  @media (max-width: 360px) {
+    .hdr { padding: 8px 10px; }
+    .hdr-logo-jollibee { font-size: 14px; }
+    .phone-body { width: 260px; height: 520px; }
+    .hero-title { font-size: 18px; }
+    .oa-quick-menu-grid { grid-template-columns: repeat(2, 1fr); }
+  }
 </style>
 </head>
 <body>
