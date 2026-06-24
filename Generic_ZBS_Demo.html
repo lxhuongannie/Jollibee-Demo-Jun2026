@@ -1,0 +1,3919 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zalo Business Solutions — Interactive Demo</title>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+  :root {
+    --brand-primary: #0047AB;
+    --brand-primary-hover: #003893;
+    --brand-accent: #0095E8;
+    --brand-accent-light: #E8F4FF;
+    --zalo-blue: #0068FF;
+    --zalo-blue-hover: #0056D2;
+    --zalo-dark: #003C9A;
+    --bg-main: #F4F6F9;
+    --bg-card: #FFFFFF;
+    --text-primary: #1F2937;
+    --text-secondary: #4B5563;
+    --text-muted: #9CA3AF;
+    --border-color: #E5E7EB;
+    --success: #10B981;
+    --success-light: #ECFDF5;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    --purple: #8B5CF6;
+    --purple-light: #F3E8FF;
+    --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── HEADER ─── */
+  .hdr {
+    background: linear-gradient(135deg, #0047AB 0%, #1A1A2E 100%);
+    color: #fff;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .hdr-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .hdr-logo-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hdr-logo-brand {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--brand-accent);
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+  .hdr-logo-x {
+    color: rgba(255,255,255,0.4);
+    font-weight: 300;
+    font-size: 18px;
+  }
+  .hdr-logo-zalo {
+    background: #fff;
+    color: var(--zalo-blue);
+    font-weight: 900;
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .hdr-div {
+    width: 1px;
+    height: 32px;
+    background: rgba(255,255,255,0.2);
+  }
+  .hdr-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    font-weight: 400;
+  }
+  .hdr-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #FF5A5F;
+    font-weight: 800;
+    background: rgba(255, 90, 95, 0.12);
+    border: 1px solid rgba(255, 90, 95, 0.25);
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+  .live-dot {
+    width: 8px;
+    height: 8px;
+    background: #FF5A5F;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+  .hdr-pill {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--brand-accent);
+  }
+
+  /* ─── TABS NAVIGATION ─── */
+  .tabs-container {
+    background: #fff;
+    border-bottom: 1px solid var(--border-color);
+    position: fixed;
+    top: 66px; left: 0; right: 0;
+    z-index: 999;
+    padding: 0 32px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  }
+  .tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+  }
+  .tabs::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+  
+  .tab-btn {
+    padding: 14px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-secondary);
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  .tab-btn:hover {
+    color: var(--brand-primary);
+  }
+  .tab-btn.active {
+    color: var(--brand-primary);
+    border-bottom-color: var(--brand-primary);
+    font-weight: 700;
+  }
+
+  /* ─── MAIN CONTENT ─── */
+  .main-content {
+    margin-top: 130px;
+    padding: 32px;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: calc(100vh - 130px);
+  }
+
+  .tab-pane {
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
+  .tab-pane.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── TAB 1: INTRO & PROPOSAL ─── */
+  .welcome-hero {
+    background: linear-gradient(135deg, var(--brand-primary) 0%, #003893 100%);
+    border-radius: 20px;
+    padding: 56px 48px;
+    color: white;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(227, 24, 55, 0.15);
+  }
+  .welcome-hero::after {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 280px; height: 280px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+  .welcome-hero::before {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 10%;
+    width: 220px; height: 220px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 50%;
+  }
+  .hero-eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--brand-accent);
+    margin-bottom: 16px;
+  }
+  .hero-title {
+    font-size: 40px;
+    font-weight: 850;
+    line-height: 1.25;
+    margin-bottom: 20px;
+    max-width: 800px;
+  }
+  .hero-title span {
+    color: var(--brand-accent);
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 720px;
+    line-height: 1.65;
+    margin-bottom: 36px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 28px;
+  }
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-stat .num {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--brand-accent);
+    line-height: 1.1;
+  }
+  .hero-stat .lbl {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  .grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .panel-card-intro {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    border: 1px solid var(--border-color);
+  }
+  .panel-card-intro h3 {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .intro-problem-title { color: var(--brand-primary); }
+  .intro-solution-title { color: var(--zalo-blue); }
+
+  .problem-list, .solution-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .problem-item {
+    display: flex;
+    gap: 14px;
+    background: #EBF3FB;
+    border-left: 4px solid var(--brand-primary);
+    padding: 16px;
+    border-radius: 0 12px 12px 0;
+  }
+  .problem-item .icon {
+    font-size: 22px;
+    line-height: 1;
+  }
+  .problem-item h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #9B1C1C;
+    margin-bottom: 4px;
+  }
+  .problem-item p {
+    font-size: 13px;
+    color: #7F1D1D;
+    line-height: 1.5;
+  }
+
+  .solution-item {
+    display: flex;
+    gap: 14px;
+    background: #F0F6FF;
+    border-left: 4px solid var(--zalo-blue);
+    padding: 16px;
+    border-radius: 0 12px 12px 0;
+  }
+  .solution-item .icon {
+    font-size: 22px;
+    line-height: 1;
+  }
+  .solution-item h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--zalo-dark);
+    margin-bottom: 4px;
+  }
+  .solution-item p {
+    font-size: 13px;
+    color: #1E40AF;
+    line-height: 1.5;
+  }
+
+  /* ─── TAB 2: CUSTOMER EXPERIENCE (PHONE INTERACTIVE) ─── */
+  .experience-layout {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  /* Phone Mockup */
+  .phone-container {
+    position: sticky;
+    top: 150px;
+  }
+  .phone-body {
+    background: #111827;
+    border-radius: 48px;
+    padding: 12px;
+    width: 350px;
+    height: 680px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    margin: 0 auto;
+    border: 4px solid #374151;
+    position: relative;
+  }
+  .phone-screen {
+    background: #F3F4F6;
+    border-radius: 38px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .phone-notch {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 130px; height: 22px;
+    background: #111827;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .phone-notch-camera {
+    width: 8px; height: 8px;
+    background: #1F2937;
+    border-radius: 50%;
+  }
+  .phone-header {
+    height: 38px;
+    background: #fff;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #000;
+    border-bottom: 1px solid #E5E7EB;
+    padding-top: 12px;
+  }
+  .phone-content-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    position: relative;
+  }
+
+  /* Phone Screens States */
+  .p-screen {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+  .p-screen.active {
+    display: flex;
+  }
+
+  /* Screen 1: Zalo Search */
+  .zalo-top {
+    background: var(--zalo-blue);
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .zalo-search-bar {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 6px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+  }
+  .zalo-search-bar input {
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 13px;
+    width: 100%;
+  }
+  .zalo-search-bar input::placeholder { color: rgba(255,255,255,0.6); }
+  
+  .zalo-results {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .search-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .oa-search-card {
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  }
+  .oa-search-card:hover {
+    border-color: var(--zalo-blue);
+    background: #F0F7FF;
+  }
+  .oa-search-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--brand-primary);
+    color: white;
+    font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--brand-accent);
+  }
+  .oa-search-info {
+    flex: 1;
+  }
+  .oa-search-name {
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .oa-search-badge {
+    background: var(--zalo-blue);
+    color: white;
+    font-size: 8px;
+    padding: 1px 4px;
+    border-radius: 4px;
+  }
+  .oa-search-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  /* Screen 2: OA Home */
+  .oa-home-cover {
+    height: 110px;
+    background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-accent) 100%);
+    position: relative;
+  }
+  .oa-home-profile {
+    padding: 0 16px 16px;
+    background: white;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .oa-home-avatar {
+    width: 68px; height: 68px;
+    border-radius: 50%;
+    background: var(--brand-primary);
+    border: 3px solid white;
+    position: absolute;
+    top: -34px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  .oa-home-details {
+    padding-top: 40px;
+  }
+  .oa-home-name {
+    font-size: 16px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .oa-home-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  .oa-home-stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .oa-home-stats strong { color: var(--text-primary); }
+  
+  .oa-home-buttons {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: white;
+    margin-top: 10px;
+  }
+  .btn-follow {
+    background: var(--zalo-blue);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 104, 255, 0.2);
+    animation: bounceBtn 1.5s infinite;
+  }
+  @keyframes bounceBtn {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); box-shadow: 0 6px 16px rgba(0, 104, 255, 0.3); }
+  }
+
+  .oa-home-menu {
+    padding: 16px;
+    background: white;
+    margin-top: 10px;
+    flex: 1;
+  }
+  .oa-menu-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+  .oa-menu-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* Screen 3: OA Chat */
+  .chat-hdr {
+    background: var(--zalo-blue);
+    padding: 24px 14px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .chat-hdr-back { font-size: 20px; cursor: pointer; }
+  .chat-hdr-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--brand-primary);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .chat-hdr-info { flex: 1; }
+  .chat-hdr-name { font-size: 13px; font-weight: 700; }
+  .chat-hdr-status { font-size: 9px; opacity: 0.8; }
+  
+  .chat-msgs {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+    background: #E5E7EB;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .chat-input-box {
+    background: white;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-top: 1px solid var(--border-color);
+  }
+  .chat-input-field {
+    flex: 1;
+    background: #F3F4F6;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-size: 12px;
+    outline: none;
+  }
+  .chat-send-btn {
+    width: 30px; height: 30px;
+    background: var(--zalo-blue);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+  }
+
+  /* Chat elements */
+  .p-msg {
+    max-width: 80%;
+    padding: 8px 12px;
+    border-radius: 14px;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+  .p-msg.bot {
+    background: white;
+    color: var(--text-primary);
+    align-self: flex-start;
+    border-bottom-left-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .p-msg.user {
+    background: var(--zalo-blue);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .p-msg.system {
+    align-self: center;
+    background: #E9D8FF;
+    color: #5B21B6;
+    font-size: 10px;
+    font-weight: 700;
+    text-align: center;
+    padding: 4px 12px;
+    border-radius: 20px;
+    max-width: 90%;
+  }
+  .p-typing {
+    display: flex; gap: 4px; align-items: center;
+    background: white; border-radius: 12px;
+    padding: 8px 12px; align-self: flex-start;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    border-bottom-left-radius: 3px;
+  }
+  .p-typing-dot {
+    width: 5px; height: 5px; background: var(--text-muted);
+    border-radius: 50%; animation: typingDot 1.2s infinite;
+  }
+  .p-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .p-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingDot { 0%, 80%, 100% { transform: scale(1); opacity: 0.4; } 40% { transform: scale(1.25); opacity: 1; } }
+
+  .p-quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+    align-self: flex-start;
+  }
+  .p-qr-btn {
+    background: white;
+    border: 1.5px solid var(--zalo-blue);
+    color: var(--zalo-blue);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .p-qr-btn:hover {
+    background: var(--zalo-blue);
+    color: white;
+  }
+
+  /* MiniApp Card in Chat */
+  .p-miniapp-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    width: 230px;
+    align-self: flex-start;
+    animation: fadeIn 0.3s;
+  }
+  .p-ma-hdr {
+    background: var(--brand-primary);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+  }
+  .p-ma-hdr-logo { font-size: 14px; }
+  .p-ma-hdr-title { font-size: 11px; font-weight: 700; }
+  .p-ma-body { padding: 12px; text-align: center; }
+  .p-ma-title { font-size: 12px; font-weight: 800; margin-bottom: 6px; }
+  .p-ma-desc { font-size: 10px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 10px; }
+  .p-ma-btn {
+    background: var(--brand-primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  /* Mini App Mockup Overlaid */
+  .miniapp-overlay {
+    position: absolute;
+    bottom: -100%; left: 0; right: 0;
+    height: 85%;
+    background: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    z-index: 200;
+    box-shadow: 0 -10px 25px rgba(0,0,0,0.15);
+    transition: bottom 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+  }
+  .miniapp-overlay.active {
+    bottom: 0;
+  }
+  .miniapp-hdr {
+    background: var(--brand-primary);
+    color: white;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+  .ma-title-box { display: flex; align-items: center; gap: 8px; }
+  .ma-logo { font-size: 18px; }
+  .ma-name { font-size: 13px; font-weight: 800; }
+  .ma-sub { font-size: 9px; opacity: 0.8; }
+  .ma-close { font-size: 18px; cursor: pointer; opacity: 0.8; }
+  
+  .miniapp-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+  }
+  .ma-promo-banner {
+    background: linear-gradient(135deg, var(--brand-accent) 0%, #F59E0B 100%);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+  .ma-promo-title { font-size: 13px; font-weight: 800; color: #1F2937; }
+  .ma-promo-sub { font-size: 10px; color: #78350F; margin-top: 2px; }
+
+  .ma-section-title { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .ma-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+  .ma-combo-card {
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .ma-combo-card.selected {
+    border-color: var(--brand-primary);
+    background: #EBF3FB;
+  }
+  .combo-emoji { font-size: 20px; }
+  .combo-name { font-size: 11px; font-weight: 700; margin-top: 4px; }
+  .combo-price { font-size: 10px; color: var(--brand-primary); font-weight: 600; }
+
+  .ma-form { display: flex; flex-direction: column; gap: 8px; }
+  .ma-input {
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    outline: none;
+  }
+  .ma-input:focus { border-color: var(--brand-primary); }
+  
+  .ma-optin-box {
+    background: var(--bg-main);
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 4px;
+    border: 1px solid var(--border-color);
+  }
+  .ma-checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 10.5px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    line-height: 1.4;
+  }
+  .ma-checkbox-label input { margin-top: 2px; }
+  
+  .ma-submit-btn {
+    background: var(--brand-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(227, 24, 55, 0.15);
+  }
+
+  /* Tab 2 Instructions Panel */
+  .instructions-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .guide-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  }
+  .guide-card h3 {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .guide-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .guide-step:hover { background: var(--bg-main); }
+  .guide-step.active {
+    background: #F0F6FF;
+    border-color: #BFDBFE;
+  }
+  .guide-step.done {
+    background: #ECFDF5;
+  }
+  .guide-step.done .gs-num {
+    background: var(--success);
+    color: white;
+  }
+  .gs-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--border-color);
+    font-size: 11px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .guide-step.active .gs-num {
+    background: var(--zalo-blue);
+    color: white;
+  }
+  .gs-text { flex: 1; }
+  .gs-title { font-size: 13px; font-weight: 700; }
+  .gs-desc { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+  /* CRM Real-time Sync Status Widget */
+  .crm-sync-widget {
+    background: #E8F4FF;
+    border: 1px solid #FDE68A;
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .crm-sync-hdr {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 12px; font-size: 12px; font-weight: 700; color: #B45309;
+  }
+  .crm-sync-dot {
+    width: 8px; height: 8px; background: #B45309; border-radius: 50%;
+  }
+  .crm-sync-dot.active {
+    background: var(--success);
+    animation: pulse 1s infinite;
+  }
+  .crm-sync-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11.5px;
+  }
+  .crm-sync-item {
+    background: white; border-radius: 8px; padding: 10px; border: 1px solid #FEF3C7;
+  }
+  .crm-sync-lbl { color: var(--text-muted); font-size: 10px; margin-bottom: 2px; }
+  .crm-sync-val { font-weight: 700; color: var(--text-primary); }
+
+  /* ─── TAB 3: OPERATIONS WORKFLOW (3-LANES) ─── */
+  .ops-banner {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px 24px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    margin-bottom: 24px;
+  }
+  .ops-banner-title { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; }
+  .ops-arch { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .ops-node { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 90px; }
+  .ops-icon {
+    width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    font-size: 22px; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+  .ops-lbl { font-size: 11px; font-weight: 700; text-align: center; line-height: 1.3; }
+  .ops-sublbl { font-size: 9.5px; color: var(--text-muted); text-align: center; }
+  .ops-arr { font-size: 20px; color: var(--text-muted); font-weight: 300; }
+  .ops-badge-v {
+    position: absolute; bottom: -3px; right: -3px; width: 16px; height: 16px; background: var(--brand-accent);
+    color: #1F2937; border-radius: 50%; font-size: 8px; font-weight: 800; display: flex; align-items: center; justify-content: center; border: 2px solid white;
+  }
+  .ops-split { display: flex; flex-direction: column; gap: 6px; }
+
+  .ops-progress-wrap { margin-top: 14px; }
+  .ops-progress-hdr { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-secondary); font-weight: 600; margin-bottom: 6px; }
+  .ops-progress-track { height: 6px; background: var(--border-color); border-radius: 10px; overflow: hidden; }
+  .ops-progress-fill { height: 100%; background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent)); border-radius: 10px; width: 16.6%; transition: width 0.4s ease; }
+
+  .ops-step-nav { display: flex; gap: 6px; margin-bottom: 20px; overflow-x: auto; padding: 2px; }
+  .ops-step-btn {
+    flex: 1; padding: 10px 6px; text-align: center; border-radius: 10px; cursor: pointer; font-size: 11px;
+    font-weight: 700; color: var(--text-secondary); background: white; border: 1px solid var(--border-color); transition: all 0.2s; min-width: 90px;
+  }
+  .ops-step-btn.active { background: var(--zalo-blue); color: white; border-color: var(--zalo-blue); box-shadow: 0 4px 12px rgba(0, 104, 255, 0.2); }
+  .ops-step-btn.done { color: var(--zalo-blue); border-color: #BFDBFE; background: #F0F7FF; }
+  .ops-step-btn .sn { font-size: 14px; font-weight: 900; display: block; margin-bottom: 2px; }
+
+  .ops-stage { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; min-height: 380px; }
+  .ops-lane {
+    background: white; border-radius: 16px; border: 1px solid var(--border-color); overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02); display: flex; flex-direction: column; transition: all 0.3s;
+  }
+  .ops-lane.highlight { border-color: var(--zalo-blue); box-shadow: 0 0 0 3px rgba(0,104,255,0.1), 0 8px 30px rgba(0,104,255,0.06); }
+  .ops-lane-hdr { padding: 14px 18px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border-color); background: #FAFBFD; }
+  .ops-lane-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .ops-lane-info { flex: 1; }
+  .ops-lane-name { font-size: 13.5px; font-weight: 750; color: var(--text-primary); }
+  .ops-lane-role { font-size: 10px; color: var(--text-muted); margin-top: 1px; font-weight: 500; }
+  .ops-lane-body { padding: 16px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; scroll-behavior: smooth; }
+  
+  /* Operations messages custom layout */
+  .ops-msg { display: flex; gap: 8px; max-width: 85%; animation: msgIn 0.3s ease; }
+  .ops-msg.out { flex-direction: row-reverse; align-self: flex-end; }
+  .ops-msg-avatar { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+  .ops-msg-bubble { padding: 8px 12px; border-radius: 12px; font-size: 12px; line-height: 1.5; word-wrap: break-word; }
+  .ops-msg.in .ops-msg-bubble { background: #F3F4F6; color: var(--text-primary); border-top-left-radius: 3px; }
+  .ops-msg.out .ops-msg-bubble { background: var(--zalo-blue); color: white; border-top-right-radius: 3px; }
+  .ops-msg.system { align-self: center; max-width: 90%; }
+  .ops-msg.system .ops-msg-bubble { background: #E8F4FF; color: #B45309; border: 1px solid #FDE68A; border-radius: 10px; font-size: 11px; text-align: center; }
+  .ops-msg.success { align-self: center; max-width: 90%; }
+  .ops-msg.success .ops-msg-bubble { background: var(--success-light); color: #065F46; border: 1px solid #A7F3D0; border-radius: 10px; font-size: 11px; text-align: center; }
+  .ops-msg.tagging { align-self: center; max-width: 95%; }
+  .ops-msg.tagging .ops-msg-bubble { background: #EEF2F6; color: #1E3A8A; border: 1px dashed #BFDBFE; border-radius: 10px; font-size: 11px; text-align: center; }
+  .ops-msg-sender { font-size: 9.5px; font-weight: 700; color: var(--zalo-blue); margin-bottom: 2px; }
+  
+  /* Ticket & widgets inside lane */
+  .ops-ticket { background: #F0F6FF; border: 1.5px solid #BFDBFE; border-radius: 12px; padding: 12px; font-size: 11.5px; align-self: stretch; animation: msgIn 0.3s; }
+  .ops-ticket-title { font-weight: 800; color: var(--zalo-dark); margin-bottom: 6px; font-size: 12.5px; }
+  .ops-ticket-row { display: flex; justify-content: space-between; margin-bottom: 4px; color: var(--text-secondary); }
+  .ops-ticket-val { font-weight: 700; color: var(--text-primary); }
+  
+  .ops-tags-widget { display: flex; flex-wrap: wrap; gap: 4px; padding: 10px; background: #FAFBFD; border: 1px dashed #BFDBFE; border-radius: 10px; align-self: stretch; animation: msgIn 0.3s; }
+  .ops-tags-widget-title { font-size: 9.5px; font-weight: 700; color: var(--zalo-blue); width: 100%; margin-bottom: 4px; text-transform: uppercase; }
+
+  .ops-gmf-widget { background: linear-gradient(135deg, var(--zalo-blue) 0%, var(--zalo-dark) 100%); color: white; border-radius: 12px; padding: 12px; font-size: 11px; align-self: stretch; animation: msgIn 0.3s; }
+  .ops-gmf-title { font-weight: 800; font-size: 12.5px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+  .ops-gmf-members { display: flex; margin-bottom: 6px; margin-top: 6px; }
+  .ops-gmf-avatar { width: 22px; height: 22px; border-radius: 50%; background: rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 10px; border: 2.5px solid #0068ff; margin-left: -5px; }
+  .ops-gmf-avatar:first-child { margin-left: 0; }
+
+  .ops-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 24px; background: white; padding: 16px 24px; border-radius: 14px; border: 1px solid var(--border-color); }
+  .ops-desc-box { text-align: center; flex: 1; padding: 0 20px; }
+  .ops-step-title { font-size: 15px; font-weight: 800; color: var(--text-primary); }
+  .ops-step-desc { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+
+  /* Buttons */
+  .btn { padding: 10px 24px; border-radius: 10px; font-size: 13.5px; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary { background: var(--zalo-blue); color: white; }
+  .btn-primary:hover { background: var(--zalo-blue-hover); }
+  .btn-ghost { background: var(--bg-main); color: var(--text-secondary); border: 1px solid var(--border-color); }
+  .btn-ghost:hover { background: var(--border-color); }
+
+  /* ─── TAB 4: CRM & TAGGING ─── */
+  .crm-layout { display: grid; grid-template-columns: 360px 1fr; gap: 24px; }
+  .crm-panel { background: white; border-radius: 16px; padding: 24px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
+  .crm-panel-title { font-size: 15px; font-weight: 850; margin-bottom: 4px; }
+  .crm-panel-sub { font-size: 11.5px; color: var(--text-muted); margin-bottom: 18px; }
+
+  /* OA Inbox Inbox List */
+  .crm-inbox { border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; }
+  .crm-inbox-topbar { background: var(--zalo-blue); padding: 12px 16px; color: white; }
+  .crm-inbox-title { font-size: 13px; font-weight: 700; }
+  .crm-inbox-sub { font-size: 10px; opacity: 0.8; margin-top: 2px; }
+  
+  .crm-filters { background: #FAFBFD; padding: 8px 12px; display: flex; gap: 6px; overflow-x: auto; border-bottom: 1px solid var(--border-color); }
+  .crm-filters::-webkit-scrollbar { display: none; }
+  .crm-filter-chip { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; cursor: pointer; border: 1px solid var(--border-color); background: white; color: var(--text-secondary); white-space: nowrap; transition: all 0.15s; }
+  .crm-filter-chip.active { background: var(--zalo-blue); color: white; border-color: var(--zalo-blue); }
+
+  .crm-convo-list { display: flex; flex-direction: column; background: white; }
+  .crm-convo { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-bottom: 1px solid #FAFBFD; cursor: pointer; transition: background 0.15s; }
+  .crm-convo:hover { background: #FAFBFD; }
+  .crm-convo.active { background: #EFF5FF; }
+  .crm-avatar-box { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .crm-convo-info { flex: 1; min-width: 0; }
+  .crm-convo-name { font-size: 12.5px; font-weight: 750; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .crm-convo-preview { font-size: 11.5px; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+  .crm-convo-tags { display: flex; gap: 3px; flex-wrap: wrap; margin-top: 6px; }
+  .crm-convo-meta { text-align: right; flex-shrink: 0; }
+  .crm-convo-time { font-size: 9.5px; color: var(--text-muted); }
+  .crm-convo-unread { width: 16px; height: 16px; background: var(--brand-primary); color: white; border-radius: 50%; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 4px; margin-left: auto; }
+
+  /* Tag styles */
+  .tag-pill { display: inline-flex; align-items: center; padding: 2px 7px; border-radius: 10px; font-size: 9.5px; font-weight: 700; border: 1px solid transparent; }
+  .tag-process { background: #FEF3C7; color: #D97706; border-color: #FDE68A; }
+  .tag-process.green { background: var(--success-light); color: #059669; border-color: #A7F3D0; }
+  .tag-branch { background: #EFF5FF; color: #2563EB; border-color: #BFDBFE; }
+  .tag-need { background: #F3E8FF; color: #7C3AED; border-color: #E9D5FF; }
+  .tag-loyalty { background: #E8F4FF; color: #D97706; border-color: #FEF3C7; }
+
+  /* Customer Details Sheet */
+  .crm-sheet { display: flex; flex-direction: column; gap: 20px; }
+  .crm-card { background: white; border-radius: 16px; padding: 24px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
+  .crm-sheet-hdr { font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+  
+  .crm-profile-hdr { display: flex; align-items: center; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--border-color); }
+  .crm-profile-avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--brand-primary); color: white; font-size: 26px; border: 2.5px solid var(--brand-accent); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+  .crm-profile-name { font-size: 16px; font-weight: 800; }
+  .crm-profile-meta { font-size: 12px; color: var(--text-secondary); margin-top: 3px; }
+  
+  .crm-profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
+  .crm-profile-row { display: flex; flex-direction: column; gap: 3px; }
+  .crm-profile-lbl { font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
+  .crm-profile-val { font-size: 12.5px; font-weight: 700; color: var(--text-primary); }
+
+  .crm-tags-manager { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; border-top: 1px solid var(--border-color); padding-top: 18px; }
+  .crm-tag-group-title { font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px; }
+  .crm-tag-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  /* ─── TAB 5: HQ DASHBOARD ─── */
+  .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 24px; }
+  .kpi-card { background: white; border-radius: 16px; padding: 20px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
+  .kpi-card-icon { font-size: 22px; margin-bottom: 8px; }
+  .kpi-card-val { font-size: 26px; font-weight: 900; color: var(--text-primary); line-height: 1.1; }
+  .kpi-card-lbl { font-size: 12px; color: var(--text-secondary); font-weight: 600; margin-top: 2px; }
+  .kpi-card-delta { font-size: 11px; font-weight: 700; margin-top: 6px; display: flex; align-items: center; gap: 3px; }
+  .kpi-up { color: var(--success); }
+  
+  .db-chart-row { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .db-chart-card { background: white; border-radius: 16px; padding: 24px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
+  .db-chart-card h3 { font-size: 14.5px; font-weight: 800; margin-bottom: 4px; }
+  .db-chart-sub { font-size: 11px; color: var(--text-muted); margin-bottom: 16px; }
+  .db-chart-wrap { position: relative; height: 210px; }
+  .db-chart-legend { display: flex; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
+  .db-legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: var(--text-secondary); }
+  .db-legend-color { width: 16px; height: 4px; border-radius: 2px; }
+
+  .db-grid-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .db-chart-wrap-sm { position: relative; height: 180px; }
+
+  /* Store Table */
+  .db-table-card { background: white; border-radius: 16px; padding: 24px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
+  .db-table-card h3 { font-size: 15px; font-weight: 850; margin-bottom: 16px; }
+  .db-table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+  .db-table th { padding: 12px 16px; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; border-bottom: 1px solid var(--border-color); background: #FAFBFD; }
+  .db-table td { padding: 14px 16px; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); }
+  .db-table tr:hover td { background: #FAFBFD; }
+  .db-table td strong { color: var(--text-primary); }
+  .db-perf-bar { height: 6px; border-radius: 3px; background: var(--border-color); overflow: hidden; width: 100px; }
+  .db-perf-fill { height: 100%; border-radius: 3px; background: var(--zalo-blue); }
+  .db-status-pill { padding: 3px 10px; border-radius: 20px; font-size: 10.5px; font-weight: 700; }
+  .db-pill-active { background: var(--success-light); color: #065F46; }
+  .db-pill-warning { background: #E8F4FF; color: #B45309; }
+
+  /* ─── TAB 6: CAMPAIGN & ZBS TEMPLATE ─── */
+  .zbs-layout { display: grid; grid-template-columns: 1fr 340px; gap: 24px; }
+  .zbs-form-card { background: white; border-radius: 16px; padding: 24px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
+  .zbs-form-title { font-size: 16px; font-weight: 850; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .zbs-badge { background: #EFF5FF; color: var(--zalo-blue); font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 700; }
+
+  .fg { margin-bottom: 16px; }
+  .fg-lbl { font-size: 12px; font-weight: 750; color: var(--text-primary); margin-bottom: 8px; display: block; }
+  .fg-input, .fg-select, .fg-textarea { width: 100%; border: 1.5px solid var(--border-color); border-radius: 8px; padding: 10px 14px; font-size: 13px; outline: none; background: #FAFBFD; color: var(--text-primary); font-family: inherit; transition: all 0.2s; }
+  .fg-input:focus, .fg-select:focus, .fg-textarea:focus { border-color: var(--zalo-blue); background: white; }
+  .fg-textarea { resize: vertical; min-height: 80px; }
+
+  .seg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .seg-card { border: 2px solid var(--border-color); border-radius: 12px; padding: 12px; cursor: pointer; transition: all 0.2s; display: flex; gap: 10px; align-items: flex-start; }
+  .seg-card.selected { border-color: var(--zalo-blue); background: #F0F6FF; }
+  .seg-icon { font-size: 18px; margin-top: 1px; }
+  .seg-details { flex: 1; }
+  .seg-title { font-size: 12px; font-weight: 750; }
+  .seg-num { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+  .seg-tag { font-size: 9.5px; color: var(--zalo-blue); font-weight: 700; margin-top: 2px; }
+
+  .send-method-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .method-btn {
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: #FAFBFD;
+  }
+  .method-btn:hover {
+    border-color: var(--zalo-blue);
+    background: #F8FAFC;
+  }
+  .method-btn.active {
+    border-color: var(--zalo-blue);
+    background: #F0F6FF;
+    box-shadow: 0 4px 12px rgba(0, 104, 255, 0.08);
+  }
+  .method-icon {
+    font-size: 16px;
+    background: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+  }
+  .method-btn.active .method-icon {
+    border-color: var(--zalo-blue);
+    color: var(--zalo-blue);
+  }
+  .method-info {
+    flex: 1;
+  }
+  .method-title {
+    font-size: 11.5px;
+    font-weight: 750;
+    color: var(--text-primary);
+  }
+  .method-desc {
+    font-size: 9px;
+    color: var(--text-muted);
+    margin-top: 1px;
+  }
+
+
+  .zbs-reach-card { background: linear-gradient(135deg, var(--zalo-blue) 0%, var(--zalo-dark) 100%); color: white; border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; box-shadow: 0 4px 14px rgba(0, 104, 255, 0.25); }
+  .zbs-reach-lbl { font-size: 11px; opacity: 0.8; margin-bottom: 4px; }
+  .zbs-reach-val { font-size: 28px; font-weight: 900; }
+  .zbs-reach-sub { font-size: 11px; opacity: 0.7; margin-top: 2px; }
+
+  .zbs-send-btn { width: 100%; background: var(--brand-primary); color: white; border: none; border-radius: 10px; padding: 14px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(227, 24, 55, 0.15); display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .zbs-send-btn:hover { background: var(--brand-primary-hover); transform: translateY(-1px); }
+
+  .zbs-preview-panel { background: white; border-radius: 16px; padding: 20px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.02); position: sticky; top: 150px; }
+  .zbs-preview-title { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+  
+  .preview-phone-card { background: #E5E7EB; border-radius: 16px; padding: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .preview-zalo-msg { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .preview-zalo-hdr { background: var(--brand-primary); padding: 10px 12px; display: flex; align-items: center; gap: 8px; color: white; }
+  .preview-zalo-logo { width: 28px; height: 28px; border-radius: 6px; background: white; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  .preview-zalo-brand { font-size: 11.5px; font-weight: 700; }
+  .preview-zalo-type { font-size: 8.5px; opacity: 0.7; margin-top: 1px; }
+  .preview-zalo-body { padding: 12px; }
+  .preview-zalo-title { font-size: 12px; font-weight: 800; margin-bottom: 6px; }
+  .preview-zalo-content { font-size: 11px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px; white-space: pre-line; }
+  .preview-zalo-btn { background: var(--brand-primary); color: white; border: none; border-radius: 6px; padding: 8px; font-size: 11px; font-weight: 700; cursor: pointer; width: 100%; }
+
+  .sent-notification-box { display: none; background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; border-radius: 16px; padding: 24px; text-align: center; margin-top: 16px; box-shadow: 0 4px 16px rgba(5, 150, 105, 0.2); animation: fadeIn 0.4s ease; }
+  .sent-notification-icon { font-size: 36px; margin-bottom: 8px; }
+  .sent-notification-title { font-size: 16px; font-weight: 850; margin-bottom: 6px; }
+  .sent-notification-sub { font-size: 11.5px; opacity: 0.85; margin-bottom: 16px; }
+  .sent-stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .sent-stat-card { background: rgba(255,255,255,0.15); border-radius: 8px; padding: 8px; text-align: center; }
+  .sent-stat-val { font-size: 16px; font-weight: 800; }
+  .sent-stat-lbl { font-size: 9px; opacity: 0.8; margin-top: 2px; }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: #1F2937;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 12.5px;
+    font-weight: 600;
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+    z-index: 10000;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.15); opacity: 0.5; }
+  }
+
+  /* Responsive styling */
+  @media (max-width: 1024px) {
+    .experience-layout, .ops-stage, .crm-layout, .zbs-layout, .broadcast-layout {
+      grid-template-columns: 1fr;
+    }
+    .kpi-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .db-chart-row, .db-grid-3col {
+      grid-template-columns: 1fr;
+    }
+    .main-content {
+      padding: 16px;
+    }
+  }
+
+  /* ─── OA HOME QUICK MENU ─── */
+  .oa-home-btn-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 4px 16px 12px;
+    background: white;
+  }
+  .btn-chat-oa {
+    background: white;
+    color: var(--zalo-blue);
+    border: 2px solid var(--zalo-blue);
+    border-radius: 20px;
+    padding: 9px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .oa-quick-menu-grid {
+    padding: 10px 14px 12px;
+    background: white;
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    border-top: 1px solid var(--border-color);
+  }
+  .oa-quick-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 4px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border: 1px solid var(--border-color);
+    background: #FAFBFD;
+  }
+  .oa-quick-tile:hover { background: #F0F6FF; border-color: var(--zalo-blue); }
+  .oa-quick-tile-icon { font-size: 19px; }
+  .oa-quick-tile-label { font-size: 8.5px; font-weight: 700; color: var(--text-secondary); text-align: center; line-height: 1.3; }
+  .oa-quick-tile.highlight { border-color: var(--brand-primary); background: #EBF3FB; }
+  .oa-quick-tile.highlight .oa-quick-tile-label { color: var(--brand-primary); }
+
+  /* ─── CHAT QUICK MENU BAR ─── */
+  .chat-quick-menu-bar {
+    background: white;
+    border-top: 1px solid var(--border-color);
+    padding: 8px 10px;
+    display: none;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .chat-quick-menu-bar.visible { display: flex; }
+  .chat-menu-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    background: #FAFBFD;
+    transition: all 0.2s;
+    min-width: 58px;
+  }
+  .chat-menu-tile:hover { background: #F0F6FF; border-color: var(--zalo-blue); }
+  .chat-menu-tile.highlight { border-color: var(--brand-primary); background: #EBF3FB; }
+  .chat-menu-tile-icon { font-size: 17px; }
+  .chat-menu-tile-label { font-size: 8.5px; font-weight: 700; color: var(--text-secondary); text-align: center; line-height: 1.3; }
+  .chat-menu-tile.highlight .chat-menu-tile-label { color: var(--brand-primary); }
+  .chat-menu-toggle-btn {
+    width: 28px; height: 28px;
+    background: #F3F4F6;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: var(--text-secondary);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 13px;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .chat-menu-toggle-btn:hover { background: #E5E7EB; }
+  .chat-menu-toggle-btn.open { background: var(--zalo-blue); color: white; border-color: var(--zalo-blue); }
+
+  /* ─── ZBS SOLUTION TABS ─── */
+  .zbs-sol-tabs {
+    display: flex;
+    background: white;
+    border-radius: 16px 16px 0 0;
+    border: 1px solid var(--border-color);
+    border-bottom: none;
+    overflow: hidden;
+  }
+  .zbs-sol-tab {
+    flex: 1;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 3px solid transparent;
+    background: #FAFBFD;
+    transition: all 0.2s;
+    justify-content: center;
+  }
+  .zbs-sol-tab:hover { color: var(--zalo-blue); background: #F0F6FF; }
+  .zbs-sol-tab.active { color: var(--zalo-blue); background: white; border-bottom-color: var(--zalo-blue); }
+  .zbs-sol-tab .tab-badge {
+    background: #EFF5FF;
+    color: var(--zalo-blue);
+    font-size: 9.5px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    font-weight: 700;
+  }
+  .zbs-sol-pane { display: none; }
+  .zbs-sol-pane.active { display: block; }
+  .zbs-connected-card {
+    border-radius: 0 0 16px 16px !important;
+    border-top: none !important;
+  }
+
+  /* ZBS use case chips */
+  .usecase-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+  .usecase-tab {
+    padding: 6px 13px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border-color);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--text-secondary);
+    background: #FAFBFD;
+    transition: all 0.2s;
+  }
+  .usecase-tab:hover { border-color: var(--zalo-blue); color: var(--zalo-blue); }
+  .usecase-tab.active { background: var(--zalo-blue); color: white; border-color: var(--zalo-blue); }
+
+  /* Broadcast section */
+  .broadcast-layout { display: grid; grid-template-columns: 1fr 300px; gap: 24px; }
+  .broadcast-target-options { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+  .broadcast-target-opt {
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .broadcast-target-opt.selected { border-color: var(--zalo-blue); background: #F0F6FF; }
+  .broadcast-target-opt .opt-icon { font-size: 17px; margin-top: 1px; }
+  .broadcast-target-opt .opt-body { flex: 1; }
+  .broadcast-target-opt .opt-title { font-size: 13px; font-weight: 750; }
+  .broadcast-target-opt .opt-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
+  .broadcast-target-opt .opt-radio {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    margin-top: 2px;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .broadcast-target-opt.selected .opt-radio { border-color: var(--zalo-blue); background: var(--zalo-blue); box-shadow: inset 0 0 0 3px white; }
+  .adv-filter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .adv-filter-row { display: flex; flex-direction: column; gap: 3px; }
+  .adv-filter-row label { font-size: 10.5px; font-weight: 700; color: var(--text-secondary); }
+  .adv-filter-row select { border: 1.5px solid var(--border-color); border-radius: 8px; padding: 6px 10px; font-size: 11.5px; outline: none; background: white; }
+  .broadcast-stats-row { display: flex; gap: 10px; margin-top: 12px; }
+  .broadcast-stat { flex: 1; background: var(--bg-main); border-radius: 10px; padding: 10px; text-align: center; }
+  .broadcast-stat .val { font-size: 19px; font-weight: 900; color: var(--zalo-blue); }
+  .broadcast-stat .lbl { font-size: 9.5px; color: var(--text-muted); font-weight: 500; margin-top: 2px; }
+  .broadcast-send-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--zalo-blue) 0%, var(--zalo-dark) 100%);
+    color: white; border: none; border-radius: 10px; padding: 14px; font-size: 14px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,104,255,0.25);
+    display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px;
+  }
+  .broadcast-send-btn:hover { transform: translateY(-1px); }
+
+  /* ─── RESPONSIVE: TABLET (768px and below) ─── */
+  @media (max-width: 768px) {
+    body { font-size: 14px; }
+    .hdr { padding: 12px 16px; }
+    .hdr-logo-brand { font-size: 18px; }
+    .main-content { margin-top: 130px; padding: 16px; }
+    .welcome-hero { padding: 32px 24px; }
+    .hero-title { font-size: 28px; }
+    .hero-sub { font-size: 14px; }
+    .hero-stats { gap: 24px; }
+    .grid-2col { grid-template-columns: 1fr; }
+    .experience-layout { grid-template-columns: 1fr; gap: 16px; }
+    .phone-container { position: relative; top: auto; }
+    .phone-body { width: 300px; height: 600px; }
+    .instructions-panel { margin-top: 16px; }
+    .fg-input, .fg-select, .fg-textarea { font-size: 16px; padding: 10px; }
+    .seg-grid { grid-template-columns: 1fr; }
+    .send-method-toggle { grid-template-columns: 1fr; }
+    .zbs-layout, .broadcast-layout { grid-template-columns: 1fr; gap: 16px; }
+    .zbs-form-card, .zbs-preview-panel { position: relative; top: auto; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .db-chart { height: 200px; }
+    button, input, select { min-height: 44px; font-size: 16px; }
+  }
+
+  /* ─── RESPONSIVE: MOBILE (480px and below) ─── */
+  @media (max-width: 480px) {
+    body { font-size: 13px; }
+    .hdr { padding: 10px 12px; }
+    .hdr-logo-brand { font-size: 16px; }
+    .hdr-logo-zalo { font-size: 12px; }
+    .tab-btn { padding: 10px 12px; font-size: 12px; }
+    .main-content { margin-top: 130px; padding: 12px; }
+    .welcome-hero { padding: 20px 16px; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 1.5px; text-align: center; }
+    .hero-title { font-size: 22px; text-align: center; max-width: 100%; }
+    .hero-sub { font-size: 13px; text-align: center; }
+    .hero-stats { flex-direction: column; align-items: center; gap: 12px; padding-top: 12px; }
+    .hero-stat { text-align: center; border: none; padding: 8px 0; }
+    .hero-stat .num { font-size: 20px; }
+    .hero-stat .lbl { font-size: 10px; }
+    .panel-card-intro { padding: 16px; }
+    .panel-card-intro h3 { font-size: 16px; }
+    .problem-item, .solution-item { padding: 12px; }
+    .problem-item .icon { font-size: 18px; }
+    .problem-item h4 { font-size: 13px; }
+    .problem-item p { font-size: 12px; }
+
+    .phone-body { width: 280px; height: 560px; border-radius: 40px; padding: 10px; }
+    .phone-header { height: 36px; font-size: 11px; }
+    .guide-card { padding: 16px; }
+    .guide-card h3 { font-size: 14px; }
+    .guide-step { padding: 10px; }
+    .gs-num { width: 24px; height: 24px; font-size: 12px; }
+    .gs-title { font-size: 12px; }
+    .gs-desc { font-size: 11px; }
+
+    .crm-sync-widget { padding: 14px; }
+    .crm-sync-hdr { font-size: 11px; }
+    .crm-sync-grid { grid-template-columns: 1fr; }
+    .crm-sync-lbl { font-size: 10px; }
+
+    .ops-banner { padding: 16px 12px; }
+    .ops-banner-title { font-size: 14px; }
+    .ops-arch { gap: 6px; }
+    .ops-lbl { font-size: 11px; }
+
+    .kpi-grid { grid-template-columns: 1fr; }
+    .kpi-val { font-size: 18px; }
+    .db-chart { height: 150px; }
+    .db-table { font-size: 11px; }
+
+    .zbs-form-title { font-size: 14px; }
+    .zbs-badge { font-size: 9px; }
+    .fg-lbl { font-size: 12px; }
+    .fg-input, .fg-select, .fg-textarea { font-size: 16px; padding: 10px; border-radius: 6px; }
+    .fg-textarea { height: 80px; }
+
+    .usecase-tabs { gap: 3px; }
+    .usecase-tab { padding: 5px 8px; font-size: 10px; }
+    .seg-card { padding: 8px; }
+    .seg-title { font-size: 11px; }
+
+    .method-btn { padding: 8px; }
+    .method-icon { width: 28px; height: 28px; font-size: 14px; }
+    .method-title { font-size: 10px; }
+
+    .zbs-reach-val { font-size: 24px; }
+    .zbs-send-btn { padding: 12px; font-size: 12px; }
+
+    .zbs-preview-panel { padding: 14px; }
+    .zbs-preview-title { font-size: 9px; }
+    .preview-phone-card { padding: 10px; }
+    .preview-zalo-hdr { padding: 8px 10px; }
+    .preview-zalo-brand { font-size: 10px; }
+    .preview-zalo-body { padding: 10px; }
+    .preview-zalo-title { font-size: 11px; }
+    .preview-zalo-content { font-size: 10px; }
+    .preview-zalo-btn { padding: 8px; font-size: 11px; }
+
+    .broadcast-target-opt { padding: 8px; }
+    .broadcast-target-opt .opt-title { font-size: 12px; }
+    .broadcast-target-opt .opt-desc { font-size: 9px; }
+
+    .adv-filter-row label { font-size: 10px; }
+    .adv-filter-row select { font-size: 11px; padding: 6px 8px; }
+
+    .broadcast-stat .val { font-size: 16px; }
+    .broadcast-stat .lbl { font-size: 8px; }
+
+    .sent-notification-box { padding: 12px; }
+    .sent-notification-title { font-size: 13px; }
+    .sent-stat-val { font-size: 16px; }
+
+    .oa-home-btn-row { grid-template-columns: 1fr; padding: 4px 14px 10px; }
+    .btn-follow, .btn-chat-oa { font-size: 12px; padding: 10px; }
+    .oa-quick-menu-grid { padding: 8px 12px 10px; gap: 4px; }
+    .oa-quick-tile { padding: 6px; }
+    .oa-quick-tile-icon { font-size: 17px; }
+    .oa-quick-tile-label { font-size: 8px; }
+
+    .chat-quick-menu-bar { padding: 6px 8px; gap: 4px; }
+    .chat-menu-tile { padding: 5px 8px; }
+    .chat-menu-tile-icon { font-size: 15px; }
+    .chat-menu-tile-label { font-size: 7.5px; }
+  }
+
+  /* ─── RESPONSIVE: EXTRA SMALL (360px and below) ─── */
+  @media (max-width: 360px) {
+    .hdr { padding: 8px 10px; }
+    .hdr-logo-brand { font-size: 14px; }
+    .phone-body { width: 260px; height: 520px; }
+    .hero-title { font-size: 18px; }
+    .oa-quick-menu-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ─── RESPONSIVE: TABLET (768px and below) ─── */
+  @media (max-width: 768px) {
+    body { font-size: 14px; }
+    .hdr { padding: 12px 16px; }
+    .main-content { margin-top: 130px; padding: 16px; }
+    .welcome-hero { padding: 32px 24px; }
+    .hero-title { font-size: 28px; }
+    .grid-2col { grid-template-columns: 1fr; }
+    .experience-layout { grid-template-columns: 1fr; gap: 16px; }
+    .phone-body { width: 300px; height: 600px; }
+    .fg-input, .fg-select, .fg-textarea { font-size: 16px; padding: 10px; }
+    .seg-grid { grid-template-columns: 1fr; }
+    .send-method-toggle { grid-template-columns: 1fr; }
+    .zbs-layout, .broadcast-layout { grid-template-columns: 1fr; gap: 16px; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    button, input, select { min-height: 44px; font-size: 16px; }
+  }
+
+  /* ─── RESPONSIVE: MOBILE (480px and below) ─── */
+  @media (max-width: 480px) {
+    body { font-size: 13px; }
+    .hdr { padding: 10px 12px; }
+    .hdr-logo-brand { font-size: 16px; }
+    .tab-btn { padding: 10px 12px; font-size: 12px; }
+    .main-content { margin-top: 130px; padding: 12px; }
+    .welcome-hero { padding: 20px 16px; }
+    .hero-title { font-size: 22px; }
+    .hero-stat .num { font-size: 20px; }
+    .panel-card-intro { padding: 16px; }
+    .panel-card-intro h3 { font-size: 16px; }
+    .problem-item, .solution-item { padding: 12px; }
+
+    .phone-body { width: 280px; height: 560px; border-radius: 40px; padding: 10px; }
+    .guide-card { padding: 16px; }
+    .guide-card h3 { font-size: 14px; }
+    .crm-sync-grid { grid-template-columns: 1fr; }
+    .ops-banner { padding: 16px 12px; }
+    .kpi-grid { grid-template-columns: 1fr; }
+    .db-chart { height: 150px; }
+
+    .zbs-form-title { font-size: 14px; }
+    .fg-input, .fg-select, .fg-textarea { font-size: 16px; padding: 10px; border-radius: 6px; }
+    .usecase-tabs { gap: 3px; }
+    .usecase-tab { padding: 5px 8px; font-size: 10px; }
+    .seg-card { padding: 8px; }
+    .send-method-toggle { grid-template-columns: 1fr; }
+
+    .zbs-send-btn { padding: 12px; font-size: 12px; }
+    .zbs-preview-panel { padding: 14px; }
+    .preview-zalo-title { font-size: 11px; }
+    .preview-zalo-content { font-size: 10px; }
+
+    .broadcast-target-opt { padding: 8px; }
+    .broadcast-stat .val { font-size: 16px; }
+
+    .hero-eyebrow { text-align: center; }
+    .hero-title { text-align: center; }
+    .hero-sub { text-align: center; }
+    .hero-stats { gap: 8px; flex-wrap: wrap; }
+    .hero-stat { text-align: center; }
+
+    .oa-home-btn-row { grid-template-columns: 1fr; padding: 4px 14px 10px; }
+    .oa-quick-menu-grid { padding: 8px 12px 10px; gap: 4px; }
+    .chat-quick-menu-bar { padding: 6px 8px; gap: 4px; }
+  }
+
+  /* ─── RESPONSIVE: EXTRA SMALL (360px and below) ─── */
+  @media (max-width: 360px) {
+    .hdr { padding: 8px 10px; }
+    .phone-body { width: 260px; height: 520px; }
+    .hero-title { font-size: 18px; }
+  }</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="hdr-logo-box">
+      <span class="hdr-logo-brand">BRAND</span>
+      <span class="hdr-logo-x">×</span>
+      <span class="hdr-logo-zalo">Zalo Business Solutions</span>
+    </div>
+    <div class="hdr-div"></div>
+    <div class="hdr-sub">Giải pháp quản trị khách hàng & Marketing tập trung</div>
+  </div>
+  <div class="hdr-right">
+    <div class="live-badge"><div class="live-dot"></div>LIVE DEMO</div>
+    <div class="hdr-pill">ZBS 2026</div>
+  </div>
+</div>
+
+<!-- TABS NAVIGATION -->
+<div class="tabs-container">
+  <div class="tabs">
+    <div class="tab-btn active" onclick="switchTab('intro', this)">🏢 Giới thiệu & Đề xuất</div>
+    <div class="tab-btn" onclick="switchTab('customer', this)">⚡ Trải nghiệm Khách hàng</div>
+    <div class="tab-btn" onclick="switchTab('operations', this)">🔄 Quy trình & Routing</div>
+    <div class="tab-btn" onclick="switchTab('crm', this)">🏷️ CRM & Quản lý Nhãn</div>
+    <div class="tab-btn" onclick="switchTab('dashboard', this)">📊 HQ Dashboard</div>
+    <div class="tab-btn" onclick="switchTab('zbs', this)">📡 Tiếp thị & Chăm sóc</div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+  <!-- ==================== TAB 1: INTRO & PROPOSAL ==================== -->
+  <div id="tab-intro" class="tab-pane active">
+    <div class="welcome-hero">
+      <div class="hero-eyebrow">Zalo Business Solutions for Presale</div>
+      <div class="hero-title">Chuyển đổi từ <span>Hàng trăm Zalo cá nhân rời rạc</span><br>sang 1 nền tảng khách hàng tập trung do Brand sở hữu</div>
+      <div class="hero-sub">Brand Vietnam sở hữu hàng trăm cửa hàng/chi nhánh với hàng trăm tài khoản Zalo riêng lẻ tự vận hành. ZBS giúp chuẩn hóa toàn bộ dưới 01 OA thương hiệu chính danh, bảo vệ tài sản dữ liệu của Head Office nhưng vẫn tối ưu hóa khả năng chăm sóc tại từng điểm bán.</div>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="num">200+</span><span class="lbl">Cửa hàng toàn quốc</span></div>
+        <div class="hero-stat"><span class="num">200+</span><span class="lbl">Tài khoản Zalo rời rạc</span></div>
+        <div class="hero-stat"><span class="num">1</span><span class="lbl">Hệ thống CRM tập trung</span></div>
+        <div class="hero-stat"><span class="num">100%</span><span class="lbl">Dữ liệu thuộc về Doanh Nghiệp</span></div>
+      </div>
+    </div>
+
+    <div class="grid-2col">
+      <!-- Vấn đề hiện tại -->
+      <div class="panel-card-intro">
+        <h3 class="intro-problem-title">⚠️ Bối cảnh & Vấn đề hiện tại</h3>
+        <div class="problem-list">
+          <div class="problem-item">
+            <span class="icon">📊</span>
+            <div>
+              <h4>A. Dữ liệu khách hàng bị phân mảnh</h4>
+              <p>Khách hàng liên hệ rời rạc ở từng cửa hàng. Head Office không có cơ sở dữ liệu khách hàng tập trung để triển khai CRM, Loyalty và các chiến dịch Marketing toàn quốc.</p>
+            </div>
+          </div>
+          <div class="problem-item">
+            <span class="icon">☠️</span>
+            <div>
+              <h4>B. Rủi ro mất dữ liệu nghiêm trọng</h4>
+              <p>Dữ liệu khách hàng gắn liền với Zalo cá nhân của quản lý/nhân viên cửa hàng. Khi nhân sự thay đổi hoặc nghỉ việc, doanh nghiệp có nguy cơ mất toàn bộ lịch sử khách hàng.</p>
+            </div>
+          </div>
+          <div class="problem-item">
+            <span class="icon">🎭</span>
+            <div>
+              <h4>C. Trải nghiệm khách hàng không đồng nhất</h4>
+              <p>Mỗi cửa hàng phản hồi theo phong cách riêng. Hình ảnh thương hiệu, chất lượng chăm sóc khách hàng và các chương trình ưu đãi không đồng bộ.</p>
+            </div>
+          </div>
+          <div class="problem-item">
+            <span class="icon">🔒</span>
+            <div>
+              <h4>D. Rủi ro tuân thủ bảo mật dữ liệu</h4>
+              <p>Lưu trữ dữ liệu khách hàng trên tài khoản cá nhân của nhân viên vi phạm nghiêm trọng nghị định bảo vệ dữ liệu cá nhân (PDPA) hiện hành.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Giải pháp ZBS -->
+      <div class="panel-card-intro">
+        <h3 class="intro-solution-title">✨ Định hướng giải pháp ZBS đề xuất</h3>
+        <div class="solution-list">
+          <div class="solution-item">
+            <span class="icon">🏢</span>
+            <div>
+              <h4>01 Zalo OA chính danh của thương hiệu</h4>
+              <p>Tập trung toàn bộ khách hàng follow và dữ liệu hội thoại dưới một tài khoản Brand OA được xác thực (Tích Vàng). Head Office toàn quyền sở hữu dữ liệu.</p>
+            </div>
+          </div>
+          <div class="solution-item">
+            <span class="icon">🔀</span>
+            <div>
+              <h4>Hệ thống Chatbot FAQ & Routing tự động</h4>
+              <p>Tự động hóa trả lời các câu hỏi thường gặp. Định tuyến thông minh cuộc hội thoại về đúng chi nhánh dựa theo vị trí địa lý hoặc nhu cầu của khách hàng.</p>
+            </div>
+          </div>
+          <div class="solution-item">
+            <span class="icon">📱</span>
+            <div>
+              <h4>Zalo Mini App & Tích hợp tích điểm (Opt-in)</h4>
+              <p>Khách hàng tham gia game, nhận coupon, đặt bàn trên Mini App. Thu thập SĐT và sự đồng ý (Consent) nhận thông báo để đồng bộ trực tiếp về CRM.</p>
+            </div>
+          </div>
+          <div class="solution-item">
+            <span class="icon">📡</span>
+            <div>
+              <h4>ZBS Message Template (ZNS) theo phân khúc</h4>
+              <p>HQ thiết lập các chiến dịch gửi thông báo tự động (chúc mừng sinh nhật, khuyến mãi tại store) đến các phân khúc khách hàng mục tiêu với chi phí tối ưu.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 10px;">
+      <button class="btn btn-primary" onclick="switchTab('customer')">Bắt đầu Trải nghiệm Demo →</button>
+    </div>
+  </div>
+
+  <!-- ==================== TAB 2: CUSTOMER EXPERIENCE ==================== -->
+  <div id="tab-customer" class="tab-pane">
+    <div class="experience-layout">
+      <!-- Left: Phone Simulator -->
+      <div class="phone-container">
+        <div class="phone-body">
+          <div class="phone-notch"><div class="phone-notch-camera"></div></div>
+          <div class="phone-screen">
+            <!-- Screen 1: Zalo Search -->
+            <div id="p-screen-search" class="p-screen active">
+              <div class="zalo-top">
+                <div class="zalo-search-bar">
+                  <span>🔍</span>
+                  <input type="text" id="phoneSearchInput" value="Brand" placeholder="Tìm kiếm trên Zalo...">
+                </div>
+              </div>
+              <div class="zalo-results">
+                <div class="search-section-title">Official Account Liên Quan</div>
+                <div class="oa-search-card" onclick="goToPhoneScreen('home')">
+                  <div class="oa-search-avatar">🍗</div>
+                  <div class="oa-search-info">
+                    <div class="oa-search-name">Brand Vietnam <span class="oa-search-badge">✓</span></div>
+                    <div class="oa-search-desc">Thương hiệu gà rán được yêu thích nhất</div>
+                  </div>
+                  <span style="color:var(--text-muted); font-size: 16px;">›</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Screen 2: OA Home Page -->
+            <div id="p-screen-home" class="p-screen">
+              <div class="oa-home-cover"></div>
+              <div class="oa-home-profile">
+                <div class="oa-home-avatar">🍗</div>
+                <div class="oa-home-details">
+                  <div class="oa-home-name">Brand Vietnam <span class="oa-search-badge">✓ Tích Vàng</span></div>
+                  <div class="oa-home-desc">Official Account chính thức của thương hiệu tại Việt Nam. Cập nhật sản phẩm, khuyến mãi hấp dẫn.</div>
+                  <div class="oa-home-stats">
+                    <span><strong>500K+</strong> Người quan tâm</span>
+                    <span>•</span>
+                    <span>CSAT <strong>98%</strong></span>
+                  </div>
+                </div>
+              </div>
+              <div class="oa-home-btn-row">
+                <button class="btn-follow" id="btn-follow-oa" onclick="followBrandOA()" style="font-size:12px;">➕ Quan tâm</button>
+                <button class="btn-chat-oa" onclick="goToPhoneScreen('chat')">💬 Nhắn tin</button>
+              </div>
+              <!-- Quick Menu Grid -->
+              <div class="oa-quick-menu-grid">
+                <div class="oa-quick-tile highlight" onclick="goToPhoneScreen('chat'); setTimeout(openMiniApp, 400)">
+                  <span class="oa-quick-tile-icon">🎂</span>
+                  <span class="oa-quick-tile-label">Đặt tiệc</span>
+                </div>
+                <div class="oa-quick-tile" onclick="goToPhoneScreen('chat')">
+                  <span class="oa-quick-tile-icon">🍔</span>
+                  <span class="oa-quick-tile-label">Đặt món</span>
+                </div>
+                <div class="oa-quick-tile" onclick="goToPhoneScreen('chat')">
+                  <span class="oa-quick-tile-icon">📍</span>
+                  <span class="oa-quick-tile-label">Tìm cửa hàng</span>
+                </div>
+                <div class="oa-quick-tile" onclick="goToPhoneScreen('chat')">
+                  <span class="oa-quick-tile-icon">🎁</span>
+                  <span class="oa-quick-tile-label">Voucher</span>
+                </div>
+              </div>
+              <div class="oa-home-menu">
+                <div class="oa-menu-title">Thông tin thêm</div>
+                <div class="oa-menu-item"><span>📋 Bài viết & Tin tức</span><span>›</span></div>
+                <div class="oa-menu-item"><span>📞 Hotline hỗ trợ</span><span>›</span></div>
+              </div>
+            </div>
+
+            <!-- Screen 3: OA Chat Area -->
+            <div id="p-screen-chat" class="p-screen">
+              <div class="chat-hdr">
+                <span class="chat-hdr-back" onclick="goToPhoneScreen('home')">‹</span>
+                <div class="chat-hdr-avatar">🍗</div>
+                <div class="chat-hdr-info">
+                  <div class="chat-hdr-name">Brand Vietnam</div>
+                  <div class="chat-hdr-status">Official Account</div>
+                </div>
+              </div>
+              <div class="chat-msgs" id="phoneChatMsgs">
+                <div class="p-msg bot">Chào bạn! 👋 Brand rất vui được hỗ trợ bạn. Hôm nay bạn muốn tìm hiểu thông tin gì ạ?</div>
+                <div class="p-quick-replies" id="phoneQuickReplies">
+                  <span class="p-qr-btn" onclick="sendUserMsg('📍 Tìm cửa hàng gần nhất')">📍 Tìm cửa hàng</span>
+                  <span class="p-qr-btn" onclick="sendUserMsg('🍔 Xem menu & ưu đãi')">🍔 Xem Menu</span>
+                  <span class="p-qr-btn" onclick="sendUserMsg('🎂 Đặt tiệc sinh nhật')">🎂 Đặt tiệc</span>
+                </div>
+              </div>
+              <!-- Chat Quick Menu Bar (toggle) -->
+              <div class="chat-quick-menu-bar" id="chatQuickMenuBar">
+                <div class="chat-menu-tile highlight" onclick="openMiniApp()">
+                  <span class="chat-menu-tile-icon">🎂</span>
+                  <span class="chat-menu-tile-label">Đặt tiệc<br>Party Package</span>
+                </div>
+                <div class="chat-menu-tile" onclick="sendUserMsg('🍔 Xem menu & ưu đãi')">
+                  <span class="chat-menu-tile-icon">🍔</span>
+                  <span class="chat-menu-tile-label">Xem<br>Menu</span>
+                </div>
+                <div class="chat-menu-tile" onclick="sendUserMsg('📍 Tìm cửa hàng gần nhất')">
+                  <span class="chat-menu-tile-icon">📍</span>
+                  <span class="chat-menu-tile-label">Tìm<br>cửa hàng</span>
+                </div>
+                <div class="chat-menu-tile" onclick="sendUserMsg('🎁 Nhận voucher ưu đãi')">
+                  <span class="chat-menu-tile-icon">🎁</span>
+                  <span class="chat-menu-tile-label">Nhận<br>Voucher</span>
+                </div>
+              </div>
+              <div class="chat-input-box">
+                <div class="chat-menu-toggle-btn" id="chatMenuToggleBtn" onclick="toggleChatMenu()">⊞</div>
+                <input type="text" class="chat-input-field" id="phoneChatInputField" placeholder="Nhập tin nhắn..." onkeypress="handleChatKeyPress(event)">
+                <button class="chat-send-btn" onclick="sendCustomUserMsg()">➤</button>
+              </div>
+
+              <!-- Brand Mini App Overlay (Hidden by default, slides up) -->
+              <div class="miniapp-overlay" id="brandMiniApp">
+                <div class="miniapp-hdr">
+                  <div class="ma-title-box">
+                    <span class="ma-logo">🍗</span>
+                    <div>
+                      <div class="ma-name">Brand Rewards</div>
+                      <div class="ma-sub">Zalo Mini App</div>
+                    </div>
+                  </div>
+                  <span class="ma-close" onclick="closeMiniApp()">✕</span>
+                </div>
+                <div class="miniapp-content">
+                  <div class="ma-promo-banner">
+                    <div class="ma-promo-title">🎁 Đặt tiệc ngay — Nhận ưu đãi lớn</div>
+                    <div class="ma-promo-sub">Tặng voucher 50k & 20 điểm loyalty khi Opt-in</div>
+                  </div>
+                  
+                  <div class="ma-section-title">Chọn gói tiệc sinh nhật</div>
+                  <div class="ma-grid">
+                    <div class="ma-combo-card selected" onclick="selectCombo(this, 'Party Package 20 bé', '1,499,000đ')">
+                      <div class="combo-emoji">🎉</div>
+                      <div class="combo-name">Party Package 20 bé</div>
+                      <div class="combo-price">1,499,000đ</div>
+                    </div>
+                    <div class="ma-combo-card" onclick="selectCombo(this, 'Family Combo 10 người', '799,000đ')">
+                      <div class="combo-emoji">🍔</div>
+                      <div class="combo-name">Family Combo</div>
+                      <div class="combo-price">799,000đ</div>
+                    </div>
+                  </div>
+
+                  <div class="ma-section-title">Thông tin đặt tiệc</div>
+                  <div class="ma-form">
+                    <input type="text" class="ma-input" id="maCustName" value="Nguyễn Hà Lan" placeholder="Tên khách hàng">
+                    <input type="tel" class="ma-input" id="maCustPhone" value="0912 345 678" placeholder="Số điện thoại">
+                    <select class="ma-input" id="maCustStore">
+                      <option value="Chi nhánh Nguyễn Huệ, Q.1">Chi nhánh Nguyễn Huệ (Gần bạn nhất)</option>
+                      <option value="Chi nhánh Lê Lợi, Q.1">Chi nhánh Lê Lợi, Q.1</option>
+                      <option value="Chi nhánh Vincom Bình Thạnh">Chi nhánh Vincom Bình Thạnh</option>
+                    </select>
+                    
+                    <div class="ma-optin-box">
+                      <label class="ma-checkbox-label">
+                        <input type="checkbox" id="maOptInCheck" checked>
+                        <span>Tôi đồng ý đăng ký thành viên Loyalty Program và nhận tin nhắn ưu đãi sinh nhật, voucher qua Zalo ZBS.</span>
+                      </label>
+                    </div>
+
+                    <button class="ma-submit-btn" onclick="submitMiniAppOrder()">🚀 Gửi yêu cầu & Tích điểm</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 12px;">
+          📱 Giao diện Zalo Mobile — Bấm tương tác trực tiếp
+        </div>
+      </div>
+
+      <!-- Right: Instructions and CRM Sync Status -->
+      <div class="instructions-panel">
+        <div class="guide-card">
+          <h3>⚡ Luồng Demo Khách Hàng</h3>
+          <div style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.5;">
+            Trải nghiệm hành trình của khách hàng (chị Lan) từ lúc bắt đầu tiếp cận kênh Zalo cho tới khi đăng ký thông tin.
+          </div>
+          
+          <div class="guide-step active" id="gs-1" onclick="triggerGuideStep(1)">
+            <span class="gs-num">1</span>
+            <div class="gs-text">
+              <div class="gs-title">Tìm kiếm và Follow OA</div>
+              <div class="gs-desc">Tìm kiếm "Brand" trên Zalo và bấm "Quan tâm" tài khoản Tích Vàng của Brand.</div>
+            </div>
+          </div>
+          
+          <div class="guide-step" id="gs-2" onclick="triggerGuideStep(2)">
+            <span class="gs-num">2</span>
+            <div class="gs-text">
+              <div class="gs-title">Chat & Hỏi đáp FAQ</div>
+              <div class="gs-desc">Chatbot trả lời tự động. Khách bấm nút "Đặt tiệc sinh nhật".</div>
+            </div>
+          </div>
+          
+          <div class="guide-step" id="gs-3" onclick="triggerGuideStep(3)">
+            <span class="gs-num">3</span>
+            <div class="gs-text">
+              <div class="gs-title">Mở Mini App & Opt-in</div>
+              <div class="gs-desc">Mini App mở trực tiếp, khách điền SĐT và xác nhận đồng ý nhận tin nhắn (Opt-in).</div>
+            </div>
+          </div>
+          
+          <div class="guide-step" id="gs-4" onclick="triggerGuideStep(4)">
+            <span class="gs-num">4</span>
+            <div class="gs-text">
+              <div class="gs-title">Sync CRM thành công</div>
+              <div class="gs-desc">Dữ liệu được chuyển về Head Office CRM tập trung theo thời gian thực.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CRM Real-time Sync Widget -->
+        <div class="crm-sync-widget">
+          <div class="crm-sync-hdr">
+            <span>📡 TRẠNG THÁI CRM HEAD OFFICE (HQ)</span>
+            <div class="crm-sync-dot" id="crmSyncDot"></div>
+          </div>
+          <div class="crm-sync-grid">
+            <div class="crm-sync-item">
+              <div class="crm-sync-lbl">Họ tên</div>
+              <div class="crm-sync-val" id="crmValName">—</div>
+            </div>
+            <div class="crm-sync-item">
+              <div class="crm-sync-lbl">Số điện thoại</div>
+              <div class="crm-sync-val" id="crmValPhone">—</div>
+            </div>
+            <div class="crm-sync-item">
+              <div class="crm-sync-lbl">Zalo ID</div>
+              <div class="crm-sync-val" id="crmValZaloId">—</div>
+            </div>
+            <div class="crm-sync-item">
+              <div class="crm-sync-lbl">Trạng thái Opt-in</div>
+              <div class="crm-sync-val" id="crmValOptIn">—</div>
+            </div>
+            <div class="crm-sync-item" style="grid-column: span 2;">
+              <div class="crm-sync-lbl">Nhu cầu & Chi nhánh tiếp nhận</div>
+              <div class="crm-sync-val" id="crmValNeedStore">—</div>
+            </div>
+          </div>
+          <div style="font-size: 10.5px; color: #92400E; margin-top: 10px; font-weight: 500;">
+            💡 Thông tin CRM này sẽ tự động được sử dụng trong quy trình Operations (Tab 3) và Campaign Gửi Tin (Tab 6).
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB 3: OPERATIONS WORKFLOW ==================== -->
+  <div id="tab-operations" class="tab-pane">
+    <div class="ops-banner">
+      <div class="ops-banner-title">Quy trình vận hành hợp nhất: Zalo OA ↔ CRM ↔ Cửa hàng</div>
+      <div class="ops-arch">
+        <div class="ops-node">
+          <div class="ops-icon" style="background:#E8F5E9;">📱</div>
+          <div class="ops-lbl">Mini App / Chat</div>
+          <div class="ops-sublbl">Khách hàng contact</div>
+        </div>
+        <div class="ops-arr">→</div>
+        <div class="ops-node">
+          <div class="ops-icon" style="background:#FFF7E6;">🏢<div class="ops-badge-v">✓</div></div>
+          <div class="ops-lbl">Brand OA</div>
+          <div class="ops-sublbl">1 OA Tích Vàng (HQ)</div>
+        </div>
+        <div class="ops-arr">→</div>
+        <div class="ops-node">
+          <div class="ops-icon" style="background:#E3F2FD;">🎯</div>
+          <div class="ops-lbl">CRM Routing</div>
+          <div class="ops-sublbl">HQ điều phối tự động</div>
+        </div>
+        <div class="ops-arr">→</div>
+        <div class="ops-split">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div class="ops-icon" style="background:#FFF3E0; width:32px; height:32px; font-size:14px;">🏪</div>
+            <span style="font-size:11px; font-weight:700;">CN Nguyễn Huệ (Route)</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div class="ops-icon" style="background:#FCE4EC; width:32px; height:32px; font-size:14px;">💬</div>
+            <span style="font-size:11px; font-weight:700;">Group GMF Chi Nhánh</span>
+          </div>
+        </div>
+        <div class="ops-arr">→</div>
+        <div class="ops-node">
+          <div class="ops-icon" style="background:#E8F0FE;">❤️</div>
+          <div class="ops-lbl">Follower CRM</div>
+          <div class="ops-sublbl">HQ lưu data trọn đời</div>
+        </div>
+      </div>
+
+      <!-- Progress -->
+      <div class="ops-progress-wrap">
+        <div class="ops-progress-hdr">
+          <span>Tiến trình vận hành Demo</span>
+          <span id="ops-step-pct">Bước 1 / 6</span>
+        </div>
+        <div class="ops-progress-track"><div class="ops-progress-fill" id="ops-progress-bar"></div></div>
+      </div>
+    </div>
+
+    <!-- Step nav -->
+    <div class="ops-step-nav">
+      <div class="ops-step-btn active" onclick="gotoOpsStep(0)"><span class="sn">1</span>KH gửi request</div>
+      <div class="ops-step-btn" onclick="gotoOpsStep(1)"><span class="sn">2</span>CRM tự tiếp nhận</div>
+      <div class="ops-step-btn" onclick="gotoOpsStep(2)"><span class="sn">3</span>Gắn nhãn & Route</div>
+      <div class="ops-step-btn" onclick="gotoOpsStep(3)"><span class="sn">4</span>Chi nhánh check</div>
+      <div class="ops-step-btn" onclick="gotoOpsStep(4)"><span class="sn">5</span>Nội bộ GMF</div>
+      <div class="ops-step-btn" onclick="gotoOpsStep(5)"><span class="sn">6</span>Xác nhận & CS</div>
+    </div>
+
+    <!-- 3 Lanes Grid -->
+    <div class="ops-stage">
+      <!-- Lane 1: Customer Chat View -->
+      <div class="ops-lane" id="lane-customer">
+        <div class="ops-lane-hdr">
+          <div class="ops-lane-avatar" style="background:#FCE4EC;">👩</div>
+          <div class="ops-lane-info">
+            <div class="ops-lane-name">Chị Lan</div>
+            <div class="ops-lane-role">Giao diện khách hàng — Zalo Chat</div>
+          </div>
+        </div>
+        <div class="ops-lane-body" id="ops-chat-customer">
+          <div class="p-msg bot">Hệ thống Brand OA</div>
+        </div>
+      </div>
+
+      <!-- Lane 2: HQ CRM Agent Dashboard -->
+      <div class="ops-lane" id="lane-hq">
+        <div class="ops-lane-hdr">
+          <div class="ops-lane-avatar" style="background:#E3F2FD;">🏢</div>
+          <div class="ops-lane-info">
+            <div class="ops-lane-name">HQ CRM / Admin Panel</div>
+            <div class="ops-lane-role">Định tuyến tập trung & Quản lý Ticket</div>
+          </div>
+        </div>
+        <div class="ops-lane-body" id="ops-chat-hq">
+          <div class="p-msg bot" style="background:#FAFBFD; text-align:center; width:100%; align-self:center;">Hệ thống CRM tổng của Head Office</div>
+        </div>
+      </div>
+
+      <!-- Lane 3: Store GMF / CHT Chat (Internal) -->
+      <div class="ops-lane" id="lane-branch">
+        <div class="ops-lane-hdr">
+          <div class="ops-lane-avatar" style="background:#EFF5FF;">🏪</div>
+          <div class="ops-lane-info">
+            <div class="ops-lane-name">GMF Nội bộ chi nhánh</div>
+            <div class="ops-lane-role">Group Chat Zalo Nội bộ Chi nhánh Nguyễn Huệ</div>
+          </div>
+        </div>
+        <div class="ops-lane-body" id="ops-chat-branch">
+          <div class="p-msg bot" style="background:#EBF3FB; color:var(--brand-primary); font-weight:700; text-align:center; width:100%; align-self:center;">🔒 KÊNH NỘI BỘ — Khách hàng không thấy</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ops control buttons -->
+    <div class="ops-controls">
+      <button class="btn btn-ghost" onclick="prevOpsStep()">← Bước trước</button>
+      <div class="ops-desc-box">
+        <div class="ops-step-title" id="opsStepTitle">Bước 1: Khách hàng gửi yêu cầu từ MiniApp</div>
+        <div class="ops-step-desc" id="opsStepDesc">Chị Lan chọn gói tiệc sinh nhật 20 bé qua MiniApp Brand và nhập SĐT đăng ký, nhấn gửi.</div>
+      </div>
+      <button class="btn btn-primary" onclick="nextOpsStep()">Bước tiếp theo →</button>
+    </div>
+  </div>
+
+  <!-- ==================== TAB 4: CRM & TAGGING ==================== -->
+  <div id="tab-crm" class="tab-pane">
+    <div class="crm-layout">
+      <!-- Left: OA Inbox Simulation -->
+      <div class="crm-panel">
+        <div class="crm-panel-title">🏷️ OA Inbox — Quản lý Hội thoại & Nhãn</div>
+        <div class="crm-panel-sub">Nhân viên CSKH lọc, quản lý tag và tư vấn khách theo đúng phân nhóm.</div>
+        
+        <div class="crm-inbox">
+          <div class="crm-inbox-topbar">
+            <div class="crm-inbox-title">Brand Vietnam <span style="background:rgba(255,255,255,0.25); padding:1px 6px; border-radius:10px; font-size:9px;">Official</span></div>
+            <div class="crm-inbox-sub">Quản lý tin nhắn tập trung · 128 hội thoại mới</div>
+          </div>
+          
+          <div class="crm-filters">
+            <div class="crm-filter-chip active" onclick="filterConvo('all', this)">Tất cả</div>
+            <div class="crm-filter-chip" onclick="filterConvo('tiepnhan', this)">● Tiếp nhận</div>
+            <div class="crm-filter-chip" onclick="filterConvo('tuvan', this)">● Đang tư vấn</div>
+            <div class="crm-filter-chip" onclick="filterConvo('xacnhan', this)">● Chờ xác nhận</div>
+            <div class="crm-filter-chip" onclick="filterConvo('hoantat', this)">✓ Hoàn tất</div>
+          </div>
+
+          <div class="crm-convo-list">
+            <!-- Lan's chat -->
+            <div class="crm-convo active" id="convo-lan" onclick="selectConvo('lan')">
+              <div class="crm-avatar-box" style="background:#FCE4EC;">👩</div>
+              <div class="crm-convo-info">
+                <div class="crm-convo-name">Chị Lan (Nguyễn Hà Lan)</div>
+                <div class="crm-convo-preview" id="convo-lan-preview">Vâng, mình chuyển cọc ngay nhé, cảm ơn em!</div>
+                <div class="crm-convo-tags" id="convo-lan-tags">
+                  <span class="tag-pill tag-process" id="convo-lan-process-tag">● Chờ xác nhận</span>
+                  <span class="tag-pill tag-branch">CN Nguyễn Huệ</span>
+                  <span class="tag-pill tag-need">Tiệc sinh nhật</span>
+                </div>
+              </div>
+              <div class="crm-convo-meta">
+                <div class="crm-convo-time">9:41</div>
+                <div class="crm-convo-unread" id="convo-lan-unread" style="display:none;">1</div>
+              </div>
+            </div>
+
+            <!-- Tuan's chat -->
+            <div class="crm-convo" id="convo-tuan" onclick="selectConvo('tuan')">
+              <div class="crm-avatar-box" style="background:#E8F5E9;">👨</div>
+              <div class="crm-convo-info">
+                <div class="crm-convo-name">Anh Tuấn (Trần Anh Tuấn)</div>
+                <div class="crm-convo-preview">Voucher 50k hạn sử dụng đến bao giờ vậy shop?</div>
+                <div class="crm-convo-tags">
+                  <span class="tag-pill tag-process">● Đang tư vấn</span>
+                  <span class="tag-pill tag-branch">CN Lê Lợi</span>
+                  <span class="tag-pill tag-loyalty">Thành viên mới</span>
+                </div>
+              </div>
+              <div class="crm-convo-meta">
+                <div class="crm-convo-time">Hôm qua</div>
+              </div>
+            </div>
+
+            <!-- Huong's chat -->
+            <div class="crm-convo" id="convo-huong" onclick="selectConvo('huong')">
+              <div class="crm-avatar-box" style="background:#FFF7E6;">👩‍💼</div>
+              <div class="crm-convo-info">
+                <div class="crm-convo-name">Chị Hương</div>
+                <div class="crm-convo-preview">Mình muốn đặt tiệc cho công ty khoảng 50 người...</div>
+                <div class="crm-convo-tags">
+                  <span class="tag-pill tag-process">● Tiếp nhận</span>
+                  <span class="tag-pill tag-need">Corporate</span>
+                </div>
+              </div>
+              <div class="crm-convo-meta">
+                <div class="crm-convo-time">15/06</div>
+                <div class="crm-convo-unread">3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: CRM Details and Tag config -->
+      <div class="crm-sheet">
+        <div class="crm-card">
+          <div class="crm-sheet-hdr">👤 Chi tiết thông tin Khách hàng (CRM Profile)</div>
+          
+          <div class="crm-profile-hdr">
+            <div class="crm-profile-avatar" id="crmSheetAvatar">👩</div>
+            <div>
+              <div class="crm-profile-name" id="crmSheetName">Chị Lan (Nguyễn Hà Lan)</div>
+              <div class="crm-profile-meta" id="crmSheetZaloId">Zalo ID: user_2847362</div>
+            </div>
+          </div>
+
+          <div class="crm-profile-grid">
+            <div class="crm-profile-row">
+              <span class="crm-profile-lbl">Số điện thoại</span>
+              <span class="crm-profile-val" id="crmSheetPhone">0912 345 678</span>
+            </div>
+            <div class="crm-profile-row">
+              <span class="crm-profile-lbl">Lần đầu liên hệ</span>
+              <span class="crm-profile-val">16/06/2026</span>
+            </div>
+            <div class="crm-profile-row">
+              <span class="crm-profile-lbl">Chi nhánh phục vụ</span>
+              <span class="crm-profile-val" id="crmSheetStore">Chi nhánh Nguyễn Huệ, Q.1</span>
+            </div>
+            <div class="crm-profile-row">
+              <span class="crm-profile-lbl">Đồng ý nhận tin nhắn (Opt-in)</span>
+              <span class="crm-profile-val" id="crmSheetOptIn" style="color:var(--success);">✅ Đã đồng ý (SĐT)</span>
+            </div>
+          </div>
+
+          <!-- Tags manager -->
+          <div class="crm-tags-manager">
+            <div>
+              <div class="crm-tag-group-title">🔄 Nhãn quy trình (1 nhãn/KH)</div>
+              <div class="crm-tag-wrap" id="crmProcessTagsWrap">
+                <span class="tag-pill tag-process" style="cursor:pointer;" id="tag-p-1">● Tiếp nhận</span>
+                <span class="tag-pill tag-process" style="cursor:pointer;" id="tag-p-2">● Đang tư vấn</span>
+                <span class="tag-pill tag-process" style="cursor:pointer; font-weight: 800; border-color: #D97706; box-shadow:0 0 4px rgba(217, 119, 6, 0.2);" id="tag-p-3">● Chờ xác nhận</span>
+                <span class="tag-pill tag-process green" style="cursor:pointer;" id="tag-p-4">✓ Hoàn tất</span>
+              </div>
+            </div>
+
+            <div style="margin-top: 10px;">
+              <div class="crm-tag-group-title">🏷️ Nhãn thường (Nhiều nhãn/KH)</div>
+              <div class="crm-tag-wrap" id="crmNormalTagsWrap">
+                <span class="tag-pill tag-branch">CN Nguyễn Huệ</span>
+                <span class="tag-pill tag-need">Tiệc sinh nhật</span>
+                <span class="tag-pill tag-loyalty">Khách mới</span>
+                <span class="tag-pill tag-need" style="background:#EBF3FB; color:var(--brand-primary); border-color:#93C5FD;">Party Package · 20 khách</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#ECFDF5; border-radius:8px; padding:12px; font-size:11px; color:#065F46; margin-top:16px; border-left: 4px solid var(--success);">
+            💡 <strong>Sẵn sàng Tiếp thị (Re-marketing Ready)</strong>: Khách hàng này có nhãn nhu cầu "Tiệc sinh nhật" và đã Opt-in SĐT. HQ có thể tự động gửi ZBS Message Template đến tập khách hàng này tại Tab 6.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB 5: HQ DASHBOARD ==================== -->
+  <div id="tab-dashboard" class="tab-pane">
+    <!-- KPI Row -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-card-icon">👥</div>
+        <div class="kpi-card-val" id="kpi-total-followers">0</div>
+        <div class="kpi-card-lbl">Tổng Followers</div>
+        <div class="kpi-card-delta kpi-up">▲ +12,420 tháng này</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-icon">🎂</div>
+        <div class="kpi-card-val" id="kpi-total-bookings">0</div>
+        <div class="kpi-card-lbl">Đơn đặt tiệc / tháng</div>
+        <div class="kpi-card-delta kpi-up">▲ +18.4% vs tháng trước</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-icon">⚡</div>
+        <div class="kpi-card-val" id="kpi-avg-response">0s</div>
+        <div class="kpi-card-lbl">Thời gian phản hồi TB</div>
+        <div class="kpi-card-delta kpi-up" style="color:var(--success);">▼ Giảm 85% vs kênh cũ</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-icon">📈</div>
+        <div class="kpi-card-val" id="kpi-conversion-rate">0%</div>
+        <div class="kpi-card-lbl">Tỷ lệ chuyển đổi đặt tiệc</div>
+        <div class="kpi-card-delta kpi-up">▲ Tăng gấp 3 lần SMS</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-icon">💳</div>
+        <div class="kpi-card-val" id="kpi-optin-rate">0%</div>
+        <div class="kpi-card-lbl">Tỷ lệ Opt-in SĐT</div>
+        <div class="kpi-card-delta kpi-up">▲ Data sạch vào CRM</div>
+      </div>
+    </div>
+
+    <!-- Chart Grid Row 1 -->
+    <div class="db-chart-row">
+      <div class="db-chart-card">
+        <h3>Lượt đặt tiệc theo tháng</h3>
+        <div class="db-chart-sub">Dữ liệu thực tế 12 tháng + Dự báo 3 tháng tiếp theo nhờ chuyển đổi sang hệ Zalo ZBS</div>
+        <div class="db-chart-legend">
+          <div class="db-legend-item"><div class="db-legend-color" style="background:#0047AB;"></div>Thực tế 2025</div>
+          <div class="db-legend-item"><div class="db-legend-color" style="background:#0095E8;"></div>Dự báo tăng trưởng 2026</div>
+          <div class="db-legend-item"><div class="db-legend-color" style="background:rgba(0,104,255,0.2);"></div>Xu hướng (Trend)</div>
+        </div>
+        <div class="db-chart-wrap">
+          <canvas id="chartBookings"></canvas>
+        </div>
+      </div>
+      <div class="db-chart-card">
+        <h3>Phân bổ khách hàng theo nhóm nhu cầu</h3>
+        <div class="db-chart-sub">Dữ liệu phân loại tự động bằng nhãn thường trên CRM</div>
+        <div class="db-chart-wrap">
+          <canvas id="chartLabels"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart Grid Row 2 -->
+    <div class="db-grid-3col">
+      <div class="db-chart-card">
+        <h3>Trạng thái xử lý đơn đặt tiệc</h3>
+        <div class="db-chart-sub">Real-time quy trình CSKH (Nhãn quy trình)</div>
+        <div class="db-chart-wrap-sm">
+          <canvas id="chartProcess"></canvas>
+        </div>
+      </div>
+      <div class="db-chart-card">
+        <h3>Top combo tiệc được yêu thích</h3>
+        <div class="db-chart-sub">Theo thống kê doanh thu Mini App</div>
+        <div class="db-chart-wrap-sm">
+          <canvas id="chartCombos"></canvas>
+        </div>
+      </div>
+      <div class="db-chart-card">
+        <h3>Hiệu quả chuyển đổi theo nhãn</h3>
+        <div class="db-chart-sub">Hành vi chuyển đổi mua hàng qua Zalo</div>
+        <table class="db-table" style="font-size:12px;">
+          <thead>
+            <tr><th>Nhãn nhu cầu</th><th>Tỷ lệ</th><th>Hiệu năng</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>🎂 Tiệc sinh nhật</td>
+              <td><strong>38%</strong></td>
+              <td><div class="db-perf-bar"><div class="db-perf-fill" style="width:78%; background:var(--brand-primary);"></div></div></td>
+            </tr>
+            <tr>
+              <td>👨‍👩‍👧 Tiệc gia đình</td>
+              <td><strong>27%</strong></td>
+              <td><div class="db-perf-bar"><div class="db-perf-fill" style="width:54%; background:var(--brand-accent);"></div></div></td>
+            </tr>
+            <tr>
+              <td>💼 Corporate event</td>
+              <td><strong>18%</strong></td>
+              <td><div class="db-perf-bar"><div class="db-perf-fill" style="width:36%; background:var(--purple);"></div></div></td>
+            </tr>
+            <tr>
+              <td>🎓 Tiệc tốt nghiệp</td>
+              <td><strong>11%</strong></td>
+              <td><div class="db-perf-bar"><div class="db-perf-fill" style="width:22%; background:var(--success);"></div></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Store Table -->
+    <div class="db-table-card">
+      <h3>🏪 Hiệu suất vận hành theo cửa hàng (Top 5 chi nhánh tiếp nhận qua ZBS)</h3>
+      <table class="db-table">
+        <thead>
+          <tr>
+            <th>Chi nhánh</th>
+            <th>Lượt hội thoại tiếp nhận</th>
+            <th>Thời gian phản hồi TB</th>
+            <th>Điểm đánh giá CSAT</th>
+            <th>Hiệu suất xử lý</th>
+            <th>Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Chi nhánh Nguyễn Huệ, Q.1</strong></td>
+            <td>892 hội thoại</td>
+            <td>22 giây</td>
+            <td><strong>99.1%</strong></td>
+            <td><div class="db-perf-bar"><div class="db-perf-fill" style="width:96%; background:var(--success);"></div></div></td>
+            <td><span class="db-status-pill db-pill-active">Xuất sắc</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chi nhánh Lê Lợi, Q.1</strong></td>
+            <td>743 hội thoại</td>
+            <td>31 giây</td>
+            <td><strong>97.8%</strong></td>
+            <td><div class="db-perf-bar"><div class="db-perf-fill" style="width:88%; background:var(--success);"></div></div></td>
+            <td><span class="db-status-pill db-pill-active">Xuất sắc</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chi nhánh SC VivoCity, Q.7</strong></td>
+            <td>654 hội thoại</td>
+            <td>28 giây</td>
+            <td><strong>98.2%</strong></td>
+            <td><div class="db-perf-bar"><div class="db-perf-fill" style="width:92%; background:var(--success);"></div></div></td>
+            <td><span class="db-status-pill db-pill-active">Xuất sắc</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chi nhánh Vincom Bình Thạnh</strong></td>
+            <td>521 hội thoại</td>
+            <td>1 phút 45 giây</td>
+            <td><strong>89.3%</strong></td>
+            <td><div class="db-perf-bar"><div class="db-perf-fill" style="width:62%; background:var(--warning);"></div></div></td>
+            <td><span class="db-status-pill db-pill-warning">Khá tốt</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chi nhánh Aeon Mall Bình Dương</strong></td>
+            <td>489 hội thoại</td>
+            <td>42 giây</td>
+            <td><strong>96.5%</strong></td>
+            <td><div class="db-perf-bar"><div class="db-perf-fill" style="width:84%; background:var(--success);"></div></div></td>
+            <td><span class="db-status-pill db-pill-active">Tốt</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ==================== TAB 6: CAMPAIGN & ZBS TEMPLATE ==================== -->
+  <div id="tab-zbs" class="tab-pane">
+
+    <!-- Solution switcher -->
+    <div class="zbs-sol-tabs">
+      <div class="zbs-sol-tab active" id="zbs-sol-tab-template" onclick="switchZbsSol('template')">
+        📨 ZBS Message Template
+        <span class="tab-badge">PDPA Compliant</span>
+      </div>
+      <div class="zbs-sol-tab" id="zbs-sol-tab-broadcast" onclick="switchZbsSol('broadcast')">
+        📢 Broadcast
+        <span class="tab-badge">Followers</span>
+      </div>
+    </div>
+
+    <!-- SOLUTION 1: ZBS MESSAGE TEMPLATE -->
+    <div id="zbs-sol-template" class="zbs-sol-pane active">
+      <div class="zbs-layout">
+        <div class="zbs-form-card zbs-connected-card">
+          <div class="zbs-form-title">
+            📨 ZBS Message Template
+            <span class="zbs-badge">PDPA Compliant ✅</span>
+          </div>
+
+          <div class="fg">
+            <label class="fg-lbl">Loại giao dịch (Use Case)</label>
+            <div class="usecase-tabs">
+              <div class="usecase-tab active" onclick="selectUsecase(this,'voucher')">🎁 Voucher</div>
+              <div class="usecase-tab" onclick="selectUsecase(this,'otp')">🔐 OTP</div>
+              <div class="usecase-tab" onclick="selectUsecase(this,'announce')">📢 Thông báo</div>
+              <div class="usecase-tab" onclick="selectUsecase(this,'payment')">💳 Thanh toán</div>
+              <div class="usecase-tab" onclick="selectUsecase(this,'confirm')">✅ Xác nhận</div>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label class="fg-lbl">Tên chiến dịch</label>
+            <input type="text" class="fg-input" id="campName" value="🎁 Voucher đặc biệt dành riêng cho bạn!" oninput="updateCampaignPreview()">
+          </div>
+
+          <div class="fg">
+            <label class="fg-lbl">Phương thức gửi (Send Method)</label>
+            <div class="send-method-toggle">
+              <div class="method-btn active" id="method-phone" onclick="setSendMethod('phone')">
+                <span class="method-icon">📞</span>
+                <div class="method-info">
+                  <div class="method-title">Gửi qua Số điện thoại (SĐT)</div>
+                  <div class="method-desc">ZBS API · Khách hàng đã Opt-in</div>
+                </div>
+              </div>
+              <div class="method-btn" id="method-uid" onclick="setSendMethod('uid')">
+                <span class="method-icon">🆔</span>
+                <div class="method-info">
+                  <div class="method-title">Gửi qua Zalo User ID (UID)</div>
+                  <div class="method-desc">OA API · Dành cho OA Followers</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label class="fg-lbl" id="campTargetTitle">Phân khúc khách hàng mục tiêu (Target theo Nhãn CRM)</label>
+            <div class="seg-grid">
+              <div class="seg-card selected" data-index="0" onclick="clickCampaignSegment(this)">
+                <div class="seg-icon">🌍</div>
+                <div class="seg-details">
+                  <div class="seg-title">Tệp SĐT đã Opt-in</div>
+                  <div class="seg-num">213,000 người</div>
+                  <div class="seg-tag">Có Consent Opt-in</div>
+                </div>
+              </div>
+              <div class="seg-card" data-index="1" onclick="clickCampaignSegment(this)">
+                <div class="seg-icon">🎂</div>
+                <div class="seg-details">
+                  <div class="seg-title">Nhãn CRM: Tiệc sinh nhật</div>
+                  <div class="seg-num">38,200 người</div>
+                  <div class="seg-tag">Đã từng quan tâm tiệc</div>
+                </div>
+              </div>
+              <div class="seg-card" data-index="2" onclick="clickCampaignSegment(this)">
+                <div class="seg-icon">⭐</div>
+                <div class="seg-details">
+                  <div class="seg-title">Nhãn CRM: VIP &amp; Loyal</div>
+                  <div class="seg-num">89,400 người</div>
+                  <div class="seg-tag">Khách hàng trung thành</div>
+                </div>
+              </div>
+              <div class="seg-card" data-index="3" onclick="clickCampaignSegment(this)">
+                <div class="seg-icon">👶</div>
+                <div class="seg-details">
+                  <div class="seg-title">Nhãn CRM: Khách mới</div>
+                  <div class="seg-num">213,000 người</div>
+                  <div class="seg-tag">Mới thu thập SĐT</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label class="fg-lbl">Nội dung tin nhắn</label>
+            <textarea class="fg-textarea" id="campMsg" oninput="updateCampaignPreview()">Chào [Tên KH]! 🎁
+Bạn vừa nhận được voucher sinh nhật:
+🎂 GIẢM 88,000đ cho đơn từ 200,000đ
+Mã: BEEBIRTHDAY-2025
+HSD: 30/06/2025
+Áp dụng tại tất cả chi nhánh.</textarea>
+          </div>
+
+          <div class="zbs-reach-card">
+            <div class="zbs-reach-lbl">📊 Số lượng tiếp cận dự kiến (Opt-in Consent Match)</div>
+            <div class="zbs-reach-val" id="zbsReachVal">213,000</div>
+            <div class="zbs-reach-sub">Tỷ lệ mở dự kiến ~42% · CTR hành động ~18% · Tiết kiệm 70% so với SMS Brandname</div>
+          </div>
+
+          <div class="fg">
+            <label class="fg-lbl">Lịch gửi</label>
+            <select class="fg-select">
+              <option>Gửi ngay lập tức</option>
+              <option>Thứ Sáu, 11:30 SA (Trước giờ ăn trưa)</option>
+              <option>Thứ Bảy, 08:30 SA (Giờ vàng cuối tuần)</option>
+            </select>
+          </div>
+
+          <button class="zbs-send-btn" onclick="executeZbsCampaign()">🚀 Gửi Chiến Dịch ZBS Message Template</button>
+        </div>
+
+        <div>
+          <div class="zbs-preview-panel zbs-connected-card">
+            <div class="zbs-preview-title">📱 Xem trước trên điện thoại khách hàng</div>
+            <div class="preview-phone-card">
+              <div class="preview-zalo-msg">
+                <div class="preview-zalo-hdr">
+                  <div class="preview-zalo-logo">🍗</div>
+                  <div>
+                    <div class="preview-zalo-brand">Brand Vietnam <span style="background:rgba(255,255,255,0.3);font-size:8px;padding:1px 4px;border-radius:4px;">✓</span></div>
+                    <div class="preview-zalo-type" id="previewMsgType">ZBS Message Template · Official</div>
+                  </div>
+                </div>
+                <div class="preview-zalo-body">
+                  <div class="preview-zalo-title" id="previewMsgTitle">🎁 Voucher đặc biệt dành riêng cho bạn!</div>
+                  <div class="preview-zalo-content" id="previewMsgContent">Chào Hà Lan! 🎁
+Bạn vừa nhận được voucher sinh nhật:
+🎂 GIẢM 88,000đ cho đơn từ 200,000đ
+Mã: BEEBIRTHDAY-2025
+HSD: 30/06/2025
+Áp dụng tại tất cả chi nhánh.</div>
+                  <button class="preview-zalo-btn" onclick="triggerCtaAlert()">Dùng ngay →</button>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:16px;">
+              <div style="flex:1;background:var(--bg-main);border-radius:8px;padding:10px;text-align:center;">
+                <div style="font-size:18px;font-weight:800;color:var(--zalo-blue);">42%</div>
+                <div style="font-size:9.5px;color:var(--text-muted);font-weight:500;">Open Rate</div>
+              </div>
+              <div style="flex:1;background:var(--bg-main);border-radius:8px;padding:10px;text-align:center;">
+                <div style="font-size:18px;font-weight:800;color:var(--success);">18%</div>
+                <div style="font-size:9.5px;color:var(--text-muted);font-weight:500;">CTR</div>
+              </div>
+              <div style="flex:1;background:var(--bg-main);border-radius:8px;padding:10px;text-align:center;">
+                <div style="font-size:18px;font-weight:800;color:var(--brand-primary);">3.2x</div>
+                <div style="font-size:9.5px;color:var(--text-muted);font-weight:500;">vs SMS</div>
+              </div>
+            </div>
+            <div class="sent-notification-box" id="campaignSentBox">
+              <div class="sent-notification-icon">🎉</div>
+              <div class="sent-notification-title">Gửi Campaign Thành Công!</div>
+              <div class="sent-notification-sub" id="sentCampaignReachSub">Đang gửi tới 213,000 khách hàng...</div>
+              <div class="sent-stats-grid">
+                <div class="sent-stat-card"><div class="sent-stat-val">1.8s</div><div class="sent-stat-lbl">Thời gian gửi</div></div>
+                <div class="sent-stat-card"><div class="sent-stat-val">~89k</div><div class="sent-stat-lbl">Lượt đọc dự kiến</div></div>
+                <div class="sent-stat-card"><div class="sent-stat-val">+25%</div><div class="sent-stat-lbl">Sales Uplift</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOLUTION 2: BROADCAST -->
+    <div id="zbs-sol-broadcast" class="zbs-sol-pane">
+      <div class="broadcast-layout">
+        <div class="zbs-form-card zbs-connected-card">
+          <div class="zbs-form-title">
+            📢 Broadcast
+            <span class="zbs-badge" style="background:#FFF7ED;color:#C2410C;">Zalo OA Manager</span>
+          </div>
+
+          <div class="fg">
+            <label class="fg-lbl">Tiêu đề bài viết</label>
+            <input type="text" class="fg-input" id="broadcastTitle" value="🎉 Flash Sale cuối tuần — Giảm 30% toàn bộ sản phẩm!" oninput="updateBroadcastPreview()">
+          </div>
+
+          <div class="fg">
+            <label class="fg-lbl">Nội dung</label>
+            <textarea class="fg-textarea" id="broadcastMsg" oninput="updateBroadcastPreview()" style="height:80px;">Cuối tuần này Ưu đãi sốc! Giảm 30% tất cả sản phẩm. Đặt hàng ngay qua Zalo Mini App hoặc ghé thẳng cửa hàng gần nhất. 🔥</textarea>
+          </div>
+
+          <div class="fg">
+            <label class="fg-lbl">Chọn đối tượng gửi</label>
+            <div class="broadcast-target-options">
+
+              <div class="broadcast-target-opt selected" id="btarget-all" onclick="selectBroadcastTarget('all')">
+                <div class="opt-icon">👥</div>
+                <div class="opt-body">
+                  <div class="opt-title">Tất cả người quan tâm</div>
+                  <div class="opt-desc">Gửi đến toàn bộ followers đang quan tâm OA · <strong>523,000 người</strong></div>
+                </div>
+                <div class="opt-radio"></div>
+              </div>
+
+              <div class="broadcast-target-opt" id="btarget-label" onclick="selectBroadcastTarget('label')">
+                <div class="opt-icon">🏷️</div>
+                <div class="opt-body">
+                  <div class="opt-title">Nhãn</div>
+                  <div class="opt-desc">Chọn tệp người quan tâm theo nhãn đã phân loại</div>
+                  <div id="btarget-label-picker" style="display:none;margin-top:10px;">
+                    <div class="seg-grid">
+                      <div class="seg-card selected" onclick="event.stopPropagation()">
+                        <div class="seg-icon">🎂</div>
+                        <div class="seg-details"><div class="seg-title">Tiệc sinh nhật</div><div class="seg-num">38,200 người</div></div>
+                      </div>
+                      <div class="seg-card" onclick="event.stopPropagation()">
+                        <div class="seg-icon">⭐</div>
+                        <div class="seg-details"><div class="seg-title">VIP &amp; Loyal</div><div class="seg-num">89,400 người</div></div>
+                      </div>
+                      <div class="seg-card" onclick="event.stopPropagation()">
+                        <div class="seg-icon">👶</div>
+                        <div class="seg-details"><div class="seg-title">Khách mới</div><div class="seg-num">213,000 người</div></div>
+                      </div>
+                      <div class="seg-card" onclick="event.stopPropagation()">
+                        <div class="seg-icon">🔄</div>
+                        <div class="seg-details"><div class="seg-title">Tái tiếp thị</div><div class="seg-num">45,600 người</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="opt-radio"></div>
+              </div>
+
+              <div class="broadcast-target-opt" id="btarget-adv" onclick="selectBroadcastTarget('adv')">
+                <div class="opt-icon">⚙️</div>
+                <div class="opt-body">
+                  <div class="opt-title">Tùy chọn nâng cao</div>
+                  <div class="opt-desc">Lọc theo vị trí, độ tuổi, giới tính</div>
+                  <div id="btarget-adv-filters" style="display:none;margin-top:10px;">
+                    <div class="adv-filter-grid">
+                      <div class="adv-filter-row">
+                        <label>Vị trí</label>
+                        <select onclick="event.stopPropagation()">
+                          <option>Tất cả khu vực</option><option>TP.HCM</option><option>Hà Nội</option><option>Đà Nẵng</option><option>Cần Thơ</option>
+                        </select>
+                      </div>
+                      <div class="adv-filter-row">
+                        <label>Độ tuổi</label>
+                        <select onclick="event.stopPropagation()">
+                          <option>Tất cả độ tuổi</option><option>18–24</option><option>25–34</option><option>35–44</option><option>45+</option>
+                        </select>
+                      </div>
+                      <div class="adv-filter-row">
+                        <label>Giới tính</label>
+                        <select onclick="event.stopPropagation()">
+                          <option>Tất cả</option><option>Nam</option><option>Nữ</option>
+                        </select>
+                      </div>
+                      <div class="adv-filter-row">
+                        <label>Có con nhỏ</label>
+                        <select onclick="event.stopPropagation()">
+                          <option>Tất cả</option><option>Có con 3–12 tuổi</option><option>Có con 13–18 tuổi</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="opt-radio"></div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="broadcast-stats-row">
+            <div class="broadcast-stat"><div class="val" id="broadcastReach">523,000</div><div class="lbl">Người nhận</div></div>
+            <div class="broadcast-stat"><div class="val" style="color:var(--success);">108</div><div class="lbl">Hạn mức còn lại</div></div>
+            <div class="broadcast-stat"><div class="val" style="color:var(--brand-primary);">FREE</div><div class="lbl">Chi phí gửi</div></div>
+          </div>
+
+          <div class="fg" style="margin-top:14px;">
+            <label class="fg-lbl">Lịch phát</label>
+            <select class="fg-select">
+              <option>Phát ngay</option>
+              <option>Thứ Sáu, 11:30 SA</option>
+              <option>Thứ Bảy, 08:30 SA</option>
+            </select>
+          </div>
+
+          <button class="broadcast-send-btn" onclick="executeBroadcast()">📢 Tạo &amp; Gửi Broadcast</button>
+        </div>
+
+        <div>
+          <div class="zbs-preview-panel zbs-connected-card">
+            <div class="zbs-preview-title">📱 Xem trước Broadcast</div>
+            <div style="background:#E5E7EB;border-radius:16px;padding:14px;">
+              <div style="background:white;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+                <div style="background:var(--brand-primary);padding:10px 12px;display:flex;align-items:center;gap:8px;color:white;">
+                  <div style="width:28px;height:28px;border-radius:6px;background:white;display:flex;align-items:center;justify-content:center;font-size:14px;">🍗</div>
+                  <div>
+                    <div style="font-size:11.5px;font-weight:700;">Brand Vietnam <span style="background:rgba(255,255,255,0.3);font-size:8px;padding:1px 4px;border-radius:4px;">✓</span></div>
+                    <div style="font-size:8.5px;opacity:0.7;">Bài viết từ Official Account</div>
+                  </div>
+                </div>
+                <div style="background:linear-gradient(135deg,var(--brand-accent) 0%,var(--brand-primary) 100%);height:76px;display:flex;align-items:center;justify-content:center;font-size:30px;">🍗</div>
+                <div style="padding:12px;">
+                  <div style="font-size:12px;font-weight:800;margin-bottom:6px;" id="broadcastPreviewTitle">🎉 Flash Sale cuối tuần — Giảm 30% toàn bộ sản phẩm!</div>
+                  <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.5;margin-bottom:10px;" id="broadcastPreviewMsg">Cuối tuần này Ưu đãi sốc! Giảm 30% tất cả sản phẩm...</div>
+                  <button style="background:var(--brand-primary);color:white;border:none;border-radius:6px;padding:8px;font-size:11px;font-weight:700;cursor:pointer;width:100%;" onclick="showToast('CTA: Mở Mini App đặt hàng')">Xem ngay →</button>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:14px;">
+              <div style="flex:1;background:var(--bg-main);border-radius:8px;padding:10px;text-align:center;">
+                <div style="font-size:16px;font-weight:800;color:var(--zalo-blue);">42%</div>
+                <div style="font-size:9px;color:var(--text-muted);font-weight:500;">Open Rate</div>
+              </div>
+              <div style="flex:1;background:var(--bg-main);border-radius:8px;padding:10px;text-align:center;">
+                <div style="font-size:16px;font-weight:800;color:var(--success);">FREE</div>
+                <div style="font-size:9px;color:var(--text-muted);font-weight:500;">Chi phí</div>
+              </div>
+              <div style="flex:1;background:var(--bg-main);border-radius:8px;padding:10px;text-align:center;">
+                <div style="font-size:16px;font-weight:800;color:var(--brand-primary);">+18%</div>
+                <div style="font-size:9px;color:var(--text-muted);font-weight:500;">Engagement</div>
+              </div>
+            </div>
+            <div class="sent-notification-box" id="broadcastSentBox" style="display:none;">
+              <div class="sent-notification-icon">📢</div>
+              <div class="sent-notification-title">Broadcast Đã Gửi Thành Công!</div>
+              <div class="sent-notification-sub" id="broadcastSentSub">Đang phát đến 523,000 người quan tâm...</div>
+              <div class="sent-stats-grid">
+                <div class="sent-stat-card"><div class="sent-stat-val">FREE</div><div class="sent-stat-lbl">Chi phí</div></div>
+                <div class="sent-stat-card"><div class="sent-stat-val">~220k</div><div class="sent-stat-lbl">Lượt xem dự kiến</div></div>
+                <div class="sent-stat-card"><div class="sent-stat-val">+18%</div><div class="sent-stat-lbl">Engagement</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toastBox">Thông báo mặc định</div>
+
+<!-- ==================== LOGIC JAVASCRIPT ==================== -->
+<script>
+  // ─── STATE MANAGEMENT ───
+  let activeTab = 'intro';
+  
+  // Trạng thái khách hàng (Sync với CRM)
+  let customerState = {
+    hasFollowed: false,
+    hasChatted: false,
+    hasSubmittedForm: false,
+    name: '—',
+    phone: '—',
+    zaloId: '—',
+    consent: '—',
+    store: '—',
+    combo: '—'
+  };
+
+  // ─── TAB SWITCHING ───
+  function switchTab(tabId, element) {
+    // Ẩn tất cả tab
+    document.querySelectorAll('.tab-pane').forEach(pane => {
+      pane.classList.remove('active');
+    });
+    // Bỏ class active ở tất cả tab button
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+    // Kích hoạt tab được chọn
+    document.getElementById('tab-' + tabId).classList.add('active');
+    if (element) {
+      element.classList.add('active');
+    } else {
+      // Find element and make active
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => {
+        if (btn.getAttribute('onclick').includes(tabId)) {
+          btn.classList.add('active');
+        }
+      });
+    }
+
+    activeTab = tabId;
+
+    // Trigger tab-specific functions
+    if (tabId === 'dashboard') {
+      initCharts();
+      startKpiCounter();
+    }
+  }
+
+  // ─── TOAST NOTIFICATION ───
+  function showToast(message) {
+    const toast = document.getElementById('toastBox');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3000);
+  }
+
+  // ─── TAB 2: CUSTOMER EXPERIENCE SIMULATOR LOGIC ───
+  function goToPhoneScreen(screenId) {
+    document.querySelectorAll('.p-screen').forEach(scr => {
+      scr.classList.remove('active');
+    });
+    document.getElementById('p-screen-' + screenId).classList.add('active');
+  }
+
+  // Guide Steps helper
+  function updateGuideStepsUI(stepNum) {
+    document.querySelectorAll('.guide-step').forEach((step, index) => {
+      step.classList.remove('active');
+      if (index + 1 < stepNum) {
+        step.classList.add('done');
+      } else {
+        step.classList.remove('done');
+      }
+      if (index + 1 === stepNum) {
+        step.classList.add('active');
+      }
+    });
+  }
+
+  function triggerGuideStep(stepNum) {
+    if (stepNum === 1) {
+      goToPhoneScreen('search');
+      updateGuideStepsUI(1);
+    } else if (stepNum === 2) {
+      if (!customerState.hasFollowed) {
+        showToast('⚠️ Vui lòng bấm "Quan tâm Brand OA" trên điện thoại trước!');
+        return;
+      }
+      goToPhoneScreen('chat');
+      updateGuideStepsUI(2);
+    } else if (stepNum === 3) {
+      if (!customerState.hasChatted) {
+        showToast('⚠️ Vui lòng gửi một tin nhắn hoặc chọn Quick Reply trên điện thoại trước!');
+        return;
+      }
+      goToPhoneScreen('chat');
+      openMiniApp();
+      updateGuideStepsUI(3);
+    } else if (stepNum === 4) {
+      if (!customerState.hasSubmittedForm) {
+        showToast('⚠️ Vui lòng điền và gửi form trong Mini App trên điện thoại trước!');
+        return;
+      }
+      updateGuideStepsUI(4);
+      showToast('✅ Đã đồng bộ dữ liệu khách hàng sang CRM Head Office!');
+    }
+  }
+
+  // Follow OA
+  function followBrandOA() {
+    customerState.hasFollowed = true;
+    showToast('🎉 Cảm ơn bạn đã quan tâm Brand OA!');
+    goToPhoneScreen('chat');
+    updateGuideStepsUI(2);
+
+    // Thêm tin nhắn bot tự động
+    const chatMsgs = document.getElementById('phoneChatMsgs');
+    chatMsgs.innerHTML += `
+      <div class="p-msg system">✅ Bạn đã quan tâm Brand OA</div>
+      <div class="p-msg bot">Cảm ơn bạn đã quan tâm! 🐝 Mình có thể giúp gì cho bạn hôm nay?</div>
+    `;
+    chatMsgs.scrollTop = chatMsgs.scrollHeight;
+  }
+
+  // Chat logic
+  let chatResponseState = 0;
+  function handleChatKeyPress(event) {
+    if (event.key === 'Enter') {
+      sendCustomUserMsg();
+    }
+  }
+
+  function sendCustomUserMsg() {
+    const input = document.getElementById('phoneChatInputField');
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    sendUserMsg(text);
+  }
+
+  function sendUserMsg(text) {
+    customerState.hasChatted = true;
+    const chatMsgs = document.getElementById('phoneChatMsgs');
+    
+    // Xóa quick replies cũ
+    const qr = document.getElementById('phoneQuickReplies');
+    if (qr) qr.remove();
+
+    // Add user message
+    chatMsgs.innerHTML += `<div class="p-msg user">${text}</div>`;
+    chatMsgs.scrollTop = chatMsgs.scrollHeight;
+
+    // Show typing
+    chatMsgs.innerHTML += `
+      <div class="p-typing" id="typingIndicator">
+        <div class="p-typing-dot"></div>
+        <div class="p-typing-dot"></div>
+        <div class="p-typing-dot"></div>
+      </div>
+    `;
+    chatMsgs.scrollTop = chatMsgs.scrollHeight;
+
+    // Bot reply simulation
+    setTimeout(() => {
+      const typing = document.getElementById('typingIndicator');
+      if (typing) typing.remove();
+
+      let botText = '';
+      let nextQr = '';
+
+      if (text.includes('Tìm cửa hàng') || text.includes('📍')) {
+        botText = '📍 Dạ, mình tìm thấy chi nhánh gần bạn nhất:\n🏠 <strong>Chi nhánh Nguyễn Huệ</strong> (Cách bạn 0.4km)\n📞 Hotline: 1900 xxx xxx\n⏰ Giờ mở cửa: 09:00 - 22:00';
+        nextQr = `
+          <div class="p-quick-replies" id="phoneQuickReplies">
+            <span class="p-qr-btn" onclick="sendUserMsg('🍔 Xem menu tại store')">🍔 Xem Menu</span>
+            <span class="p-qr-btn" onclick="sendUserMsg('🎂 Đặt tiệc sinh nhật')">🎂 Đặt tiệc</span>
+          </div>
+        `;
+      } else if (text.includes('Đặt tiệc') || text.includes('🎂')) {
+        botText = '🎂 Tuyệt vời! Brand có các gói Party Package sinh nhật cực kỳ vui nhộn cho bé. Xin mời chị mở Mini App để xem chi tiết và đăng ký nhé!';
+        chatMsgs.innerHTML += `<div class="p-msg bot">${botText}</div>`;
+        
+        // Gửi card MiniApp
+        chatMsgs.innerHTML += `
+          <div class="p-miniapp-card">
+            <div class="p-ma-hdr">
+              <span class="p-ma-hdr-logo">🍗</span>
+              <span class="p-ma-hdr-title">Brand Mini App</span>
+            </div>
+            <div class="p-ma-body">
+              <div class="p-ma-title">🎂 Đặt Tiệc Sinh Nhật Cho Bé</div>
+              <div class="p-ma-desc">Chọn phòng tiệc, Combo món ăn và tích điểm Loyalty Program ngay trên Zalo.</div>
+              <button class="p-ma-btn" onclick="openMiniApp()">Mở Mini App →</button>
+            </div>
+          </div>
+        `;
+        chatMsgs.scrollTop = chatMsgs.scrollHeight;
+        updateGuideStepsUI(3);
+        return;
+      } else {
+        botText = 'Dạ Brand đã ghi nhận thông tin. Bạn có thể sử dụng các nút chức năng nhanh dưới đây để được hỗ trợ tốt nhất:';
+        nextQr = `
+          <div class="p-quick-replies" id="phoneQuickReplies">
+            <span class="p-qr-btn" onclick="sendUserMsg('📍 Tìm cửa hàng gần nhất')">📍 Tìm cửa hàng</span>
+            <span class="p-qr-btn" onclick="sendUserMsg('🎂 Đặt tiệc sinh nhật')">🎂 Đặt tiệc</span>
+          </div>
+        `;
+      }
+
+      chatMsgs.innerHTML += `<div class="p-msg bot">${botText}</div>`;
+      if (nextQr) {
+        chatMsgs.innerHTML += nextQr;
+      }
+      chatMsgs.scrollTop = chatMsgs.scrollHeight;
+    }, 1200);
+  }
+
+  // Mini App overlay control
+  function openMiniApp() {
+    document.getElementById('brandMiniApp').classList.add('active');
+    showToast('📱 Đang mở Zalo Mini App: Brand Rewards...');
+  }
+  function closeMiniApp() {
+    document.getElementById('brandMiniApp').classList.remove('active');
+  }
+
+  let selectedComboName = 'Party Package 20 bé';
+  let selectedComboPrice = '1,499,000đ';
+  function selectCombo(card, name, price) {
+    document.querySelectorAll('.ma-combo-card').forEach(c => {
+      c.classList.remove('selected');
+    });
+    card.classList.add('selected');
+    selectedComboName = name;
+    selectedComboPrice = price;
+  }
+
+  // Submit Mini App form
+  function submitMiniAppOrder() {
+    const name = document.getElementById('maCustName').value.trim();
+    const phone = document.getElementById('maCustPhone').value.trim();
+    const store = document.getElementById('maCustStore').value;
+    const optIn = document.getElementById('maOptInCheck').checked;
+
+    if (!name || !phone) {
+      showToast('⚠️ Vui lòng nhập đầy đủ Tên và Số điện thoại!');
+      return;
+    }
+
+    // Cập nhật state khách hàng
+    customerState.name = name;
+    customerState.phone = phone;
+    customerState.zaloId = 'user_2847362';
+    customerState.store = store;
+    customerState.combo = selectedComboName;
+    customerState.consent = optIn ? 'Đã đồng ý (SĐT)' : 'Không đồng ý';
+    customerState.hasSubmittedForm = true;
+
+    // Cập nhật Widget CRM
+    document.getElementById('crmValName').textContent = name;
+    document.getElementById('crmValPhone').textContent = phone;
+    document.getElementById('crmValZaloId').textContent = 'user_2847362';
+    document.getElementById('crmValOptIn').textContent = optIn ? '✅ Đã đồng ý' : '❌ Từ chối';
+    document.getElementById('crmValOptIn').style.color = optIn ? 'var(--success)' : 'var(--danger)';
+    document.getElementById('crmValNeedStore').textContent = `${selectedComboName} (${store})`;
+
+    // Nhấp nháy CRM sync status
+    const syncDot = document.getElementById('crmSyncDot');
+    syncDot.classList.add('active');
+    
+    // Đóng Mini App
+    closeMiniApp();
+    showToast('🚀 Đang gửi dữ liệu đặt tiệc và thông tin Opt-in lên CRM...');
+
+    setTimeout(() => {
+      // Gửi tin nhắn bot báo thành công vào box chat
+      const chatMsgs = document.getElementById('phoneChatMsgs');
+      chatMsgs.innerHTML += `
+        <div class="p-msg system">✅ Gửi yêu cầu đặt tiệc qua Mini App thành công</div>
+        <div class="p-msg bot">Cảm ơn chị <strong>${name}</strong>! Brand đã nhận được yêu cầu đặt gói <strong>${selectedComboName}</strong> tại chi nhánh <strong>${store}</strong>.
+        
+        Chúng em đang tiến hành kiểm tra slot và sẽ phản hồi xác nhận cho chị ngay lập tức ạ! 😊</div>
+      `;
+      chatMsgs.scrollTop = chatMsgs.scrollHeight;
+      updateGuideStepsUI(4);
+      showToast('✅ Dữ liệu đã đồng bộ sang CRM thành công!');
+
+      // Tự động đồng bộ hóa sang Tab 4 (CRM Profile của chị Lan)
+      document.getElementById('crmSheetName').textContent = `Chị Lan (${name})`;
+      document.getElementById('crmSheetPhone').textContent = phone;
+      document.getElementById('crmSheetStore').textContent = store;
+      document.getElementById('crmSheetOptIn').textContent = optIn ? '✅ Đã đồng ý (SĐT)' : '❌ Từ chối';
+      document.getElementById('crmSheetOptIn').style.color = optIn ? 'var(--success)' : 'var(--danger)';
+      
+      const convoPreview = document.getElementById('convo-lan-preview');
+      convoPreview.textContent = `Yêu cầu: ${selectedComboName} tại ${store.split(',')[0]}`;
+      
+      const processTag = document.getElementById('convo-lan-process-tag');
+      processTag.textContent = '● Tiếp nhận';
+      processTag.className = 'tag-pill tag-process';
+      
+      const normalTagsWrap = document.getElementById('crmNormalTagsWrap');
+      normalTagsWrap.innerHTML = `
+        <span class="tag-pill tag-branch">${store.split(',')[0]}</span>
+        <span class="tag-pill tag-need">Tiệc sinh nhật</span>
+        <span class="tag-pill tag-loyalty">Khách mới</span>
+        <span class="tag-pill tag-need" style="background:#EBF3FB; color:var(--brand-primary); border-color:#93C5FD;">${selectedComboName}</span>
+      `;
+    }, 1500);
+  }
+
+  // ─── TAB 3: OPERATIONS WORKFLOW LOGIC ───
+  let currentOpsStep = 0;
+  const opsStepsData = [
+    {
+      title: "Bước 1: Khách hàng gửi yêu cầu qua Mini App",
+      desc: "Chị Lan điền form đặt tiệc và đồng ý Opt-in trên Brand Mini App, dữ liệu bắn về hệ thống.",
+      highlight: "customer",
+      progress: 16.6,
+      actions: [
+        { lane: "customer", type: "system", text: "📱 Chị Lan mở Mini App Brand Rewards" },
+        { lane: "customer", type: "out", text: "Gửi yêu cầu đặt tiệc: Party Package 20 bé tại CN Nguyễn Huệ. SĐT: 0912 345 678. Opt-in: ĐỒNG Ý." },
+        { lane: "customer", type: "in", sender: "Brand Vietnam ✓", avatar: "🤖", text: "Brand đã nhận được yêu cầu đặt tiệc của chị Lan tại chi nhánh Nguyễn Huệ. Hệ thống đang xử lý, vui lòng chờ trong giây lát!" }
+      ]
+    },
+    {
+      title: "Bước 2: CRM tự động tiếp nhận & Tạo Ticket",
+      desc: "Thông tin đơn được đưa vào CRM tập trung. Hệ thống kiểm tra số điện thoại và khởi tạo Ticket chăm sóc khách hàng.",
+      highlight: "hq",
+      progress: 33.3,
+      actions: [
+        { lane: "hq", type: "system", text: "🔔 NEW CRM REQUEST: Khách hàng Nguyễn Hà Lan (user_2847362)" },
+        { lane: "hq", type: "ticket", info: { id: "JB2026061601", name: "Chị Lan", type: "Tiệc sinh nhật", store: "Nguyễn Huệ", status: "New" } },
+        { lane: "hq", type: "in", sender: "System Bot", avatar: "🤖", text: "Ticket #JB2026061601 được tạo thành công. Phân phối tự động dựa trên vị trí cửa hàng." }
+      ]
+    },
+    {
+      title: "Bước 3: Tự động gắn nhãn (Tagging) & Định tuyến (Routing)",
+      desc: "Hệ thống tự động gắn nhãn 'Tiếp nhận', 'Tiệc sinh nhật' và định tuyến Ticket về đúng chi nhánh Nguyễn Huệ xử lý.",
+      highlight: "hq",
+      progress: 50.0,
+      actions: [
+        { lane: "hq", type: "tagging", text: "🏷️ Auto Tag: [● Tiếp nhận], [Tiệc sinh nhật], [CN Nguyễn Huệ], [VIP Loyal]" },
+        { lane: "hq", type: "tags-widget" },
+        { lane: "hq", type: "system", text: "🔀 Điều phối tự động: Route cuộc hội thoại về Chi nhánh Nguyễn Huệ, Q.1" },
+        { lane: "customer", type: "in", sender: "CS Minh (HQ)", avatar: "🎯", text: "Chào chị Lan! Em là Minh từ Brand HQ. Yêu cầu đặt tiệc của chị đang được gửi sang chi nhánh Nguyễn Huệ (gần chị nhất) để xác nhận slot phòng. Em sẽ phản hồi chị ngay khi chi nhánh xác nhận nhé!" }
+      ]
+    },
+    {
+      title: "Bước 4: Cửa hàng tiếp nhận & Kiểm tra tình trạng",
+      desc: "Quản lý cửa hàng Nguyễn Huệ nhận thông báo Ticket trên CRM chi nhánh, tiến hành kiểm tra lịch phòng tiệc Party Package.",
+      highlight: "branch",
+      progress: 66.6,
+      actions: [
+        { lane: "branch", type: "system", text: "🔔 Nhận Ticket điều phối từ HQ: Yêu cầu đặt tiệc chị Lan (T7 này)" },
+        { lane: "branch", type: "in", sender: "CHT Hùng (Nguyễn Huệ)", avatar: "🏪", text: "Đã nhận thông tin từ HQ CRM. Đang kiểm tra lịch phòng tiệc Party Package cho Thứ 7 tuần này." }
+      ]
+    },
+    {
+      title: "Bước 5: Trao đổi nội bộ qua kênh Zalo GMF",
+      desc: "Quản lý chi nhánh Nguyễn Huệ trao đổi nội bộ qua group chat GMF (Group Message Feature) để chuẩn bị logistics (món ăn, mascot mascot).",
+      highlight: "branch",
+      progress: 83.3,
+      actions: [
+        { lane: "branch", type: "system", text: "💬 Mở Group Chat GMF nội bộ: Chi nhánh Nguyễn Huệ Ops" },
+        { lane: "branch", type: "gmf" },
+        { lane: "branch", type: "in", sender: "CHT Hùng", avatar: "🏪", text: "Cả nhà ơi, T7 tuần này lúc 16:00 có tiệc sinh nhật 20 bé của chị Lan. Slot phòng Party Package lúc đó còn trống đúng không? Bếp trưởng Mai chuẩn bị menu gà giòn vui vẻ nhé!" },
+        { lane: "branch", type: "in", sender: "Bếp trưởng Mai", avatar: "👩‍🍳", text: "Dạ phòng trống ạ! Em sẽ lên đơn nguyên liệu và chuẩn bị bánh kem đặc biệt cho bé. Xác nhận OK!" },
+        { lane: "branch", type: "in", sender: "CHT Hùng", avatar: "🏪", text: "Tốt! Anh Hùng sẽ điều phối 1 bạn mặc Mascot mascot ra nhảy vui vẻ 15 phút tặng bé. Nhờ CS Minh báo cọc với khách." }
+      ]
+    },
+    {
+      title: "Bước 6: Xác nhận với khách & Hoàn tất Ticket",
+      desc: "CS Minh gửi thông tin xác nhận và link cọc ZaloPay cho chị Lan. Thanh toán thành công, Ticket đổi trạng thái thành 'Hoàn tất'.",
+      highlight: null,
+      progress: 100.0,
+      actions: [
+        { lane: "customer", type: "in", sender: "Brand Vietnam ✓", avatar: "🍗", text: "Chị Lan ơi! Chi nhánh Nguyễn Huệ xác nhận còn phòng tiệc cho bé vào T7 tuần này lúc 16:00 ạ. Gói tiệc gồm 20 suất combo tiệc, tặng thêm Mascot thương hiệu biểu diễn.\n\nChị vui lòng nhấn liên kết dưới đây để thanh toán cọc 500k giữ phòng nhé:\n🔗 zalo.pay/brand-deposit-xxxxxx" },
+        { lane: "customer", type: "out", text: "Tuyệt quá em ơi! Chị vừa thanh toán cọc thành công rồi đó. Nhóm chụp ảnh giúp bé nhé." },
+        { lane: "hq", type: "system", text: "💳 NHẬN THANH TOÁN CỌC THÀNH CÔNG: 500,000đ" },
+        { lane: "hq", type: "success", text: "✓ Ticket #JB2026061601 chuyển trạng thái sang [✓ Hoàn tất]. Lưu CRM dữ liệu Opt-in." },
+        { lane: "customer", type: "in", sender: "Brand Vietnam ✓", avatar: "🤖", text: "Cảm ơn chị Lan đã hoàn tất đặt tiệc! Điểm Loyalty Program của chị đã được cộng (+20 pts). Hẹn gặp lại gia đình chị vào Thứ Bảy nhé! ❤️" }
+      ]
+    }
+  ];
+
+  function clearOpsLanes() {
+    document.getElementById('ops-chat-customer').innerHTML = '<div class="p-msg bot" style="background:#FAFBFD; text-align:center; width:100%; align-self:center;">Zalo Mobile App Chat View</div>';
+    document.getElementById('ops-chat-hq').innerHTML = '<div class="p-msg bot" style="background:#FAFBFD; text-align:center; width:100%; align-self:center;">Hệ thống CRM tổng của Head Office</div>';
+    document.getElementById('ops-chat-branch').innerHTML = '<div class="p-msg bot" style="background:#EBF3FB; color:var(--brand-primary); font-weight:700; text-align:center; width:100%; align-self:center;">🔒 KÊNH NỘI BỘ — Khách hàng không thấy</div>';
+  }
+
+  function addOpsMessage(laneId, type, data) {
+    const lane = document.getElementById('ops-chat-' + laneId);
+    if (!lane) return;
+    
+    // Remove default loading screens if first message
+    if (lane.querySelector('[style*="text-align:center"]')) {
+      lane.querySelector('[style*="text-align:center"]').remove();
+    }
+
+    const msgEl = document.createElement('div');
+    
+    if (type === 'ticket') {
+      msgEl.className = 'ops-ticket';
+      msgEl.innerHTML = `
+        <div class="ops-ticket-title">🎫 Ticket #${data.info.id}</div>
+        <div class="ops-ticket-row"><span>Khách hàng</span><span class="ops-ticket-val">${data.info.name} (Mini App)</span></div>
+        <div class="ops-ticket-row"><span>Loại yêu cầu</span><span class="ops-ticket-val">${data.info.type}</span></div>
+        <div class="ops-ticket-row"><span>Chi nhánh route</span><span class="ops-ticket-val">Brand ${data.info.store}</span></div>
+        <div class="ops-ticket-row"><span>Trạng thái</span><span class="ops-ticket-val"><span class="tag-pill tag-process">● ${data.info.status}</span></span></div>
+      `;
+    } else if (type === 'tags-widget') {
+      msgEl.className = 'ops-tags-widget';
+      msgEl.innerHTML = `
+        <div class="ops-tags-widget-title">Tags được gắn tự động:</div>
+        <span class="tag-pill tag-process">● Tiếp nhận</span>
+        <span class="tag-pill tag-branch">CN Nguyễn Huệ</span>
+        <span class="tag-pill tag-need">Tiệc sinh nhật</span>
+        <span class="tag-pill tag-loyalty">Loyalty VIP</span>
+      `;
+    } else if (type === 'gmf') {
+      msgEl.className = 'ops-gmf-widget';
+      msgEl.innerHTML = `
+        <div class="ops-gmf-title">👥 Nhóm Nguyễn Huệ Ops</div>
+        <div style="font-size:9.5px; opacity:0.8;">Kênh phối hợp nội bộ chi nhánh</div>
+        <div class="ops-gmf-members">
+          <div class="ops-gmf-avatar">🏪</div>
+          <div class="ops-gmf-avatar">👩‍🍳</div>
+          <div class="ops-gmf-avatar">🎯</div>
+        </div>
+        <div style="font-size:9px; opacity:0.7; margin-top:4px;">Thành viên: CHT Hùng · Bếp trưởng Mai · CS Minh (HQ)</div>
+      `;
+    } else if (type === 'system' || type === 'success' || type === 'tagging') {
+      msgEl.className = `ops-msg ${type}`;
+      msgEl.innerHTML = `<div class="ops-msg-bubble">${data.text}</div>`;
+    } else {
+      msgEl.className = `ops-msg ${type}`;
+      const senderHtml = data.sender ? `<div class="ops-msg-sender">${data.sender}</div>` : '';
+      const avatarHtml = data.avatar ? `<div class="ops-msg-avatar" style="background:${laneId==='customer'?'#FCE4EC':'#E3F2FD'}">${data.avatar}</div>` : '';
+      
+      if (type === 'in') {
+        msgEl.innerHTML = `${avatarHtml}<div>${senderHtml}<div class="ops-msg-bubble">${data.text.replace(/\n/g, '<br>')}</div></div>`;
+      } else {
+        msgEl.innerHTML = `<div><div class="ops-msg-bubble">${data.text.replace(/\n/g, '<br>')}</div></div>${avatarHtml}`;
+      }
+    }
+
+    lane.appendChild(msgEl);
+    lane.scrollTop = lane.scrollHeight;
+  }
+
+  async function playOpsStep(stepIdx) {
+    const stepData = opsStepsData[stepIdx];
+    document.getElementById('opsStepTitle').textContent = stepData.title;
+    document.getElementById('opsStepDesc').textContent = stepData.desc;
+    document.getElementById('ops-progress-bar').style.width = stepData.progress + '%';
+    document.getElementById('ops-step-pct').textContent = `Bước ${stepIdx + 1} / 6`;
+
+    // Highlight step buttons
+    document.querySelectorAll('.ops-step-btn').forEach((btn, i) => {
+      btn.classList.remove('active', 'done');
+      if (i < stepIdx) btn.classList.add('done');
+      if (i === stepIdx) btn.classList.add('active');
+    });
+
+    // Highlight lane
+    document.querySelectorAll('.ops-lane').forEach(lane => lane.classList.remove('highlight'));
+    if (stepData.highlight) {
+      document.getElementById('lane-' + stepData.highlight).classList.add('highlight');
+    }
+
+    // Play action messages sequentially
+    for (const act of stepData.actions) {
+      await new Promise(r => setTimeout(r, 600));
+      addOpsMessage(act.lane, act.type, act);
+    }
+  }
+
+  function gotoOpsStep(stepIdx) {
+    currentOpsStep = stepIdx;
+    clearOpsLanes();
+    playOpsStep(stepIdx);
+  }
+
+  function nextOpsStep() {
+    if (currentOpsStep < opsStepsData.length - 1) {
+      currentOpsStep++;
+      playOpsStep(currentOpsStep);
+    } else {
+      showToast('🎉 Quy trình demo vận hành đã hoàn tất thành công!');
+    }
+  }
+
+  function prevOpsStep() {
+    if (currentOpsStep > 0) {
+      currentOpsStep--;
+      // Clear and re-run all messages up to this step
+      clearOpsLanes();
+      playOpsStep(currentOpsStep);
+    }
+  }
+
+  // Khởi động bước 1 operations
+  clearOpsLanes();
+  playOpsStep(0);
+
+  // ─── TAB 4: CRM & TAGGING LOGIC ───
+  let selectedConvoId = 'lan';
+  const convoDatabase = {
+    lan: {
+      name: 'Chị Lan (Nguyễn Hà Lan)',
+      zaloId: 'Zalo ID: user_2847362',
+      phone: '0912 345 678',
+      store: 'Chi nhánh Nguyễn Huệ, Q.1',
+      optin: '✅ Đã đồng ý (SĐT)',
+      optinColor: 'var(--success)',
+      processTag: '● Chờ xác nhận',
+      normalTags: ['CN Nguyễn Huệ', 'Tiệc sinh nhật', 'Khách mới', 'Party Package · 20 khách'],
+      avatar: '👩'
+    },
+    tuan: {
+      name: 'Anh Tuấn (Trần Anh Tuấn)',
+      zaloId: 'Zalo ID: user_5829104',
+      phone: '0987 654 321',
+      store: 'Chi nhánh Lê Lợi, Q.1',
+      optin: '✅ Đã đồng ý (SĐT)',
+      optinColor: 'var(--success)',
+      processTag: '● Đang tư vấn',
+      normalTags: ['CN Lê Lợi', 'Voucher 50k', 'Thành viên mới'],
+      avatar: '👨'
+    },
+    huong: {
+      name: 'Chị Hương',
+      zaloId: 'Zalo ID: user_1948261',
+      phone: '0903 111 222',
+      store: 'Đang điều phối...',
+      optin: '❌ Chưa đồng ý',
+      optinColor: 'var(--danger)',
+      processTag: '● Tiếp nhận',
+      normalTags: ['Corporate', 'Ưu đãi nhóm lớn'],
+      avatar: '👩‍💼'
+    }
+  };
+
+  function selectConvo(convoId) {
+    selectedConvoId = convoId;
+    document.querySelectorAll('.crm-convo').forEach(con => {
+      con.classList.remove('active');
+    });
+    document.getElementById('convo-' + convoId).classList.add('active');
+    
+    // Clear unread badge
+    const unread = document.getElementById('convo-' + convoId + '-unread');
+    if (unread) unread.style.display = 'none';
+
+    // Update CRM Profile UI
+    const profile = convoDatabase[convoId];
+    document.getElementById('crmSheetAvatar').textContent = profile.avatar;
+    document.getElementById('crmSheetName').textContent = profile.name;
+    document.getElementById('crmSheetZaloId').textContent = profile.zaloId;
+    document.getElementById('crmSheetPhone').textContent = profile.phone;
+    document.getElementById('crmSheetStore').textContent = profile.store;
+    document.getElementById('crmSheetOptIn').textContent = profile.optin;
+    document.getElementById('crmSheetOptIn').style.color = profile.optinColor;
+
+    // Process Tags UI
+    const processTags = document.getElementById('crmProcessTagsWrap');
+    processTags.innerHTML = '';
+    const allProcessTags = ['● Tiếp nhận', '● Đang tư vấn', '● Chờ xác nhận', '✓ Hoàn tất'];
+    allProcessTags.forEach((tag, idx) => {
+      const isSelected = profile.processTag === tag;
+      const isGreen = tag === '✓ Hoàn tất';
+      
+      let className = isGreen ? 'tag-pill tag-process green' : 'tag-pill tag-process';
+      let extraStyles = '';
+      if (isSelected) {
+        extraStyles = isGreen 
+          ? 'font-weight:800; border-color:#059669; box-shadow:0 0 4px rgba(5,150,105,0.2);' 
+          : 'font-weight:800; border-color:#D97706; box-shadow:0 0 4px rgba(217,119,6,0.2);';
+      }
+      processTags.innerHTML += `<span class="${className}" style="cursor:pointer; ${extraStyles}" onclick="updateCustomerProcessTag('${convoId}', '${tag}')">${tag}</span>`;
+    });
+
+    // Normal Tags UI
+    const normalTags = document.getElementById('crmNormalTagsWrap');
+    normalTags.innerHTML = '';
+    profile.normalTags.forEach(tag => {
+      let isCombo = tag.includes('bé') || tag.includes('Combo');
+      let isLoyalty = tag.includes('Thành viên') || tag.includes('VIP');
+      let isStore = tag.includes('CN') || tag.includes('Nguyễn Huệ') || tag.includes('Lê Lợi');
+      
+      let className = 'tag-pill';
+      if (isStore) className += ' tag-branch';
+      else if (isLoyalty) className += ' tag-loyalty';
+      else if (isCombo) className = 'tag-pill tag-need" style="background:#EBF3FB; color:var(--brand-primary); border-color:#93C5FD;';
+      else className += ' tag-need';
+
+      normalTags.innerHTML += `<span class="${className}">${tag}</span>`;
+    });
+  }
+
+  function updateCustomerProcessTag(convoId, tag) {
+    convoDatabase[convoId].processTag = tag;
+    showToast(`🏷️ Cập nhật nhãn quy trình cho ${convoDatabase[convoId].name} thành [${tag}]`);
+    
+    // Re-render
+    selectConvo(convoId);
+
+    // Update tag in conversation list
+    const lanProcessTag = document.getElementById('convo-lan-process-tag');
+    if (convoId === 'lan' && lanProcessTag) {
+      lanProcessTag.textContent = tag;
+      if (tag === '✓ Hoàn tất') {
+        lanProcessTag.className = 'tag-pill tag-process green';
+      } else {
+        lanProcessTag.className = 'tag-pill tag-process';
+      }
+    }
+  }
+
+  function filterConvo(tagType, element) {
+    document.querySelectorAll('.crm-filter-chip').forEach(chip => {
+      chip.classList.remove('active');
+    });
+    element.classList.add('active');
+    showToast(`🔍 Đang lọc hội thoại theo nhãn: ${element.textContent}`);
+
+    // Simulation filter
+    document.querySelectorAll('.crm-convo').forEach(con => {
+      con.style.display = 'flex';
+      if (tagType === 'tiepnhan' && con.id !== 'convo-huong') con.style.display = 'none';
+      if (tagType === 'tuvan' && con.id !== 'convo-tuan') con.style.display = 'none';
+      if (tagType === 'xacnhan' && con.id !== 'convo-lan') con.style.display = 'none';
+      if (tagType === 'hoantat') con.style.display = 'none'; // Không có convo nào hoàn tất mặc định
+    });
+  }
+
+  // ─── TAB 5: HQ DASHBOARD CHART.JS LOGIC ───
+  let chartsInitialized = false;
+  
+  function startKpiCounter() {
+    animateCounter('kpi-total-followers', 500000, '', 1500);
+    animateCounter('kpi-total-bookings', 1284, '', 1000);
+    animateCounter('kpi-avg-response', 28, ' giây', 800);
+    animateCounter('kpi-conversion-rate', 68, '%', 900);
+    animateCounter('kpi-optin-rate', 65, '%', 800);
+  }
+
+  function animateCounter(id, target, suffix, duration) {
+    let start = 0;
+    const step = target / (duration / 16);
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    const timer = setInterval(() => {
+      start = Math.min(start + step, target);
+      element.textContent = Math.floor(start).toLocaleString('vi-VN') + (suffix || '');
+      if (start >= target) {
+        clearInterval(timer);
+      }
+    }, 16);
+  }
+
+  function initCharts() {
+    if (chartsInitialized) return;
+    chartsInitialized = true;
+
+    // Chart 1: Lượt đặt tiệc theo tháng (Bar Chart)
+    const months = ['T1','T2','T3','T4','T5','T6','T7','T8','T9','T10','T11','T12','T1*','T2*','T3*'];
+    const actualBookings = [420, 380, 510, 560, 690, 1150, 820, 760, 870, 940, 1080, 1180, null, null, null];
+    const projectedBookings = [null, null, null, null, null, null, null, null, null, null, null, 1180, 1340, 1420, 1510];
+
+    new Chart(document.getElementById('chartBookings'), {
+      type: 'bar',
+      data: {
+        labels: months,
+        datasets: [
+          { label: 'Thực tế 2025', data: actualBookings, backgroundColor: 'rgba(227, 24, 55, 0.85)', borderRadius: 4, order: 2 },
+          { label: 'Dự báo ZBS 2026', data: projectedBookings, backgroundColor: 'rgba(253, 185, 19, 0.8)', borderRadius: 4, order: 2 },
+          { label: 'Trend tăng trưởng', data: [420, 400, 490, 550, 680, 1100, 830, 780, 860, 930, 1050, 1180, 1310, 1420, 1500], type: 'line', borderColor: 'rgba(0, 104, 255, 0.6)', backgroundColor: 'rgba(0, 104, 255, 0.05)', fill: true, tension: 0.4, pointRadius: 0, order: 1 }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { family: 'Outfit', size: 10 } } },
+          y: { grid: { color: '#E5E7EB' }, ticks: { font: { family: 'Outfit', size: 10 } } }
+        }
+      }
+    });
+
+    // Chart 2: Phân bổ khách hàng theo nhóm nhu cầu (Horizontal Bar)
+    new Chart(document.getElementById('chartLabels'), {
+      type: 'bar',
+      data: {
+        labels: ['Tiệc sinh nhật', 'Ưu đãi Combo', 'Tích điểm Loyalty', 'Liên hệ khiếu nại', 'Đặt bàn online'],
+        datasets: [{
+          data: [382, 287, 194, 95, 43],
+          backgroundColor: ['#0047AB', '#0068FF', '#0095E8', '#8B5CF6', '#10B981'],
+          borderRadius: 6
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { color: '#E5E7EB' }, ticks: { font: { family: 'Outfit', size: 10 } } },
+          y: { grid: { display: false }, ticks: { font: { family: 'Outfit', size: 10 } } }
+        }
+      }
+    });
+
+    // Chart 3: Trạng thái xử lý (Doughnut)
+    new Chart(document.getElementById('chartProcess'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Tiếp nhận', 'Đang tư vấn', 'Chờ xác nhận', 'Hoàn tất'],
+        datasets: [{
+          data: [89, 134, 67, 1284],
+          backgroundColor: ['#3B82F6', '#8B5CF6', '#F59E0B', '#10B981'],
+          borderWidth: 2,
+          borderColor: '#ffffff'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '65%',
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { font: { family: 'Outfit', size: 9.5 }, boxWidth: 10, padding: 8 }
+          }
+        }
+      }
+    });
+
+    // Chart 4: Top Combo (Doughnut)
+    new Chart(document.getElementById('chartCombos'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Party Package 20 bé', 'Family Combo', 'Happy Meal', 'BBQ Party', 'Voucher 50k'],
+        datasets: [{
+          data: [35, 27, 18, 12, 8],
+          backgroundColor: ['#0047AB', '#0095E8', '#0068FF', '#10B981', '#8B5CF6'],
+          borderWidth: 2,
+          borderColor: '#ffffff'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '65%',
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { font: { family: 'Outfit', size: 9.5 }, boxWidth: 10, padding: 8 }
+          }
+        }
+      }
+    });
+  }
+
+  // ─── TAB 6: CAMPAIGN LOGIC ───
+  let sendMethod = 'phone';
+  let selectedSegmentIndex = 0;
+
+  const segmentData = {
+    phone: [
+      { icon: '🌍', title: 'Tệp SĐT đã Opt-in', num: '213,000 người', tag: 'Có Consent Opt-in', reach: 213000 },
+      { icon: '🎂', title: 'Nhãn CRM: Tiệc sinh nhật', num: '38,200 người', tag: 'Đã từng quan tâm tiệc', reach: 38200 },
+      { icon: '⭐', title: 'Nhãn CRM: VIP & Loyal', num: '89,400 người', tag: 'Khách hàng trung thành', reach: 89400 },
+      { icon: '👶', title: 'Nhãn CRM: Khách mới', num: '213,000 người', tag: 'Mới thu thập SĐT', reach: 213000 }
+    ],
+    uid: [
+      { icon: '👥', title: 'Tất cả OA Followers', num: '500,000 người', tag: 'Toàn bộ người quan tâm', reach: 500000 },
+      { icon: '⚡', title: 'Nhãn OA: Tương tác <7 ngày', num: '42,500 người', tag: 'Tương tác gần đây', reach: 42500 },
+      { icon: '📅', title: 'Nhãn OA: Nhóm tuổi 18 - 35', num: '185,000 người', tag: 'Nhân khẩu học OA', reach: 185000 },
+      { icon: '📍', title: 'Nhãn OA: Khu vực TP.HCM', num: '310,000 người', tag: 'Vị trí địa lý OA', reach: 310000 }
+    ]
+  };
+
+  function setSendMethod(method) {
+    sendMethod = method;
+    document.querySelectorAll('.method-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    const targetBtn = document.getElementById('method-' + method);
+    if (targetBtn) targetBtn.classList.add('active');
+
+    // Cập nhật text và icon trong các card segment tương ứng
+    const segCards = document.querySelectorAll('.seg-card');
+    segmentData[method].forEach((item, idx) => {
+      const card = segCards[idx];
+      if (card) {
+        const iconEl = card.querySelector('.seg-icon');
+        if (iconEl) iconEl.textContent = item.icon;
+        card.querySelector('.seg-title').textContent = item.title;
+        card.querySelector('.seg-num').textContent = item.num;
+        card.querySelector('.seg-tag').textContent = item.tag;
+      }
+    });
+
+    // Cập nhật tiêu đề phân khúc mục tiêu (CRM vs OA Manager)
+    const targetTitle = document.getElementById('campTargetTitle');
+    if (targetTitle) {
+      if (method === 'phone') {
+        targetTitle.textContent = 'Phân khúc khách hàng mục tiêu (Target theo Nhãn CRM)';
+      } else {
+        targetTitle.textContent = 'Phân khúc khách hàng mục tiêu (Target theo Nhãn Zalo OA Manager)';
+      }
+    }
+
+    // Cập nhật nhãn reach card
+    const reachLbl = document.querySelector('.zbs-reach-lbl');
+    if (reachLbl) {
+      if (method === 'phone') {
+        reachLbl.textContent = '📊 Số lượng tiếp cận dự kiến (Opt-in Consent Match)';
+      } else {
+        reachLbl.textContent = '📊 Số lượng tiếp cận dự kiến (Follower UID Match)';
+      }
+    }
+
+    updateReachValue();
+    updateCampaignPreview();
+  }
+
+  function onCampTypeChange() {
+    const type = document.getElementById('campType').value;
+    const phoneMethodBtn = document.getElementById('method-phone');
+    
+    if (type === 'broadcast') {
+      if (phoneMethodBtn) {
+        phoneMethodBtn.style.opacity = '0.5';
+        phoneMethodBtn.style.pointerEvents = 'none';
+      }
+      setSendMethod('uid');
+    } else {
+      if (phoneMethodBtn) {
+        phoneMethodBtn.style.opacity = '1';
+        phoneMethodBtn.style.pointerEvents = 'auto';
+      }
+      setSendMethod('phone');
+    }
+  }
+
+  function clickCampaignSegment(card) {
+    document.querySelectorAll('.seg-card').forEach(c => {
+      c.classList.remove('selected');
+    });
+    card.classList.add('selected');
+    selectedSegmentIndex = parseInt(card.getAttribute('data-index')) || 0;
+    
+    updateReachValue();
+    updateCampaignPreview();
+  }
+
+  function updateReachValue() {
+    const data = segmentData[sendMethod][selectedSegmentIndex];
+    if (data) {
+      document.getElementById('zbsReachVal').textContent = data.reach.toLocaleString('vi-VN');
+    }
+  }
+
+  function updateCampaignPreview() {
+    const name = document.getElementById('campName').value;
+    const msg = document.getElementById('campMsg').value;
+    const type = document.getElementById('campType').value;
+
+    document.getElementById('previewMsgTitle').textContent = name;
+    
+    // Dynamic replacing logic inside preview box
+    let nameReplace = 'Hà Lan';
+    let storeReplace = 'Nguyễn Huệ';
+    if (selectedConvoId && convoDatabase[selectedConvoId]) {
+      const p = convoDatabase[selectedConvoId];
+      nameReplace = p.name.split(' ')[0];
+      storeReplace = p.store.split(',')[0].replace('Chi nhánh ', '');
+    }
+
+    document.getElementById('previewMsgContent').innerHTML = msg
+      .replace(/\[Tên KH\]/g, `<strong>${nameReplace}</strong>`)
+      .replace(/\[Chi nhánh\]/g, `<strong>${storeReplace}</strong>`);
+
+    if (type === 'template') {
+      document.getElementById('previewMsgType').textContent = sendMethod === 'phone'
+        ? 'ZBS Template via Phone (Opt-in) · Official'
+        : 'ZBS Template via User ID (Followers) · Official';
+    } else {
+      document.getElementById('previewMsgType').textContent = 'Zalo OA Broadcast';
+    }
+  }
+
+  function executeZbsCampaign() {
+    const reach = document.getElementById('zbsReachVal').textContent;
+    const methodText = sendMethod === 'phone' ? 'Số điện thoại đã Opt-in' : 'Zalo User ID (UID)';
+    document.getElementById('sentCampaignReachSub').textContent = `Đang tiến hành gửi tới ${reach} khách hàng qua ${methodText}...`;
+    
+    // Slide show sent box
+    const sentBox = document.getElementById('campaignSentBox');
+    sentBox.style.display = 'block';
+    
+    showToast(`🚀 Chiến dịch đã được kích hoạt thành công tới ${reach} người qua ${methodText}!`);
+    sentBox.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function triggerCtaAlert() {
+    showToast('🎉 CTA click → Đưa khách hàng về Mini App đặt hàng!');
+  }
+
+  // ─── ZBS SOLUTION TABS ───
+  function switchZbsSol(sol) {
+    document.querySelectorAll('.zbs-sol-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.zbs-sol-pane').forEach(p => p.classList.remove('active'));
+    document.getElementById('zbs-sol-tab-' + sol).classList.add('active');
+    document.getElementById('zbs-sol-' + sol).classList.add('active');
+  }
+
+  // ─── USE CASE SELECTOR ───
+  const usecaseTemplates = {
+    voucher: {
+      title: '🎁 Voucher đặc biệt dành riêng cho bạn!',
+      msg: `Chào [Tên KH]! 🎁\nBạn vừa nhận được voucher sinh nhật:\n🎂 GIẢM 88,000đ cho đơn từ 200,000đ\nMã: BEEBIRTHDAY-2025\nHSD: 30/06/2025\nÁp dụng tại tất cả chi nhánh.`
+    },
+    otp: {
+      title: '🔐 Mã OTP xác thực',
+      msg: `Mã OTP của bạn là: 942246\nMã có hiệu lực trong 5 phút.\nKhông chia sẻ mã này với bất kỳ ai.`
+    },
+    announce: {
+      title: '📢 Thông báo quan trọng',
+      msg: `Chào [Tên KH]! 🍗\nBrand vừa cập nhật chính sách ưu đãi Loyalty Program.\nTừ tháng 7/2025, điểm tích lũy tăng 2x cho mọi giao dịch!\nXem chi tiết tại chi nhánh [Chi nhánh] hoặc trên Mini App.`
+    },
+    payment: {
+      title: '💳 Xác nhận thanh toán',
+      msg: `Chào [Tên KH]! ✅\nGiao dịch thanh toán thành công.\nCombo: Party Package 20 bé\nSố tiền: 1,199,000đ (đã giảm 20%)\nThời gian: 14:32 hôm nay\nChi nhánh: [Chi nhánh]`
+    },
+    confirm: {
+      title: '✅ Xác nhận đặt dịch vụ — [Chi nhánh]',
+      msg: `Chào [Tên KH]! 🎉\nĐặt tiệc của bạn đã được xác nhận!\nGói: Party Package 20 bé\nNgày: Thứ 7, 15/06/2025 lúc 10:00\nChi nhánh: [Chi nhánh]\nMã đặt chỗ: JB-2025-08742`
+    }
+  };
+
+  function selectUsecase(el, type) {
+    document.querySelectorAll('.usecase-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    const t = usecaseTemplates[type];
+    if (t) {
+      document.getElementById('campName').value = t.title;
+      document.getElementById('campMsg').value = t.msg;
+      updateCampaignPreview();
+    }
+  }
+
+  // ─── BROADCAST TARGET SELECTOR ───
+  function selectBroadcastTarget(target) {
+    ['all', 'label', 'adv'].forEach(function(t) {
+      const el = document.getElementById('btarget-' + t);
+      if (el) el.classList.remove('selected');
+    });
+    const targetEl = document.getElementById('btarget-' + target);
+    if (targetEl) targetEl.classList.add('selected');
+
+    const labelPicker = document.getElementById('btarget-label-picker');
+    const advFilters = document.getElementById('btarget-adv-filters');
+    if (labelPicker) labelPicker.style.display = (target === 'label') ? 'block' : 'none';
+    if (advFilters) advFilters.style.display = (target === 'adv') ? 'block' : 'none';
+
+    const reachMap = { all: '523,000', label: '89,400', adv: '156,700' };
+    const reachEl = document.getElementById('broadcastReach');
+    if (reachEl) reachEl.textContent = reachMap[target] || '523,000';
+  }
+
+  function updateBroadcastPreview() {
+    const titleEl = document.getElementById('broadcastTitle');
+    const msgEl = document.getElementById('broadcastMsg');
+    const prevTitleEl = document.getElementById('broadcastPreviewTitle');
+    const prevMsgEl = document.getElementById('broadcastPreviewMsg');
+    if (titleEl && prevTitleEl) prevTitleEl.textContent = titleEl.value;
+    if (msgEl && prevMsgEl) {
+      const txt = msgEl.value;
+      prevMsgEl.textContent = txt.length > 80 ? txt.substring(0, 80) + '...' : txt;
+    }
+  }
+
+  function executeBroadcast() {
+    const reachEl = document.getElementById('broadcastReach');
+    const sentBox = document.getElementById('broadcastSentBox');
+    const sentSub = document.getElementById('broadcastSentSub');
+    if (sentSub) sentSub.textContent = 'Đang phát đến ' + (reachEl ? reachEl.textContent : '523,000') + ' người quan tâm...';
+    if (sentBox) {
+      sentBox.style.display = 'block';
+      sentBox.scrollIntoView({ behavior: 'smooth' });
+    }
+    showToast('📢 Broadcast đã được kích hoạt thành công!');
+  }
+
+  // ─── CHAT QUICK MENU ───
+  function toggleChatMenu() {
+    const menuBar = document.getElementById('chatQuickMenuBar');
+    const toggleBtn = document.getElementById('chatMenuToggleBtn');
+    if (menuBar) {
+      menuBar.classList.toggle('visible');
+      if (toggleBtn) toggleBtn.classList.toggle('open', menuBar.classList.contains('visible'));
+    }
+  }
+
+  // ─── INIT ───
+  // Default states
+  setSendMethod('phone');
+  triggerGuideStep(1);
+
+</script>
+</body>
+</html>
