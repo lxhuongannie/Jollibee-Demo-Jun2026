@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jollibee × Zalo Business Solutions — Final Demo</title>
+<title>Zalo Business Solutions — Interactive Demo</title>
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,10 +12,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
   :root {
-    --jollibee-red: #E31837;
-    --jollibee-red-hover: #C2132F;
-    --jollibee-yellow: #FDB913;
-    --jollibee-yellow-light: #FFFBEB;
+    --brand-primary: #0047AB;
+    --brand-primary-hover: #003893;
+    --brand-accent: #0095E8;
+    --brand-accent-light: #E8F4FF;
     --zalo-blue: #0068FF;
     --zalo-blue-hover: #0056D2;
     --zalo-dark: #003C9A;
@@ -50,7 +50,7 @@
 
   /* ─── HEADER ─── */
   .hdr {
-    background: linear-gradient(135deg, var(--jollibee-red) 0%, #1A1A2E 100%);
+    background: linear-gradient(135deg, #0047AB 0%, #1A1A2E 100%);
     color: #fff;
     padding: 16px 32px;
     display: flex;
@@ -71,10 +71,10 @@
     align-items: center;
     gap: 8px;
   }
-  .hdr-logo-jollibee {
+  .hdr-logo-brand {
     font-size: 22px;
     font-weight: 900;
-    color: var(--jollibee-yellow);
+    color: var(--brand-accent);
     letter-spacing: -0.5px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
   }
@@ -134,7 +134,7 @@
     padding: 5px 14px;
     font-size: 12px;
     font-weight: 600;
-    color: var(--jollibee-yellow);
+    color: var(--brand-accent);
   }
 
   /* ─── TABS NAVIGATION ─── */
@@ -169,11 +169,11 @@
     white-space: nowrap;
   }
   .tab-btn:hover {
-    color: var(--jollibee-red);
+    color: var(--brand-primary);
   }
   .tab-btn.active {
-    color: var(--jollibee-red);
-    border-bottom-color: var(--jollibee-red);
+    color: var(--brand-primary);
+    border-bottom-color: var(--brand-primary);
     font-weight: 700;
   }
 
@@ -202,7 +202,7 @@
 
   /* ─── TAB 1: INTRO & PROPOSAL ─── */
   .welcome-hero {
-    background: linear-gradient(135deg, var(--jollibee-red) 0%, #9F1239 100%);
+    background: linear-gradient(135deg, var(--brand-primary) 0%, #003893 100%);
     border-radius: 20px;
     padding: 56px 48px;
     color: white;
@@ -232,7 +232,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2.5px;
-    color: var(--jollibee-yellow);
+    color: var(--brand-accent);
     margin-bottom: 16px;
   }
   .hero-title {
@@ -243,7 +243,7 @@
     max-width: 800px;
   }
   .hero-title span {
-    color: var(--jollibee-yellow);
+    color: var(--brand-accent);
   }
   .hero-sub {
     font-size: 16px;
@@ -266,7 +266,7 @@
   .hero-stat .num {
     font-size: 36px;
     font-weight: 800;
-    color: var(--jollibee-yellow);
+    color: var(--brand-accent);
     line-height: 1.1;
   }
   .hero-stat .lbl {
@@ -297,7 +297,7 @@
     align-items: center;
     gap: 10px;
   }
-  .intro-problem-title { color: var(--jollibee-red); }
+  .intro-problem-title { color: var(--brand-primary); }
   .intro-solution-title { color: var(--zalo-blue); }
 
   .problem-list, .solution-list {
@@ -308,8 +308,8 @@
   .problem-item {
     display: flex;
     gap: 14px;
-    background: #FFF5F5;
-    border-left: 4px solid var(--jollibee-red);
+    background: #EBF3FB;
+    border-left: 4px solid var(--brand-primary);
     padding: 16px;
     border-radius: 0 12px 12px 0;
   }
@@ -497,11 +497,11 @@
   .oa-search-avatar {
     width: 44px; height: 44px;
     border-radius: 50%;
-    background: var(--jollibee-red);
+    background: var(--brand-primary);
     color: white;
     font-size: 20px;
     display: flex; align-items: center; justify-content: center;
-    border: 2px solid var(--jollibee-yellow);
+    border: 2px solid var(--brand-accent);
   }
   .oa-search-info {
     flex: 1;
@@ -529,7 +529,7 @@
   /* Screen 2: OA Home */
   .oa-home-cover {
     height: 110px;
-    background: linear-gradient(135deg, var(--jollibee-red) 0%, var(--jollibee-yellow) 100%);
+    background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-accent) 100%);
     position: relative;
   }
   .oa-home-profile {
@@ -542,7 +542,7 @@
   .oa-home-avatar {
     width: 68px; height: 68px;
     border-radius: 50%;
-    background: var(--jollibee-red);
+    background: var(--brand-primary);
     border: 3px solid white;
     position: absolute;
     top: -34px; left: 50%;
@@ -641,7 +641,7 @@
   .chat-hdr-avatar {
     width: 32px; height: 32px;
     border-radius: 50%;
-    background: var(--jollibee-red);
+    background: var(--brand-primary);
     display: flex; align-items: center; justify-content: center;
     font-size: 16px;
   }
@@ -769,7 +769,7 @@
     animation: fadeIn 0.3s;
   }
   .p-ma-hdr {
-    background: var(--jollibee-red);
+    background: var(--brand-primary);
     padding: 8px 12px;
     display: flex;
     align-items: center;
@@ -782,7 +782,7 @@
   .p-ma-title { font-size: 12px; font-weight: 800; margin-bottom: 6px; }
   .p-ma-desc { font-size: 10px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 10px; }
   .p-ma-btn {
-    background: var(--jollibee-red);
+    background: var(--brand-primary);
     color: white;
     border: none;
     border-radius: 6px;
@@ -811,7 +811,7 @@
     bottom: 0;
   }
   .miniapp-hdr {
-    background: var(--jollibee-red);
+    background: var(--brand-primary);
     color: white;
     padding: 12px 16px;
     display: flex;
@@ -832,7 +832,7 @@
     padding: 16px;
   }
   .ma-promo-banner {
-    background: linear-gradient(135deg, var(--jollibee-yellow) 0%, #F59E0B 100%);
+    background: linear-gradient(135deg, var(--brand-accent) 0%, #F59E0B 100%);
     border-radius: 10px;
     padding: 12px;
     text-align: center;
@@ -853,12 +853,12 @@
     transition: all 0.2s;
   }
   .ma-combo-card.selected {
-    border-color: var(--jollibee-red);
-    background: #FFF5F5;
+    border-color: var(--brand-primary);
+    background: #EBF3FB;
   }
   .combo-emoji { font-size: 20px; }
   .combo-name { font-size: 11px; font-weight: 700; margin-top: 4px; }
-  .combo-price { font-size: 10px; color: var(--jollibee-red); font-weight: 600; }
+  .combo-price { font-size: 10px; color: var(--brand-primary); font-weight: 600; }
 
   .ma-form { display: flex; flex-direction: column; gap: 8px; }
   .ma-input {
@@ -868,7 +868,7 @@
     font-size: 12px;
     outline: none;
   }
-  .ma-input:focus { border-color: var(--jollibee-red); }
+  .ma-input:focus { border-color: var(--brand-primary); }
   
   .ma-optin-box {
     background: var(--bg-main);
@@ -889,7 +889,7 @@
   .ma-checkbox-label input { margin-top: 2px; }
   
   .ma-submit-btn {
-    background: var(--jollibee-red);
+    background: var(--brand-primary);
     color: white;
     border: none;
     border-radius: 8px;
@@ -965,7 +965,7 @@
 
   /* CRM Real-time Sync Status Widget */
   .crm-sync-widget {
-    background: #FFFBEB;
+    background: #E8F4FF;
     border: 1px solid #FDE68A;
     border-radius: 12px;
     padding: 16px;
@@ -1010,7 +1010,7 @@
   .ops-sublbl { font-size: 9.5px; color: var(--text-muted); text-align: center; }
   .ops-arr { font-size: 20px; color: var(--text-muted); font-weight: 300; }
   .ops-badge-v {
-    position: absolute; bottom: -3px; right: -3px; width: 16px; height: 16px; background: var(--jollibee-yellow);
+    position: absolute; bottom: -3px; right: -3px; width: 16px; height: 16px; background: var(--brand-accent);
     color: #1F2937; border-radius: 50%; font-size: 8px; font-weight: 800; display: flex; align-items: center; justify-content: center; border: 2px solid white;
   }
   .ops-split { display: flex; flex-direction: column; gap: 6px; }
@@ -1018,7 +1018,7 @@
   .ops-progress-wrap { margin-top: 14px; }
   .ops-progress-hdr { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-secondary); font-weight: 600; margin-bottom: 6px; }
   .ops-progress-track { height: 6px; background: var(--border-color); border-radius: 10px; overflow: hidden; }
-  .ops-progress-fill { height: 100%; background: linear-gradient(90deg, var(--jollibee-red), var(--jollibee-yellow)); border-radius: 10px; width: 16.6%; transition: width 0.4s ease; }
+  .ops-progress-fill { height: 100%; background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent)); border-radius: 10px; width: 16.6%; transition: width 0.4s ease; }
 
   .ops-step-nav { display: flex; gap: 6px; margin-bottom: 20px; overflow-x: auto; padding: 2px; }
   .ops-step-btn {
@@ -1050,7 +1050,7 @@
   .ops-msg.in .ops-msg-bubble { background: #F3F4F6; color: var(--text-primary); border-top-left-radius: 3px; }
   .ops-msg.out .ops-msg-bubble { background: var(--zalo-blue); color: white; border-top-right-radius: 3px; }
   .ops-msg.system { align-self: center; max-width: 90%; }
-  .ops-msg.system .ops-msg-bubble { background: #FFFBEB; color: #B45309; border: 1px solid #FDE68A; border-radius: 10px; font-size: 11px; text-align: center; }
+  .ops-msg.system .ops-msg-bubble { background: #E8F4FF; color: #B45309; border: 1px solid #FDE68A; border-radius: 10px; font-size: 11px; text-align: center; }
   .ops-msg.success { align-self: center; max-width: 90%; }
   .ops-msg.success .ops-msg-bubble { background: var(--success-light); color: #065F46; border: 1px solid #A7F3D0; border-radius: 10px; font-size: 11px; text-align: center; }
   .ops-msg.tagging { align-self: center; max-width: 95%; }
@@ -1112,7 +1112,7 @@
   .crm-convo-tags { display: flex; gap: 3px; flex-wrap: wrap; margin-top: 6px; }
   .crm-convo-meta { text-align: right; flex-shrink: 0; }
   .crm-convo-time { font-size: 9.5px; color: var(--text-muted); }
-  .crm-convo-unread { width: 16px; height: 16px; background: var(--jollibee-red); color: white; border-radius: 50%; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 4px; margin-left: auto; }
+  .crm-convo-unread { width: 16px; height: 16px; background: var(--brand-primary); color: white; border-radius: 50%; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 4px; margin-left: auto; }
 
   /* Tag styles */
   .tag-pill { display: inline-flex; align-items: center; padding: 2px 7px; border-radius: 10px; font-size: 9.5px; font-weight: 700; border: 1px solid transparent; }
@@ -1120,7 +1120,7 @@
   .tag-process.green { background: var(--success-light); color: #059669; border-color: #A7F3D0; }
   .tag-branch { background: #EFF5FF; color: #2563EB; border-color: #BFDBFE; }
   .tag-need { background: #F3E8FF; color: #7C3AED; border-color: #E9D5FF; }
-  .tag-loyalty { background: #FFFBEB; color: #D97706; border-color: #FEF3C7; }
+  .tag-loyalty { background: #E8F4FF; color: #D97706; border-color: #FEF3C7; }
 
   /* Customer Details Sheet */
   .crm-sheet { display: flex; flex-direction: column; gap: 20px; }
@@ -1128,7 +1128,7 @@
   .crm-sheet-hdr { font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
   
   .crm-profile-hdr { display: flex; align-items: center; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--border-color); }
-  .crm-profile-avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--jollibee-red); color: white; font-size: 26px; border: 2.5px solid var(--jollibee-yellow); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+  .crm-profile-avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--brand-primary); color: white; font-size: 26px; border: 2.5px solid var(--brand-accent); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
   .crm-profile-name { font-size: 16px; font-weight: 800; }
   .crm-profile-meta { font-size: 12px; color: var(--text-secondary); margin-top: 3px; }
   
@@ -1174,7 +1174,7 @@
   .db-perf-fill { height: 100%; border-radius: 3px; background: var(--zalo-blue); }
   .db-status-pill { padding: 3px 10px; border-radius: 20px; font-size: 10.5px; font-weight: 700; }
   .db-pill-active { background: var(--success-light); color: #065F46; }
-  .db-pill-warning { background: #FFFBEB; color: #B45309; }
+  .db-pill-warning { background: #E8F4FF; color: #B45309; }
 
   /* ─── TAB 6: CAMPAIGN & ZBS TEMPLATE ─── */
   .zbs-layout { display: grid; grid-template-columns: 1fr 340px; gap: 24px; }
@@ -1259,22 +1259,22 @@
   .zbs-reach-val { font-size: 28px; font-weight: 900; }
   .zbs-reach-sub { font-size: 11px; opacity: 0.7; margin-top: 2px; }
 
-  .zbs-send-btn { width: 100%; background: var(--jollibee-red); color: white; border: none; border-radius: 10px; padding: 14px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(227, 24, 55, 0.15); display: flex; align-items: center; justify-content: center; gap: 8px; }
-  .zbs-send-btn:hover { background: var(--jollibee-red-hover); transform: translateY(-1px); }
+  .zbs-send-btn { width: 100%; background: var(--brand-primary); color: white; border: none; border-radius: 10px; padding: 14px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(227, 24, 55, 0.15); display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .zbs-send-btn:hover { background: var(--brand-primary-hover); transform: translateY(-1px); }
 
   .zbs-preview-panel { background: white; border-radius: 16px; padding: 20px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.02); position: sticky; top: 150px; }
   .zbs-preview-title { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
   
   .preview-phone-card { background: #E5E7EB; border-radius: 16px; padding: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
   .preview-zalo-msg { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-  .preview-zalo-hdr { background: var(--jollibee-red); padding: 10px 12px; display: flex; align-items: center; gap: 8px; color: white; }
+  .preview-zalo-hdr { background: var(--brand-primary); padding: 10px 12px; display: flex; align-items: center; gap: 8px; color: white; }
   .preview-zalo-logo { width: 28px; height: 28px; border-radius: 6px; background: white; display: flex; align-items: center; justify-content: center; font-size: 14px; }
   .preview-zalo-brand { font-size: 11.5px; font-weight: 700; }
   .preview-zalo-type { font-size: 8.5px; opacity: 0.7; margin-top: 1px; }
   .preview-zalo-body { padding: 12px; }
   .preview-zalo-title { font-size: 12px; font-weight: 800; margin-bottom: 6px; }
   .preview-zalo-content { font-size: 11px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px; white-space: pre-line; }
-  .preview-zalo-btn { background: var(--jollibee-red); color: white; border: none; border-radius: 6px; padding: 8px; font-size: 11px; font-weight: 700; cursor: pointer; width: 100%; }
+  .preview-zalo-btn { background: var(--brand-primary); color: white; border: none; border-radius: 6px; padding: 8px; font-size: 11px; font-weight: 700; cursor: pointer; width: 100%; }
 
   .sent-notification-box { display: none; background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; border-radius: 16px; padding: 24px; text-align: center; margin-top: 16px; box-shadow: 0 4px 16px rgba(5, 150, 105, 0.2); animation: fadeIn 0.4s ease; }
   .sent-notification-icon { font-size: 36px; margin-bottom: 8px; }
@@ -1375,8 +1375,8 @@
   .oa-quick-tile:hover { background: #F0F6FF; border-color: var(--zalo-blue); }
   .oa-quick-tile-icon { font-size: 19px; }
   .oa-quick-tile-label { font-size: 8.5px; font-weight: 700; color: var(--text-secondary); text-align: center; line-height: 1.3; }
-  .oa-quick-tile.highlight { border-color: var(--jollibee-red); background: #FFF5F5; }
-  .oa-quick-tile.highlight .oa-quick-tile-label { color: var(--jollibee-red); }
+  .oa-quick-tile.highlight { border-color: var(--brand-primary); background: #EBF3FB; }
+  .oa-quick-tile.highlight .oa-quick-tile-label { color: var(--brand-primary); }
 
   /* ─── CHAT QUICK MENU BAR ─── */
   .chat-quick-menu-bar {
@@ -1402,10 +1402,10 @@
     min-width: 58px;
   }
   .chat-menu-tile:hover { background: #F0F6FF; border-color: var(--zalo-blue); }
-  .chat-menu-tile.highlight { border-color: var(--jollibee-red); background: #FFF5F5; }
+  .chat-menu-tile.highlight { border-color: var(--brand-primary); background: #EBF3FB; }
   .chat-menu-tile-icon { font-size: 17px; }
   .chat-menu-tile-label { font-size: 8.5px; font-weight: 700; color: var(--text-secondary); text-align: center; line-height: 1.3; }
-  .chat-menu-tile.highlight .chat-menu-tile-label { color: var(--jollibee-red); }
+  .chat-menu-tile.highlight .chat-menu-tile-label { color: var(--brand-primary); }
   .chat-menu-toggle-btn {
     width: 28px; height: 28px;
     background: #F3F4F6;
@@ -1526,7 +1526,7 @@
   @media (max-width: 768px) {
     body { font-size: 14px; }
     .hdr { padding: 12px 16px; }
-    .hdr-logo-jollibee { font-size: 18px; }
+    .hdr-logo-brand { font-size: 18px; }
     .main-content { margin-top: 130px; padding: 16px; }
     .welcome-hero { padding: 32px 24px; }
     .hero-title { font-size: 28px; }
@@ -1551,7 +1551,7 @@
   @media (max-width: 480px) {
     body { font-size: 13px; }
     .hdr { padding: 10px 12px; }
-    .hdr-logo-jollibee { font-size: 16px; }
+    .hdr-logo-brand { font-size: 16px; }
     .hdr-logo-zalo { font-size: 12px; }
     .tab-btn { padding: 10px 12px; font-size: 12px; }
     .main-content { margin-top: 130px; padding: 12px; }
@@ -1652,7 +1652,7 @@
   /* ─── RESPONSIVE: EXTRA SMALL (360px and below) ─── */
   @media (max-width: 360px) {
     .hdr { padding: 8px 10px; }
-    .hdr-logo-jollibee { font-size: 14px; }
+    .hdr-logo-brand { font-size: 14px; }
     .phone-body { width: 260px; height: 520px; }
     .hero-title { font-size: 18px; }
     .oa-quick-menu-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1680,7 +1680,7 @@
   @media (max-width: 480px) {
     body { font-size: 13px; }
     .hdr { padding: 10px 12px; }
-    .hdr-logo-jollibee { font-size: 16px; }
+    .hdr-logo-brand { font-size: 16px; }
     .tab-btn { padding: 10px 12px; font-size: 12px; }
     .main-content { margin-top: 130px; padding: 12px; }
     .welcome-hero { padding: 20px 16px; }
@@ -1737,7 +1737,7 @@
 <div class="hdr">
   <div class="hdr-left">
     <div class="hdr-logo-box">
-      <span class="hdr-logo-jollibee">JOLLIBEE</span>
+      <span class="hdr-logo-brand">BRAND</span>
       <span class="hdr-logo-x">×</span>
       <span class="hdr-logo-zalo">Zalo Business Solutions</span>
     </div>
@@ -1769,13 +1769,13 @@
   <div id="tab-intro" class="tab-pane active">
     <div class="welcome-hero">
       <div class="hero-eyebrow">Zalo Business Solutions for Presale</div>
-      <div class="hero-title">Chuyển đổi từ <span>267 Zalo cá nhân rời rạc</span><br>sang 1 nền tảng khách hàng tập trung do Jollibee sở hữu</div>
-      <div class="hero-sub">Jollibee Vietnam sở hữu hơn 200+ cửa hàng với hàng trăm tài khoản Zalo riêng lẻ tự vận hành. ZBS giúp chuẩn hóa toàn bộ dưới 01 OA thương hiệu chính danh của Jollibee, bảo vệ tài sản dữ liệu của Head Office nhưng vẫn tối ưu hóa khả năng chăm sóc tại từng điểm bán.</div>
+      <div class="hero-title">Chuyển đổi từ <span>Hàng trăm Zalo cá nhân rời rạc</span><br>sang 1 nền tảng khách hàng tập trung do Brand sở hữu</div>
+      <div class="hero-sub">Brand Vietnam sở hữu hàng trăm cửa hàng/chi nhánh với hàng trăm tài khoản Zalo riêng lẻ tự vận hành. ZBS giúp chuẩn hóa toàn bộ dưới 01 OA thương hiệu chính danh, bảo vệ tài sản dữ liệu của Head Office nhưng vẫn tối ưu hóa khả năng chăm sóc tại từng điểm bán.</div>
       <div class="hero-stats">
         <div class="hero-stat"><span class="num">200+</span><span class="lbl">Cửa hàng toàn quốc</span></div>
-        <div class="hero-stat"><span class="num">267</span><span class="lbl">Tài khoản Zalo rời rạc</span></div>
+        <div class="hero-stat"><span class="num">200+</span><span class="lbl">Tài khoản Zalo rời rạc</span></div>
         <div class="hero-stat"><span class="num">1</span><span class="lbl">Hệ thống CRM tập trung</span></div>
-        <div class="hero-stat"><span class="num">100%</span><span class="lbl">Dữ liệu thuộc về Jollibee</span></div>
+        <div class="hero-stat"><span class="num">100%</span><span class="lbl">Dữ liệu thuộc về Doanh Nghiệp</span></div>
       </div>
     </div>
 
@@ -1795,7 +1795,7 @@
             <span class="icon">☠️</span>
             <div>
               <h4>B. Rủi ro mất dữ liệu nghiêm trọng</h4>
-              <p>Dữ liệu khách hàng gắn liền với Zalo cá nhân của quản lý/nhân viên cửa hàng. Khi nhân sự thay đổi hoặc nghỉ việc, Jollibee có nguy cơ mất toàn bộ lịch sử khách hàng.</p>
+              <p>Dữ liệu khách hàng gắn liền với Zalo cá nhân của quản lý/nhân viên cửa hàng. Khi nhân sự thay đổi hoặc nghỉ việc, doanh nghiệp có nguy cơ mất toàn bộ lịch sử khách hàng.</p>
             </div>
           </div>
           <div class="problem-item">
@@ -1822,8 +1822,8 @@
           <div class="solution-item">
             <span class="icon">🏢</span>
             <div>
-              <h4>01 Zalo OA chính danh thương hiệu Jollibee</h4>
-              <p>Tập trung toàn bộ khách hàng follow và dữ liệu hội thoại dưới một tài khoản Jollibee OA được xác thực (Tích Vàng). Head Office toàn quyền sở hữu dữ liệu.</p>
+              <h4>01 Zalo OA chính danh của thương hiệu</h4>
+              <p>Tập trung toàn bộ khách hàng follow và dữ liệu hội thoại dưới một tài khoản Brand OA được xác thực (Tích Vàng). Head Office toàn quyền sở hữu dữ liệu.</p>
             </div>
           </div>
           <div class="solution-item">
@@ -1869,7 +1869,7 @@
               <div class="zalo-top">
                 <div class="zalo-search-bar">
                   <span>🔍</span>
-                  <input type="text" id="phoneSearchInput" value="Jollibee" placeholder="Tìm kiếm trên Zalo...">
+                  <input type="text" id="phoneSearchInput" value="Brand" placeholder="Tìm kiếm trên Zalo...">
                 </div>
               </div>
               <div class="zalo-results">
@@ -1877,7 +1877,7 @@
                 <div class="oa-search-card" onclick="goToPhoneScreen('home')">
                   <div class="oa-search-avatar">🍗</div>
                   <div class="oa-search-info">
-                    <div class="oa-search-name">Jollibee Vietnam <span class="oa-search-badge">✓</span></div>
+                    <div class="oa-search-name">Brand Vietnam <span class="oa-search-badge">✓</span></div>
                     <div class="oa-search-desc">Thương hiệu gà rán được yêu thích nhất</div>
                   </div>
                   <span style="color:var(--text-muted); font-size: 16px;">›</span>
@@ -1891,8 +1891,8 @@
               <div class="oa-home-profile">
                 <div class="oa-home-avatar">🍗</div>
                 <div class="oa-home-details">
-                  <div class="oa-home-name">Jollibee Vietnam <span class="oa-search-badge">✓ Tích Vàng</span></div>
-                  <div class="oa-home-desc">Official Account chính thức của Jollibee tại Việt Nam. Cập nhật menu, khuyến mãi hấp dẫn.</div>
+                  <div class="oa-home-name">Brand Vietnam <span class="oa-search-badge">✓ Tích Vàng</span></div>
+                  <div class="oa-home-desc">Official Account chính thức của thương hiệu tại Việt Nam. Cập nhật sản phẩm, khuyến mãi hấp dẫn.</div>
                   <div class="oa-home-stats">
                     <span><strong>500K+</strong> Người quan tâm</span>
                     <span>•</span>
@@ -1901,7 +1901,7 @@
                 </div>
               </div>
               <div class="oa-home-btn-row">
-                <button class="btn-follow" id="btn-follow-oa" onclick="followJollibeeOA()" style="font-size:12px;">➕ Quan tâm</button>
+                <button class="btn-follow" id="btn-follow-oa" onclick="followBrandOA()" style="font-size:12px;">➕ Quan tâm</button>
                 <button class="btn-chat-oa" onclick="goToPhoneScreen('chat')">💬 Nhắn tin</button>
               </div>
               <!-- Quick Menu Grid -->
@@ -1936,12 +1936,12 @@
                 <span class="chat-hdr-back" onclick="goToPhoneScreen('home')">‹</span>
                 <div class="chat-hdr-avatar">🍗</div>
                 <div class="chat-hdr-info">
-                  <div class="chat-hdr-name">Jollibee Vietnam</div>
+                  <div class="chat-hdr-name">Brand Vietnam</div>
                   <div class="chat-hdr-status">Official Account</div>
                 </div>
               </div>
               <div class="chat-msgs" id="phoneChatMsgs">
-                <div class="p-msg bot">Chào bạn! 🐝 Jollibee rất vui được hỗ trợ bạn. Hôm nay bạn muốn tìm hiểu thông tin gì ạ?</div>
+                <div class="p-msg bot">Chào bạn! 👋 Brand rất vui được hỗ trợ bạn. Hôm nay bạn muốn tìm hiểu thông tin gì ạ?</div>
                 <div class="p-quick-replies" id="phoneQuickReplies">
                   <span class="p-qr-btn" onclick="sendUserMsg('📍 Tìm cửa hàng gần nhất')">📍 Tìm cửa hàng</span>
                   <span class="p-qr-btn" onclick="sendUserMsg('🍔 Xem menu & ưu đãi')">🍔 Xem Menu</span>
@@ -1952,7 +1952,7 @@
               <div class="chat-quick-menu-bar" id="chatQuickMenuBar">
                 <div class="chat-menu-tile highlight" onclick="openMiniApp()">
                   <span class="chat-menu-tile-icon">🎂</span>
-                  <span class="chat-menu-tile-label">Đặt tiệc<br>Bee Party</span>
+                  <span class="chat-menu-tile-label">Đặt tiệc<br>Party Package</span>
                 </div>
                 <div class="chat-menu-tile" onclick="sendUserMsg('🍔 Xem menu & ưu đãi')">
                   <span class="chat-menu-tile-icon">🍔</span>
@@ -1973,13 +1973,13 @@
                 <button class="chat-send-btn" onclick="sendCustomUserMsg()">➤</button>
               </div>
 
-              <!-- Jollibee Mini App Overlay (Hidden by default, slides up) -->
-              <div class="miniapp-overlay" id="jollibeeMiniApp">
+              <!-- Brand Mini App Overlay (Hidden by default, slides up) -->
+              <div class="miniapp-overlay" id="brandMiniApp">
                 <div class="miniapp-hdr">
                   <div class="ma-title-box">
                     <span class="ma-logo">🍗</span>
                     <div>
-                      <div class="ma-name">Jollibee Rewards</div>
+                      <div class="ma-name">Brand Rewards</div>
                       <div class="ma-sub">Zalo Mini App</div>
                     </div>
                   </div>
@@ -1993,9 +1993,9 @@
                   
                   <div class="ma-section-title">Chọn gói tiệc sinh nhật</div>
                   <div class="ma-grid">
-                    <div class="ma-combo-card selected" onclick="selectCombo(this, 'Bee Party 20 bé', '1,499,000đ')">
+                    <div class="ma-combo-card selected" onclick="selectCombo(this, 'Party Package 20 bé', '1,499,000đ')">
                       <div class="combo-emoji">🎉</div>
-                      <div class="combo-name">Bee Party 20 bé</div>
+                      <div class="combo-name">Party Package 20 bé</div>
                       <div class="combo-price">1,499,000đ</div>
                     </div>
                     <div class="ma-combo-card" onclick="selectCombo(this, 'Family Combo 10 người', '799,000đ')">
@@ -2010,15 +2010,15 @@
                     <input type="text" class="ma-input" id="maCustName" value="Nguyễn Hà Lan" placeholder="Tên khách hàng">
                     <input type="tel" class="ma-input" id="maCustPhone" value="0912 345 678" placeholder="Số điện thoại">
                     <select class="ma-input" id="maCustStore">
-                      <option value="Jollibee Nguyễn Huệ, Q.1">Chi nhánh Nguyễn Huệ (Gần bạn nhất)</option>
-                      <option value="Jollibee Lê Lợi, Q.1">Chi nhánh Lê Lợi, Q.1</option>
-                      <option value="Jollibee Vincom Bình Thạnh">Chi nhánh Vincom Bình Thạnh</option>
+                      <option value="Chi nhánh Nguyễn Huệ, Q.1">Chi nhánh Nguyễn Huệ (Gần bạn nhất)</option>
+                      <option value="Chi nhánh Lê Lợi, Q.1">Chi nhánh Lê Lợi, Q.1</option>
+                      <option value="Chi nhánh Vincom Bình Thạnh">Chi nhánh Vincom Bình Thạnh</option>
                     </select>
                     
                     <div class="ma-optin-box">
                       <label class="ma-checkbox-label">
                         <input type="checkbox" id="maOptInCheck" checked>
-                        <span>Tôi đồng ý đăng ký thành viên Bee Loyalty và nhận tin nhắn ưu đãi sinh nhật, voucher qua Zalo ZBS.</span>
+                        <span>Tôi đồng ý đăng ký thành viên Loyalty Program và nhận tin nhắn ưu đãi sinh nhật, voucher qua Zalo ZBS.</span>
                       </label>
                     </div>
 
@@ -2047,7 +2047,7 @@
             <span class="gs-num">1</span>
             <div class="gs-text">
               <div class="gs-title">Tìm kiếm và Follow OA</div>
-              <div class="gs-desc">Tìm kiếm "Jollibee" trên Zalo và bấm "Quan tâm" tài khoản Tích Vàng của Jollibee.</div>
+              <div class="gs-desc">Tìm kiếm "Brand" trên Zalo và bấm "Quan tâm" tài khoản Tích Vàng của Brand.</div>
             </div>
           </div>
           
@@ -2125,7 +2125,7 @@
         <div class="ops-arr">→</div>
         <div class="ops-node">
           <div class="ops-icon" style="background:#FFF7E6;">🏢<div class="ops-badge-v">✓</div></div>
-          <div class="ops-lbl">Jollibee OA</div>
+          <div class="ops-lbl">Brand OA</div>
           <div class="ops-sublbl">1 OA Tích Vàng (HQ)</div>
         </div>
         <div class="ops-arr">→</div>
@@ -2185,7 +2185,7 @@
           </div>
         </div>
         <div class="ops-lane-body" id="ops-chat-customer">
-          <div class="p-msg bot">Hệ thống Jollibee Vietnam OA</div>
+          <div class="p-msg bot">Hệ thống Brand OA</div>
         </div>
       </div>
 
@@ -2209,11 +2209,11 @@
           <div class="ops-lane-avatar" style="background:#EFF5FF;">🏪</div>
           <div class="ops-lane-info">
             <div class="ops-lane-name">GMF Nội bộ chi nhánh</div>
-            <div class="ops-lane-role">Group Chat Zalo Nội bộ Jollibee Nguyễn Huệ</div>
+            <div class="ops-lane-role">Group Chat Zalo Nội bộ Chi nhánh Nguyễn Huệ</div>
           </div>
         </div>
         <div class="ops-lane-body" id="ops-chat-branch">
-          <div class="p-msg bot" style="background:#FFF5F5; color:var(--jollibee-red); font-weight:700; text-align:center; width:100%; align-self:center;">🔒 KÊNH NỘI BỘ — Khách hàng không thấy</div>
+          <div class="p-msg bot" style="background:#EBF3FB; color:var(--brand-primary); font-weight:700; text-align:center; width:100%; align-self:center;">🔒 KÊNH NỘI BỘ — Khách hàng không thấy</div>
         </div>
       </div>
     </div>
@@ -2223,7 +2223,7 @@
       <button class="btn btn-ghost" onclick="prevOpsStep()">← Bước trước</button>
       <div class="ops-desc-box">
         <div class="ops-step-title" id="opsStepTitle">Bước 1: Khách hàng gửi yêu cầu từ MiniApp</div>
-        <div class="ops-step-desc" id="opsStepDesc">Chị Lan chọn gói tiệc sinh nhật 20 bé qua MiniApp Jollibee và nhập SĐT đăng ký, nhấn gửi.</div>
+        <div class="ops-step-desc" id="opsStepDesc">Chị Lan chọn gói tiệc sinh nhật 20 bé qua MiniApp Brand và nhập SĐT đăng ký, nhấn gửi.</div>
       </div>
       <button class="btn btn-primary" onclick="nextOpsStep()">Bước tiếp theo →</button>
     </div>
@@ -2239,7 +2239,7 @@
         
         <div class="crm-inbox">
           <div class="crm-inbox-topbar">
-            <div class="crm-inbox-title">Jollibee Vietnam <span style="background:rgba(255,255,255,0.25); padding:1px 6px; border-radius:10px; font-size:9px;">Official</span></div>
+            <div class="crm-inbox-title">Brand Vietnam <span style="background:rgba(255,255,255,0.25); padding:1px 6px; border-radius:10px; font-size:9px;">Official</span></div>
             <div class="crm-inbox-sub">Quản lý tin nhắn tập trung · 128 hội thoại mới</div>
           </div>
           
@@ -2331,7 +2331,7 @@
             </div>
             <div class="crm-profile-row">
               <span class="crm-profile-lbl">Chi nhánh phục vụ</span>
-              <span class="crm-profile-val" id="crmSheetStore">Jollibee Nguyễn Huệ, Q.1</span>
+              <span class="crm-profile-val" id="crmSheetStore">Chi nhánh Nguyễn Huệ, Q.1</span>
             </div>
             <div class="crm-profile-row">
               <span class="crm-profile-lbl">Đồng ý nhận tin nhắn (Opt-in)</span>
@@ -2357,7 +2357,7 @@
                 <span class="tag-pill tag-branch">CN Nguyễn Huệ</span>
                 <span class="tag-pill tag-need">Tiệc sinh nhật</span>
                 <span class="tag-pill tag-loyalty">Khách mới</span>
-                <span class="tag-pill tag-need" style="background:#FFF5F5; color:var(--jollibee-red); border-color:#FCA5A5;">Bee Party · 20 bé</span>
+                <span class="tag-pill tag-need" style="background:#EBF3FB; color:var(--brand-primary); border-color:#93C5FD;">Party Package · 20 khách</span>
               </div>
             </div>
           </div>
@@ -2409,11 +2409,11 @@
     <!-- Chart Grid Row 1 -->
     <div class="db-chart-row">
       <div class="db-chart-card">
-        <h3>Lượt đặt tiệc Jollibee theo tháng</h3>
+        <h3>Lượt đặt tiệc theo tháng</h3>
         <div class="db-chart-sub">Dữ liệu thực tế 12 tháng + Dự báo 3 tháng tiếp theo nhờ chuyển đổi sang hệ Zalo ZBS</div>
         <div class="db-chart-legend">
-          <div class="db-legend-item"><div class="db-legend-color" style="background:#E31837;"></div>Thực tế 2025</div>
-          <div class="db-legend-item"><div class="db-legend-color" style="background:#FDB913;"></div>Dự báo tăng trưởng 2026</div>
+          <div class="db-legend-item"><div class="db-legend-color" style="background:#0047AB;"></div>Thực tế 2025</div>
+          <div class="db-legend-item"><div class="db-legend-color" style="background:#0095E8;"></div>Dự báo tăng trưởng 2026</div>
           <div class="db-legend-item"><div class="db-legend-color" style="background:rgba(0,104,255,0.2);"></div>Xu hướng (Trend)</div>
         </div>
         <div class="db-chart-wrap">
@@ -2456,12 +2456,12 @@
             <tr>
               <td>🎂 Tiệc sinh nhật</td>
               <td><strong>38%</strong></td>
-              <td><div class="db-perf-bar"><div class="db-perf-fill" style="width:78%; background:var(--jollibee-red);"></div></div></td>
+              <td><div class="db-perf-bar"><div class="db-perf-fill" style="width:78%; background:var(--brand-primary);"></div></div></td>
             </tr>
             <tr>
               <td>👨‍👩‍👧 Tiệc gia đình</td>
               <td><strong>27%</strong></td>
-              <td><div class="db-perf-bar"><div class="db-perf-fill" style="width:54%; background:var(--jollibee-yellow);"></div></div></td>
+              <td><div class="db-perf-bar"><div class="db-perf-fill" style="width:54%; background:var(--brand-accent);"></div></div></td>
             </tr>
             <tr>
               <td>💼 Corporate event</td>
@@ -2484,7 +2484,7 @@
       <table class="db-table">
         <thead>
           <tr>
-            <th>Chi nhánh Jollibee</th>
+            <th>Chi nhánh</th>
             <th>Lượt hội thoại tiếp nhận</th>
             <th>Thời gian phản hồi TB</th>
             <th>Điểm đánh giá CSAT</th>
@@ -2494,7 +2494,7 @@
         </thead>
         <tbody>
           <tr>
-            <td><strong>Jollibee Nguyễn Huệ, Q.1</strong></td>
+            <td><strong>Chi nhánh Nguyễn Huệ, Q.1</strong></td>
             <td>892 hội thoại</td>
             <td>22 giây</td>
             <td><strong>99.1%</strong></td>
@@ -2502,7 +2502,7 @@
             <td><span class="db-status-pill db-pill-active">Xuất sắc</span></td>
           </tr>
           <tr>
-            <td><strong>Jollibee Lê Lợi, Q.1</strong></td>
+            <td><strong>Chi nhánh Lê Lợi, Q.1</strong></td>
             <td>743 hội thoại</td>
             <td>31 giây</td>
             <td><strong>97.8%</strong></td>
@@ -2510,7 +2510,7 @@
             <td><span class="db-status-pill db-pill-active">Xuất sắc</span></td>
           </tr>
           <tr>
-            <td><strong>Jollibee SC VivoCity, Q.7</strong></td>
+            <td><strong>Chi nhánh SC VivoCity, Q.7</strong></td>
             <td>654 hội thoại</td>
             <td>28 giây</td>
             <td><strong>98.2%</strong></td>
@@ -2518,7 +2518,7 @@
             <td><span class="db-status-pill db-pill-active">Xuất sắc</span></td>
           </tr>
           <tr>
-            <td><strong>Jollibee Vincom Bình Thạnh</strong></td>
+            <td><strong>Chi nhánh Vincom Bình Thạnh</strong></td>
             <td>521 hội thoại</td>
             <td>1 phút 45 giây</td>
             <td><strong>89.3%</strong></td>
@@ -2526,7 +2526,7 @@
             <td><span class="db-status-pill db-pill-warning">Khá tốt</span></td>
           </tr>
           <tr>
-            <td><strong>Jollibee Aeon Mall Bình Dương</strong></td>
+            <td><strong>Chi nhánh Aeon Mall Bình Dương</strong></td>
             <td>489 hội thoại</td>
             <td>42 giây</td>
             <td><strong>96.5%</strong></td>
@@ -2575,7 +2575,7 @@
 
           <div class="fg">
             <label class="fg-lbl">Tên chiến dịch</label>
-            <input type="text" class="fg-input" id="campName" value="🎁 Voucher đặc biệt từ Jollibee dành riêng cho bạn!" oninput="updateCampaignPreview()">
+            <input type="text" class="fg-input" id="campName" value="🎁 Voucher đặc biệt dành riêng cho bạn!" oninput="updateCampaignPreview()">
           </div>
 
           <div class="fg">
@@ -2639,11 +2639,11 @@
           <div class="fg">
             <label class="fg-lbl">Nội dung tin nhắn</label>
             <textarea class="fg-textarea" id="campMsg" oninput="updateCampaignPreview()">Chào [Tên KH]! 🎁
-Bạn vừa nhận được voucher sinh nhật từ Jollibee:
+Bạn vừa nhận được voucher sinh nhật:
 🎂 GIẢM 88,000đ cho đơn từ 200,000đ
 Mã: BEEBIRTHDAY-2025
 HSD: 30/06/2025
-Áp dụng tại tất cả chi nhánh Jollibee.</textarea>
+Áp dụng tại tất cả chi nhánh.</textarea>
           </div>
 
           <div class="zbs-reach-card">
@@ -2672,18 +2672,18 @@ HSD: 30/06/2025
                 <div class="preview-zalo-hdr">
                   <div class="preview-zalo-logo">🍗</div>
                   <div>
-                    <div class="preview-zalo-brand">Jollibee Vietnam <span style="background:rgba(255,255,255,0.3);font-size:8px;padding:1px 4px;border-radius:4px;">✓</span></div>
+                    <div class="preview-zalo-brand">Brand Vietnam <span style="background:rgba(255,255,255,0.3);font-size:8px;padding:1px 4px;border-radius:4px;">✓</span></div>
                     <div class="preview-zalo-type" id="previewMsgType">ZBS Message Template · Official</div>
                   </div>
                 </div>
                 <div class="preview-zalo-body">
-                  <div class="preview-zalo-title" id="previewMsgTitle">🎁 Voucher đặc biệt từ Jollibee dành riêng cho bạn!</div>
+                  <div class="preview-zalo-title" id="previewMsgTitle">🎁 Voucher đặc biệt dành riêng cho bạn!</div>
                   <div class="preview-zalo-content" id="previewMsgContent">Chào Hà Lan! 🎁
-Bạn vừa nhận được voucher sinh nhật từ Jollibee:
+Bạn vừa nhận được voucher sinh nhật:
 🎂 GIẢM 88,000đ cho đơn từ 200,000đ
 Mã: BEEBIRTHDAY-2025
 HSD: 30/06/2025
-Áp dụng tại tất cả chi nhánh Jollibee.</div>
+Áp dụng tại tất cả chi nhánh.</div>
                   <button class="preview-zalo-btn" onclick="triggerCtaAlert()">Dùng ngay →</button>
                 </div>
               </div>
@@ -2698,7 +2698,7 @@ HSD: 30/06/2025
                 <div style="font-size:9.5px;color:var(--text-muted);font-weight:500;">CTR</div>
               </div>
               <div style="flex:1;background:var(--bg-main);border-radius:8px;padding:10px;text-align:center;">
-                <div style="font-size:18px;font-weight:800;color:var(--jollibee-red);">3.2x</div>
+                <div style="font-size:18px;font-weight:800;color:var(--brand-primary);">3.2x</div>
                 <div style="font-size:9.5px;color:var(--text-muted);font-weight:500;">vs SMS</div>
               </div>
             </div>
@@ -2728,12 +2728,12 @@ HSD: 30/06/2025
 
           <div class="fg">
             <label class="fg-lbl">Tiêu đề bài viết</label>
-            <input type="text" class="fg-input" id="broadcastTitle" value="🍗 Flash Sale cuối tuần — Giảm 30% toàn bộ combo Jollibee!" oninput="updateBroadcastPreview()">
+            <input type="text" class="fg-input" id="broadcastTitle" value="🎉 Flash Sale cuối tuần — Giảm 30% toàn bộ sản phẩm!" oninput="updateBroadcastPreview()">
           </div>
 
           <div class="fg">
             <label class="fg-lbl">Nội dung</label>
-            <textarea class="fg-textarea" id="broadcastMsg" oninput="updateBroadcastPreview()" style="height:80px;">Cuối tuần này Jollibee ưu đãi sốc! Giảm 30% tất cả combo gà. Đặt hàng ngay qua Zalo Mini App hoặc ghé thẳng cửa hàng gần nhất. 🔥</textarea>
+            <textarea class="fg-textarea" id="broadcastMsg" oninput="updateBroadcastPreview()" style="height:80px;">Cuối tuần này Ưu đãi sốc! Giảm 30% tất cả sản phẩm. Đặt hàng ngay qua Zalo Mini App hoặc ghé thẳng cửa hàng gần nhất. 🔥</textarea>
           </div>
 
           <div class="fg">
@@ -2821,7 +2821,7 @@ HSD: 30/06/2025
           <div class="broadcast-stats-row">
             <div class="broadcast-stat"><div class="val" id="broadcastReach">523,000</div><div class="lbl">Người nhận</div></div>
             <div class="broadcast-stat"><div class="val" style="color:var(--success);">108</div><div class="lbl">Hạn mức còn lại</div></div>
-            <div class="broadcast-stat"><div class="val" style="color:var(--jollibee-red);">FREE</div><div class="lbl">Chi phí gửi</div></div>
+            <div class="broadcast-stat"><div class="val" style="color:var(--brand-primary);">FREE</div><div class="lbl">Chi phí gửi</div></div>
           </div>
 
           <div class="fg" style="margin-top:14px;">
@@ -2841,18 +2841,18 @@ HSD: 30/06/2025
             <div class="zbs-preview-title">📱 Xem trước Broadcast</div>
             <div style="background:#E5E7EB;border-radius:16px;padding:14px;">
               <div style="background:white;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-                <div style="background:var(--jollibee-red);padding:10px 12px;display:flex;align-items:center;gap:8px;color:white;">
+                <div style="background:var(--brand-primary);padding:10px 12px;display:flex;align-items:center;gap:8px;color:white;">
                   <div style="width:28px;height:28px;border-radius:6px;background:white;display:flex;align-items:center;justify-content:center;font-size:14px;">🍗</div>
                   <div>
-                    <div style="font-size:11.5px;font-weight:700;">Jollibee Vietnam <span style="background:rgba(255,255,255,0.3);font-size:8px;padding:1px 4px;border-radius:4px;">✓</span></div>
+                    <div style="font-size:11.5px;font-weight:700;">Brand Vietnam <span style="background:rgba(255,255,255,0.3);font-size:8px;padding:1px 4px;border-radius:4px;">✓</span></div>
                     <div style="font-size:8.5px;opacity:0.7;">Bài viết từ Official Account</div>
                   </div>
                 </div>
-                <div style="background:linear-gradient(135deg,var(--jollibee-yellow) 0%,var(--jollibee-red) 100%);height:76px;display:flex;align-items:center;justify-content:center;font-size:30px;">🍗</div>
+                <div style="background:linear-gradient(135deg,var(--brand-accent) 0%,var(--brand-primary) 100%);height:76px;display:flex;align-items:center;justify-content:center;font-size:30px;">🍗</div>
                 <div style="padding:12px;">
-                  <div style="font-size:12px;font-weight:800;margin-bottom:6px;" id="broadcastPreviewTitle">🍗 Flash Sale cuối tuần — Giảm 30% toàn bộ combo Jollibee!</div>
-                  <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.5;margin-bottom:10px;" id="broadcastPreviewMsg">Cuối tuần này Jollibee ưu đãi sốc! Giảm 30% tất cả combo gà...</div>
-                  <button style="background:var(--jollibee-red);color:white;border:none;border-radius:6px;padding:8px;font-size:11px;font-weight:700;cursor:pointer;width:100%;" onclick="showToast('CTA: Mở Mini App đặt hàng Jollibee')">Xem ngay →</button>
+                  <div style="font-size:12px;font-weight:800;margin-bottom:6px;" id="broadcastPreviewTitle">🎉 Flash Sale cuối tuần — Giảm 30% toàn bộ sản phẩm!</div>
+                  <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.5;margin-bottom:10px;" id="broadcastPreviewMsg">Cuối tuần này Ưu đãi sốc! Giảm 30% tất cả sản phẩm...</div>
+                  <button style="background:var(--brand-primary);color:white;border:none;border-radius:6px;padding:8px;font-size:11px;font-weight:700;cursor:pointer;width:100%;" onclick="showToast('CTA: Mở Mini App đặt hàng')">Xem ngay →</button>
                 </div>
               </div>
             </div>
@@ -2866,7 +2866,7 @@ HSD: 30/06/2025
                 <div style="font-size:9px;color:var(--text-muted);font-weight:500;">Chi phí</div>
               </div>
               <div style="flex:1;background:var(--bg-main);border-radius:8px;padding:10px;text-align:center;">
-                <div style="font-size:16px;font-weight:800;color:var(--jollibee-red);">+18%</div>
+                <div style="font-size:16px;font-weight:800;color:var(--brand-primary);">+18%</div>
                 <div style="font-size:9px;color:var(--text-muted);font-weight:500;">Engagement</div>
               </div>
             </div>
@@ -2983,7 +2983,7 @@ HSD: 30/06/2025
       updateGuideStepsUI(1);
     } else if (stepNum === 2) {
       if (!customerState.hasFollowed) {
-        showToast('⚠️ Vui lòng bấm "Quan tâm Jollibee OA" trên điện thoại trước!');
+        showToast('⚠️ Vui lòng bấm "Quan tâm Brand OA" trên điện thoại trước!');
         return;
       }
       goToPhoneScreen('chat');
@@ -3007,16 +3007,16 @@ HSD: 30/06/2025
   }
 
   // Follow OA
-  function followJollibeeOA() {
+  function followBrandOA() {
     customerState.hasFollowed = true;
-    showToast('🎉 Cảm ơn bạn đã quan tâm Jollibee Vietnam OA!');
+    showToast('🎉 Cảm ơn bạn đã quan tâm Brand OA!');
     goToPhoneScreen('chat');
     updateGuideStepsUI(2);
 
     // Thêm tin nhắn bot tự động
     const chatMsgs = document.getElementById('phoneChatMsgs');
     chatMsgs.innerHTML += `
-      <div class="p-msg system">✅ Bạn đã quan tâm Jollibee Vietnam OA</div>
+      <div class="p-msg system">✅ Bạn đã quan tâm Brand OA</div>
       <div class="p-msg bot">Cảm ơn bạn đã quan tâm! 🐝 Mình có thể giúp gì cho bạn hôm nay?</div>
     `;
     chatMsgs.scrollTop = chatMsgs.scrollHeight;
@@ -3069,7 +3069,7 @@ HSD: 30/06/2025
       let nextQr = '';
 
       if (text.includes('Tìm cửa hàng') || text.includes('📍')) {
-        botText = '📍 Dạ, mình tìm thấy chi nhánh gần bạn nhất:\n🏠 <strong>Jollibee Nguyễn Huệ</strong> (Cách bạn 0.4km)\n📞 Hotline: 1900 636 444\n⏰ Giờ mở cửa: 09:00 - 22:00';
+        botText = '📍 Dạ, mình tìm thấy chi nhánh gần bạn nhất:\n🏠 <strong>Chi nhánh Nguyễn Huệ</strong> (Cách bạn 0.4km)\n📞 Hotline: 1900 xxx xxx\n⏰ Giờ mở cửa: 09:00 - 22:00';
         nextQr = `
           <div class="p-quick-replies" id="phoneQuickReplies">
             <span class="p-qr-btn" onclick="sendUserMsg('🍔 Xem menu tại store')">🍔 Xem Menu</span>
@@ -3077,7 +3077,7 @@ HSD: 30/06/2025
           </div>
         `;
       } else if (text.includes('Đặt tiệc') || text.includes('🎂')) {
-        botText = '🎂 Tuyệt vời! Jollibee có các gói Bee Party sinh nhật cực kỳ vui nhộn cho bé. Xin mời chị mở Mini App để xem chi tiết và đăng ký nhé!';
+        botText = '🎂 Tuyệt vời! Brand có các gói Party Package sinh nhật cực kỳ vui nhộn cho bé. Xin mời chị mở Mini App để xem chi tiết và đăng ký nhé!';
         chatMsgs.innerHTML += `<div class="p-msg bot">${botText}</div>`;
         
         // Gửi card MiniApp
@@ -3085,11 +3085,11 @@ HSD: 30/06/2025
           <div class="p-miniapp-card">
             <div class="p-ma-hdr">
               <span class="p-ma-hdr-logo">🍗</span>
-              <span class="p-ma-hdr-title">Jollibee Rewards Mini App</span>
+              <span class="p-ma-hdr-title">Brand Mini App</span>
             </div>
             <div class="p-ma-body">
               <div class="p-ma-title">🎂 Đặt Tiệc Sinh Nhật Cho Bé</div>
-              <div class="p-ma-desc">Chọn phòng tiệc, Combo món ăn và tích điểm Bee Loyalty ngay trên Zalo.</div>
+              <div class="p-ma-desc">Chọn phòng tiệc, Combo món ăn và tích điểm Loyalty Program ngay trên Zalo.</div>
               <button class="p-ma-btn" onclick="openMiniApp()">Mở Mini App →</button>
             </div>
           </div>
@@ -3098,7 +3098,7 @@ HSD: 30/06/2025
         updateGuideStepsUI(3);
         return;
       } else {
-        botText = 'Dạ Jollibee đã ghi nhận thông tin. Bạn có thể sử dụng các nút chức năng nhanh dưới đây để được hỗ trợ tốt nhất:';
+        botText = 'Dạ Brand đã ghi nhận thông tin. Bạn có thể sử dụng các nút chức năng nhanh dưới đây để được hỗ trợ tốt nhất:';
         nextQr = `
           <div class="p-quick-replies" id="phoneQuickReplies">
             <span class="p-qr-btn" onclick="sendUserMsg('📍 Tìm cửa hàng gần nhất')">📍 Tìm cửa hàng</span>
@@ -3117,14 +3117,14 @@ HSD: 30/06/2025
 
   // Mini App overlay control
   function openMiniApp() {
-    document.getElementById('jollibeeMiniApp').classList.add('active');
-    showToast('📱 Đang mở Zalo Mini App: Jollibee Rewards...');
+    document.getElementById('brandMiniApp').classList.add('active');
+    showToast('📱 Đang mở Zalo Mini App: Brand Rewards...');
   }
   function closeMiniApp() {
-    document.getElementById('jollibeeMiniApp').classList.remove('active');
+    document.getElementById('brandMiniApp').classList.remove('active');
   }
 
-  let selectedComboName = 'Bee Party 20 bé';
+  let selectedComboName = 'Party Package 20 bé';
   let selectedComboPrice = '1,499,000đ';
   function selectCombo(card, name, price) {
     document.querySelectorAll('.ma-combo-card').forEach(c => {
@@ -3177,7 +3177,7 @@ HSD: 30/06/2025
       const chatMsgs = document.getElementById('phoneChatMsgs');
       chatMsgs.innerHTML += `
         <div class="p-msg system">✅ Gửi yêu cầu đặt tiệc qua Mini App thành công</div>
-        <div class="p-msg bot">Cảm ơn chị <strong>${name}</strong>! Jollibee đã nhận được yêu cầu đặt gói <strong>${selectedComboName}</strong> tại chi nhánh <strong>${store}</strong>.
+        <div class="p-msg bot">Cảm ơn chị <strong>${name}</strong>! Brand đã nhận được yêu cầu đặt gói <strong>${selectedComboName}</strong> tại chi nhánh <strong>${store}</strong>.
         
         Chúng em đang tiến hành kiểm tra slot và sẽ phản hồi xác nhận cho chị ngay lập tức ạ! 😊</div>
       `;
@@ -3204,7 +3204,7 @@ HSD: 30/06/2025
         <span class="tag-pill tag-branch">${store.split(',')[0]}</span>
         <span class="tag-pill tag-need">Tiệc sinh nhật</span>
         <span class="tag-pill tag-loyalty">Khách mới</span>
-        <span class="tag-pill tag-need" style="background:#FFF5F5; color:var(--jollibee-red); border-color:#FCA5A5;">${selectedComboName}</span>
+        <span class="tag-pill tag-need" style="background:#EBF3FB; color:var(--brand-primary); border-color:#93C5FD;">${selectedComboName}</span>
       `;
     }, 1500);
   }
@@ -3214,13 +3214,13 @@ HSD: 30/06/2025
   const opsStepsData = [
     {
       title: "Bước 1: Khách hàng gửi yêu cầu qua Mini App",
-      desc: "Chị Lan điền form đặt tiệc và đồng ý Opt-in trên Jollibee Mini App, dữ liệu bắn về hệ thống.",
+      desc: "Chị Lan điền form đặt tiệc và đồng ý Opt-in trên Brand Mini App, dữ liệu bắn về hệ thống.",
       highlight: "customer",
       progress: 16.6,
       actions: [
-        { lane: "customer", type: "system", text: "📱 Chị Lan mở Mini App Jollibee Rewards" },
-        { lane: "customer", type: "out", text: "Gửi yêu cầu đặt tiệc: Bee Party 20 bé tại CN Nguyễn Huệ. SĐT: 0912 345 678. Opt-in: ĐỒNG Ý." },
-        { lane: "customer", type: "in", sender: "Jollibee Vietnam ✓", avatar: "🤖", text: "Jollibee đã nhận được yêu cầu đặt tiệc của chị Lan tại chi nhánh Nguyễn Huệ. Hệ thống đang xử lý, vui lòng chờ trong giây lát!" }
+        { lane: "customer", type: "system", text: "📱 Chị Lan mở Mini App Brand Rewards" },
+        { lane: "customer", type: "out", text: "Gửi yêu cầu đặt tiệc: Party Package 20 bé tại CN Nguyễn Huệ. SĐT: 0912 345 678. Opt-in: ĐỒNG Ý." },
+        { lane: "customer", type: "in", sender: "Brand Vietnam ✓", avatar: "🤖", text: "Brand đã nhận được yêu cầu đặt tiệc của chị Lan tại chi nhánh Nguyễn Huệ. Hệ thống đang xử lý, vui lòng chờ trong giây lát!" }
       ]
     },
     {
@@ -3243,30 +3243,30 @@ HSD: 30/06/2025
         { lane: "hq", type: "tagging", text: "🏷️ Auto Tag: [● Tiếp nhận], [Tiệc sinh nhật], [CN Nguyễn Huệ], [VIP Loyal]" },
         { lane: "hq", type: "tags-widget" },
         { lane: "hq", type: "system", text: "🔀 Điều phối tự động: Route cuộc hội thoại về Chi nhánh Nguyễn Huệ, Q.1" },
-        { lane: "customer", type: "in", sender: "CS Minh (HQ)", avatar: "🎯", text: "Chào chị Lan! Em là Minh từ Jollibee HQ. Yêu cầu đặt tiệc của chị đang được gửi sang chi nhánh Nguyễn Huệ (gần chị nhất) để xác nhận slot phòng. Em sẽ phản hồi chị ngay khi chi nhánh xác nhận nhé!" }
+        { lane: "customer", type: "in", sender: "CS Minh (HQ)", avatar: "🎯", text: "Chào chị Lan! Em là Minh từ Brand HQ. Yêu cầu đặt tiệc của chị đang được gửi sang chi nhánh Nguyễn Huệ (gần chị nhất) để xác nhận slot phòng. Em sẽ phản hồi chị ngay khi chi nhánh xác nhận nhé!" }
       ]
     },
     {
       title: "Bước 4: Cửa hàng tiếp nhận & Kiểm tra tình trạng",
-      desc: "Quản lý cửa hàng Nguyễn Huệ nhận thông báo Ticket trên CRM chi nhánh, tiến hành kiểm tra lịch phòng tiệc Bee Party.",
+      desc: "Quản lý cửa hàng Nguyễn Huệ nhận thông báo Ticket trên CRM chi nhánh, tiến hành kiểm tra lịch phòng tiệc Party Package.",
       highlight: "branch",
       progress: 66.6,
       actions: [
         { lane: "branch", type: "system", text: "🔔 Nhận Ticket điều phối từ HQ: Yêu cầu đặt tiệc chị Lan (T7 này)" },
-        { lane: "branch", type: "in", sender: "CHT Hùng (Nguyễn Huệ)", avatar: "🏪", text: "Đã nhận thông tin từ HQ CRM. Đang kiểm tra lịch phòng tiệc Bee Party cho Thứ 7 tuần này." }
+        { lane: "branch", type: "in", sender: "CHT Hùng (Nguyễn Huệ)", avatar: "🏪", text: "Đã nhận thông tin từ HQ CRM. Đang kiểm tra lịch phòng tiệc Party Package cho Thứ 7 tuần này." }
       ]
     },
     {
       title: "Bước 5: Trao đổi nội bộ qua kênh Zalo GMF",
-      desc: "Quản lý chi nhánh Nguyễn Huệ trao đổi nội bộ qua group chat GMF (Group Message Feature) để chuẩn bị logistics (món ăn, mascot chú ong).",
+      desc: "Quản lý chi nhánh Nguyễn Huệ trao đổi nội bộ qua group chat GMF (Group Message Feature) để chuẩn bị logistics (món ăn, mascot mascot).",
       highlight: "branch",
       progress: 83.3,
       actions: [
-        { lane: "branch", type: "system", text: "💬 Mở Group Chat GMF nội bộ: Jollibee Nguyễn Huệ Ops" },
+        { lane: "branch", type: "system", text: "💬 Mở Group Chat GMF nội bộ: Chi nhánh Nguyễn Huệ Ops" },
         { lane: "branch", type: "gmf" },
-        { lane: "branch", type: "in", sender: "CHT Hùng", avatar: "🏪", text: "Cả nhà ơi, T7 tuần này lúc 16:00 có tiệc sinh nhật 20 bé của chị Lan. Slot phòng Bee Party lúc đó còn trống đúng không? Bếp trưởng Mai chuẩn bị menu gà giòn vui vẻ nhé!" },
+        { lane: "branch", type: "in", sender: "CHT Hùng", avatar: "🏪", text: "Cả nhà ơi, T7 tuần này lúc 16:00 có tiệc sinh nhật 20 bé của chị Lan. Slot phòng Party Package lúc đó còn trống đúng không? Bếp trưởng Mai chuẩn bị menu gà giòn vui vẻ nhé!" },
         { lane: "branch", type: "in", sender: "Bếp trưởng Mai", avatar: "👩‍🍳", text: "Dạ phòng trống ạ! Em sẽ lên đơn nguyên liệu và chuẩn bị bánh kem đặc biệt cho bé. Xác nhận OK!" },
-        { lane: "branch", type: "in", sender: "CHT Hùng", avatar: "🏪", text: "Tốt! Anh Hùng sẽ điều phối 1 bạn mặc Mascot chú ong ra nhảy vui vẻ 15 phút tặng bé. Nhờ CS Minh báo cọc với khách." }
+        { lane: "branch", type: "in", sender: "CHT Hùng", avatar: "🏪", text: "Tốt! Anh Hùng sẽ điều phối 1 bạn mặc Mascot mascot ra nhảy vui vẻ 15 phút tặng bé. Nhờ CS Minh báo cọc với khách." }
       ]
     },
     {
@@ -3275,11 +3275,11 @@ HSD: 30/06/2025
       highlight: null,
       progress: 100.0,
       actions: [
-        { lane: "customer", type: "in", sender: "Jollibee Vietnam ✓", avatar: "🍗", text: "Chị Lan ơi! Jollibee Nguyễn Huệ xác nhận còn phòng tiệc cho bé vào T7 tuần này lúc 16:00 ạ. Gói tiệc gồm 20 suất Gà rán & Mỳ Ý, tặng thêm Mascot chú ong biểu diễn.\n\nChị vui lòng nhấn liên kết dưới đây để thanh toán cọc 500k giữ phòng nhé:\n🔗 zalo.pay/jollibee-dep-284736" },
+        { lane: "customer", type: "in", sender: "Brand Vietnam ✓", avatar: "🍗", text: "Chị Lan ơi! Chi nhánh Nguyễn Huệ xác nhận còn phòng tiệc cho bé vào T7 tuần này lúc 16:00 ạ. Gói tiệc gồm 20 suất combo tiệc, tặng thêm Mascot thương hiệu biểu diễn.\n\nChị vui lòng nhấn liên kết dưới đây để thanh toán cọc 500k giữ phòng nhé:\n🔗 zalo.pay/brand-deposit-xxxxxx" },
         { lane: "customer", type: "out", text: "Tuyệt quá em ơi! Chị vừa thanh toán cọc thành công rồi đó. Nhóm chụp ảnh giúp bé nhé." },
         { lane: "hq", type: "system", text: "💳 NHẬN THANH TOÁN CỌC THÀNH CÔNG: 500,000đ" },
         { lane: "hq", type: "success", text: "✓ Ticket #JB2026061601 chuyển trạng thái sang [✓ Hoàn tất]. Lưu CRM dữ liệu Opt-in." },
-        { lane: "customer", type: "in", sender: "Jollibee Vietnam ✓", avatar: "🤖", text: "Cảm ơn chị Lan đã hoàn tất đặt tiệc! Điểm Bee Loyalty của chị đã được cộng (+20 pts). Hẹn gặp lại gia đình chị vào Thứ Bảy nhé! ❤️" }
+        { lane: "customer", type: "in", sender: "Brand Vietnam ✓", avatar: "🤖", text: "Cảm ơn chị Lan đã hoàn tất đặt tiệc! Điểm Loyalty Program của chị đã được cộng (+20 pts). Hẹn gặp lại gia đình chị vào Thứ Bảy nhé! ❤️" }
       ]
     }
   ];
@@ -3287,7 +3287,7 @@ HSD: 30/06/2025
   function clearOpsLanes() {
     document.getElementById('ops-chat-customer').innerHTML = '<div class="p-msg bot" style="background:#FAFBFD; text-align:center; width:100%; align-self:center;">Zalo Mobile App Chat View</div>';
     document.getElementById('ops-chat-hq').innerHTML = '<div class="p-msg bot" style="background:#FAFBFD; text-align:center; width:100%; align-self:center;">Hệ thống CRM tổng của Head Office</div>';
-    document.getElementById('ops-chat-branch').innerHTML = '<div class="p-msg bot" style="background:#FFF5F5; color:var(--jollibee-red); font-weight:700; text-align:center; width:100%; align-self:center;">🔒 KÊNH NỘI BỘ — Khách hàng không thấy</div>';
+    document.getElementById('ops-chat-branch').innerHTML = '<div class="p-msg bot" style="background:#EBF3FB; color:var(--brand-primary); font-weight:700; text-align:center; width:100%; align-self:center;">🔒 KÊNH NỘI BỘ — Khách hàng không thấy</div>';
   }
 
   function addOpsMessage(laneId, type, data) {
@@ -3307,7 +3307,7 @@ HSD: 30/06/2025
         <div class="ops-ticket-title">🎫 Ticket #${data.info.id}</div>
         <div class="ops-ticket-row"><span>Khách hàng</span><span class="ops-ticket-val">${data.info.name} (Mini App)</span></div>
         <div class="ops-ticket-row"><span>Loại yêu cầu</span><span class="ops-ticket-val">${data.info.type}</span></div>
-        <div class="ops-ticket-row"><span>Chi nhánh route</span><span class="ops-ticket-val">Jollibee ${data.info.store}</span></div>
+        <div class="ops-ticket-row"><span>Chi nhánh route</span><span class="ops-ticket-val">Brand ${data.info.store}</span></div>
         <div class="ops-ticket-row"><span>Trạng thái</span><span class="ops-ticket-val"><span class="tag-pill tag-process">● ${data.info.status}</span></span></div>
       `;
     } else if (type === 'tags-widget') {
@@ -3412,18 +3412,18 @@ HSD: 30/06/2025
       name: 'Chị Lan (Nguyễn Hà Lan)',
       zaloId: 'Zalo ID: user_2847362',
       phone: '0912 345 678',
-      store: 'Jollibee Nguyễn Huệ, Q.1',
+      store: 'Chi nhánh Nguyễn Huệ, Q.1',
       optin: '✅ Đã đồng ý (SĐT)',
       optinColor: 'var(--success)',
       processTag: '● Chờ xác nhận',
-      normalTags: ['CN Nguyễn Huệ', 'Tiệc sinh nhật', 'Khách mới', 'Bee Party · 20 bé'],
+      normalTags: ['CN Nguyễn Huệ', 'Tiệc sinh nhật', 'Khách mới', 'Party Package · 20 khách'],
       avatar: '👩'
     },
     tuan: {
       name: 'Anh Tuấn (Trần Anh Tuấn)',
       zaloId: 'Zalo ID: user_5829104',
       phone: '0987 654 321',
-      store: 'Jollibee Lê Lợi, Q.1',
+      store: 'Chi nhánh Lê Lợi, Q.1',
       optin: '✅ Đã đồng ý (SĐT)',
       optinColor: 'var(--success)',
       processTag: '● Đang tư vấn',
@@ -3493,7 +3493,7 @@ HSD: 30/06/2025
       let className = 'tag-pill';
       if (isStore) className += ' tag-branch';
       else if (isLoyalty) className += ' tag-loyalty';
-      else if (isCombo) className = 'tag-pill tag-need" style="background:#FFF5F5; color:var(--jollibee-red); border-color:#FCA5A5;';
+      else if (isCombo) className = 'tag-pill tag-need" style="background:#EBF3FB; color:var(--brand-primary); border-color:#93C5FD;';
       else className += ' tag-need';
 
       normalTags.innerHTML += `<span class="${className}">${tag}</span>`;
@@ -3599,7 +3599,7 @@ HSD: 30/06/2025
         labels: ['Tiệc sinh nhật', 'Ưu đãi Combo', 'Tích điểm Loyalty', 'Liên hệ khiếu nại', 'Đặt bàn online'],
         datasets: [{
           data: [382, 287, 194, 95, 43],
-          backgroundColor: ['#E31837', '#0068FF', '#FDB913', '#8B5CF6', '#10B981'],
+          backgroundColor: ['#0047AB', '#0068FF', '#0095E8', '#8B5CF6', '#10B981'],
           borderRadius: 6
         }]
       },
@@ -3644,10 +3644,10 @@ HSD: 30/06/2025
     new Chart(document.getElementById('chartCombos'), {
       type: 'doughnut',
       data: {
-        labels: ['Bee Party 20 bé', 'Family Combo', 'Happy Meal', 'BBQ Party', 'Voucher 50k'],
+        labels: ['Party Package 20 bé', 'Family Combo', 'Happy Meal', 'BBQ Party', 'Voucher 50k'],
         datasets: [{
           data: [35, 27, 18, 12, 8],
-          backgroundColor: ['#E31837', '#FDB913', '#0068FF', '#10B981', '#8B5CF6'],
+          backgroundColor: ['#0047AB', '#0095E8', '#0068FF', '#10B981', '#8B5CF6'],
           borderWidth: 2,
           borderColor: '#ffffff'
         }]
@@ -3780,7 +3780,7 @@ HSD: 30/06/2025
     if (selectedConvoId && convoDatabase[selectedConvoId]) {
       const p = convoDatabase[selectedConvoId];
       nameReplace = p.name.split(' ')[0];
-      storeReplace = p.store.split(',')[0].replace('Jollibee ', '');
+      storeReplace = p.store.split(',')[0].replace('Chi nhánh ', '');
     }
 
     document.getElementById('previewMsgContent').innerHTML = msg
@@ -3810,7 +3810,7 @@ HSD: 30/06/2025
   }
 
   function triggerCtaAlert() {
-    showToast('🎉 CTA click → Đưa khách hàng về Mini App đặt bàn của Jollibee!');
+    showToast('🎉 CTA click → Đưa khách hàng về Mini App đặt hàng!');
   }
 
   // ─── ZBS SOLUTION TABS ───
@@ -3824,24 +3824,24 @@ HSD: 30/06/2025
   // ─── USE CASE SELECTOR ───
   const usecaseTemplates = {
     voucher: {
-      title: '🎁 Voucher đặc biệt từ Jollibee dành riêng cho bạn!',
-      msg: `Chào [Tên KH]! 🎁\nBạn vừa nhận được voucher sinh nhật từ Jollibee:\n🎂 GIẢM 88,000đ cho đơn từ 200,000đ\nMã: BEEBIRTHDAY-2025\nHSD: 30/06/2025\nÁp dụng tại tất cả chi nhánh Jollibee.`
+      title: '🎁 Voucher đặc biệt dành riêng cho bạn!',
+      msg: `Chào [Tên KH]! 🎁\nBạn vừa nhận được voucher sinh nhật:\n🎂 GIẢM 88,000đ cho đơn từ 200,000đ\nMã: BEEBIRTHDAY-2025\nHSD: 30/06/2025\nÁp dụng tại tất cả chi nhánh.`
     },
     otp: {
-      title: '🔐 Mã OTP xác thực — Jollibee',
+      title: '🔐 Mã OTP xác thực',
       msg: `Mã OTP của bạn là: 942246\nMã có hiệu lực trong 5 phút.\nKhông chia sẻ mã này với bất kỳ ai.`
     },
     announce: {
-      title: '📢 Thông báo quan trọng từ Jollibee',
-      msg: `Chào [Tên KH]! 🍗\nJollibee vừa cập nhật chính sách ưu đãi Bee Loyalty.\nTừ tháng 7/2025, điểm tích lũy tăng 2x cho mọi giao dịch!\nXem chi tiết tại chi nhánh [Chi nhánh] hoặc trên Mini App.`
+      title: '📢 Thông báo quan trọng',
+      msg: `Chào [Tên KH]! 🍗\nBrand vừa cập nhật chính sách ưu đãi Loyalty Program.\nTừ tháng 7/2025, điểm tích lũy tăng 2x cho mọi giao dịch!\nXem chi tiết tại chi nhánh [Chi nhánh] hoặc trên Mini App.`
     },
     payment: {
-      title: '💳 Xác nhận thanh toán — Jollibee',
-      msg: `Chào [Tên KH]! ✅\nGiao dịch thanh toán thành công.\nCombo: Bee Party 20 bé\nSố tiền: 1,199,000đ (đã giảm 20%)\nThời gian: 14:32 hôm nay\nChi nhánh: [Chi nhánh]`
+      title: '💳 Xác nhận thanh toán',
+      msg: `Chào [Tên KH]! ✅\nGiao dịch thanh toán thành công.\nCombo: Party Package 20 bé\nSố tiền: 1,199,000đ (đã giảm 20%)\nThời gian: 14:32 hôm nay\nChi nhánh: [Chi nhánh]`
     },
     confirm: {
-      title: '✅ Xác nhận đặt tiệc — Jollibee [Chi nhánh]',
-      msg: `Chào [Tên KH]! 🎉\nĐặt tiệc của bạn đã được xác nhận!\nGói: Bee Party 20 bé\nNgày: Thứ 7, 15/06/2025 lúc 10:00\nChi nhánh: [Chi nhánh]\nMã đặt chỗ: JB-2025-08742`
+      title: '✅ Xác nhận đặt dịch vụ — [Chi nhánh]',
+      msg: `Chào [Tên KH]! 🎉\nĐặt tiệc của bạn đã được xác nhận!\nGói: Party Package 20 bé\nNgày: Thứ 7, 15/06/2025 lúc 10:00\nChi nhánh: [Chi nhánh]\nMã đặt chỗ: JB-2025-08742`
     }
   };
 
